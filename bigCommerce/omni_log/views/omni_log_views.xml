@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Product Import Log Views-->
+    <record id="product_import_log_view_tree" model="ir.ui.view">
+        <field name="name">product.import.log.view.tree</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_import_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="create_uid" position="after">
+                <field name="entity_name" string="Name"/>
+                <field name="product_sku" string="SKU"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_import_log_view_form" model="ir.ui.view">
+        <field name="name">product.import.log.view.form</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_import_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="channel_record_id" position="after">
+                <field name="entity_name" string="Name"/>
+                <field name="product_sku"/>
+                <field name="product_mapping_id" string="Record in Odoo"/>
+            </field>
+        </field>
+    </record>
+
+    <!--Order Import Log Views-->
+    <record id="order_import_log_view_tree" model="ir.ui.view">
+        <field name="name">order.import.log.view.tree</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_import_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="create_uid" position="after">
+                <field name="entity_name" string="Order Number"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="order_import_log_view_form" model="ir.ui.view">
+        <field name="name">order.import.log.view.form</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_import_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="channel_record_id" position="after">
+                <field name="entity_name" string="Order Number"/>
+                <field name="order_id" string="Record in Odoo"/>
+            </field>
+        </field>
+    </record>
+
+    <!--Shipment Import Log Views-->
+    <record id="shipment_import_log_view_tree" model="ir.ui.view">
+        <field name="name">shipment.import.log.view.tree</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_import_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="create_uid" position="attributes">
+                <attribute name="Imported By"/>
+            </field>
+            <field name="channel_record_id" position="after">
+                <field name="parent_ref" string="Order Number"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="shipment_import_log_view_form" model="ir.ui.view">
+        <field name="name">shipment.import.log.view.form</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_import_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="channel_record_id" position="after">
+                <field name="shipment_id" string="Record in Odoo" 
+                attrs="{'invisible': [('res_model', '=', 'stock.service.picking')]}"/>
+                <field name="shipment_service_id" string="Record in Odoo" 
+                attrs="{'invisible': [('res_model', '=', 'stock.picking')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <!--Others Data Import Log Views-->
+    <record id="other_import_log_view_form" model="ir.ui.view">
+        <field name="name">other.import.log.view.form</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_import_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='left']/field[@name='channel_record_id']" position="before">
+                <field name="data_type_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                <field name="data_operation"/>
+            </xpath>
+            <xpath expr="//group[@name='left']/field[@name='channel_record_id']" position="attributes">
+                <attribute name="attrs">{'invisible': [('data_operation', '=', 'all')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="other_import_log_view_tree" model="ir.ui.view">
+        <field name="name">other.import.log.view.tree</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_import_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="create_uid" position="attributes">
+                <attribute name="Imported By"/>
+            </field>
+            <field name="create_uid" position="after">
+                <field name="data_type_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                <field name="data_operation"/>
+            </field>
+            <field name="channel_record_id" position="replace"/>
+        </field>
+    </record>
+
+    <!--Product Export Log Views-->
+    <record id="export_product_log_view_tree" model="ir.ui.view">
+        <field name="name">product.export.log.view.tree</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_export_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="create_uid" position="after">
+                <field name="entity_name" string="Name"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="export_product_log_view_form" model="ir.ui.view">
+        <field name="name">product.export.log.view.form</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_export_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="operation_type" position="after">
+                <field name="entity_name" string="Name"/>
+            </field>
+        </field>
+    </record>
+
+    <!--Inventory Export Log Views-->
+    <record id="export_inventory_log_view_tree" model="ir.ui.view">
+        <field name="name">inventory.export.log.view.tree</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_export_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="operation_type" position="after">
+                <field name="entity_name" string="Name"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="export_inventory_log_view_form" model="ir.ui.view">
+        <field name="name">inventory.export.log.view.form</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_export_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="operation_type" position="after">
+                <field name="entity_name" string="Name"/>
+            </field>
+        </field>
+    </record>
+
+    <!--Order Export Log Views-->
+    <record id="export_order_log_view_tree" model="ir.ui.view">
+        <field name="name">order.export.log.view.tree</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_export_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="operation_type" position="after">
+                <field name="order_id" string="Order Number"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="export_order_log_view_form" model="ir.ui.view">
+        <field name="name">order.export.log.view.form</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_export_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="operation_type" position="after">
+                <field name="order_id" string="Order Number"/>
+            </field>
+        </field>
+    </record>
+
+    <!--Others Data Export Log Views-->
+    <record id="other_export_log_view_form" model="ir.ui.view">
+        <field name="name">other.export.log.view.form</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_export_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <group name="left" position="replace">
+                <group name="left">
+                    <field name="data_type_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="other_export_log_view_tree" model="ir.ui.view">
+        <field name="name">other.export.log.view.tree</field>
+        <field name="model">omni.log</field>
+        <field name="inherit_id" ref="omni_log.omni_log_base_export_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="create_uid" position="attributes">
+                <attribute name="Exported By"/>
+            </field>
+            <field name="create_uid" position="after">
+                <field name="data_type_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+            </field>
+            <field name="operation_type" position="replace"/>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="shipping_method_channel_form_view" model="ir.ui.view">
+        <field name="name">shipping.method.channel.form</field>
+        <field name="model">shipping.method.channel</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group class="mb0">
+                        <group class="mb0">
+                            <field name="channel_id" invisible="1" />
+                            <field name="name" string="Requested Service" required="1" />
+                            <field name="delivery_carrier_id" string="Shipping Service" required="1"
+                                   options="{'no_create': True, 'no_open': True}" />
+                            <field name="provider" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="shipping_method_channel_tree_view" model="ir.ui.view">
+        <field name="name">shipping.method.channel.tree</field>
+        <field name="model">shipping.method.channel</field>
+        <field name="arch" type="xml">
+            <tree string="Shipping Carriers">
+                <field name="channel_id" invisible="1" />
+                <field name="name" string="Requested Service" />
+                <field name="delivery_carrier_id" string="Shipping Service" />
+            </tree>
+        </field>
+    </record>
+    <record id="shipping_method_channel_search_view" model="ir.ui.view">
+        <field name="name">shipping.method.channel.search</field>
+        <field name="model">shipping.method.channel</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="provider"/>
+                <filter string="Archived" domain="[('active','=',False)]" name="archive"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_provider" string="Provider" context="{'group_by': 'provider'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_shipping_method_channel" model="ir.actions.act_window">
+        <field name="name">Shipping Carriers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.method.channel</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Shipping Carrier
+            </p>
+        </field>
+    </record>
+</odoo>

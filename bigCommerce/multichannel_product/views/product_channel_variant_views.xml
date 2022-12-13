@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_channel_variant_action" model="ir.actions.act_window">
+        <field name="name">Product Mappings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.channel.variant</field>
+        <field name="domain">[('product_tmpl_id', '=', active_id)]</field>
+        <field name="context">{'expandView': True , 'dynamic_form_view': True, 'group_by':['product_channel_tmpl_id']}</field>
+        <field name="view_ids"
+               eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree'}),
+                        (0, 0, {'view_mode': 'form'}),
+                        (0, 0, {'view_mode': 'kanban'})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product channel variant
+            </p>
+            <p>
+                You must define a product for everything you sell, whether it's a physical product,
+                a consumable or a service you offer to customers.
+                The product form contains information to simplify the sale process:
+                price, notes in the quotation, accounting data, procurement methods, etc.
+            </p>
+        </field>
+    </record>
+
+    <record id="product_channel_variant_tree_view_2" model="ir.ui.view">
+        <field name="name">product.channel.variant.tree2</field>
+        <field name="model">product.channel.variant</field>
+        <field eval="999" name="priority"/>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0" delete="0">
+                <field name="product_product_id" string="Product"/>
+                <field name="default_code" string="SKU"/>
+                <field name="channel_id" widget="channel_many2one" options="{'no_open':True,'no_create':True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_channel_variant_action_2" model="ir.actions.act_window">
+        <field name="name">Product Mappings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.channel.variant</field>
+        <field name="view_mode">tree</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('product_channel_variant_tree_view_2')})]"/>
+    </record>
+
+    <record id="product_channel_variant_tree_view" model="ir.ui.view">
+        <field name="name">product.channel.variant.tree</field>
+        <field name="model">product.channel.variant</field>
+        <field eval="7" name="priority"/>
+        <field name="arch" type="xml">
+            <tree string="Product Channel Variant">
+                <field name="default_code"/>
+                <field name="name"/>
+                <field name="channel_id" widget="channel_many2one" options="{'no_open':True,'no_create':True}"/>
+                <field name="state"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state in ('in_progress','updated')"
+                       decoration-success="state == 'published'"
+                       decoration-danger="state == 'error'"
+                       widget="badge"/>
+                <field name="attribute_value_ids" widget="many2many_tags"/>
+                <!--<field name="categ_ids" widget="many2many_tags"/>-->
+                <field name="lst_price" readonly="1" widget="monetary"/>
+                <!--<field name="standard_price" readonly="1" widget="monetary"/>-->
+                <!--<field name="quantity"/>-->
+                <field name="product_tmpl_id" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_channel_variant_easy_edit_view" model="ir.ui.view">
+        <field name="name">product.channel.variant.view.form.easy</field>
+        <field name="model">product.channel.variant</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Variant Information">
+                <sheet>
+                    <field name="product_channel_tmpl_id" invisible="1" required="0"/>
+                    <field name="product_product_id" invisible="1" />
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                                class="oe_stat_button" icon="fa-building-o">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value" widget="statinfo">
+                                        <field name="quantity" widget="statinfo" nolabel="1" />
+                                    </span>
+                                    <span class="o_stat_text">On Hand</span>
+                                </div>
+                        </button>
+                    </div>
+                    <field name="id" invisible="1"/>
+                    <field name="image_variant_1920" widget="image" class="oe_avatar"
+                           options='{"size": [90, 90]}' />
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Product Name"/>
+                        <h1><field name="name" placeholder="e.g. Black Chair"/></h1>
+                    </div>
+                    <div class="oe_row">
+                        <field name="purchasing_disabled" class="oe_inline"/>
+                        <label for="purchasing_disabled" string="Purchasable  "/>
+                    </div>
+                    <group string="Attributes">
+                        <field name="attribute_value_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                    <group>
+                        <group name="codes" string="Codes">
+                            <field name="default_code" required="1" />
+                            <field name="barcode" string="Barcode"/>
+                            <field name="mpn" />
+                            <field name="bin_picking_number" string="BPN"/>
+                        </group>
+                        <group name="pricing" string="Pricing">
+                            <field name="lst_price" required="1"/>
+                            <field name="retail_price" />
+                            <field name="standard_price" />
+                            <field name="sale_price" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_channel_variant_form" model="ir.ui.view">
+        <field name="name">product.channel.variant.form</field>
+        <field name="model">product.channel.variant</field>
+        <field name="arch" type="xml">
+            <form string="Product Channel Variant" create="0" delete="1">
+                <field name="write_date" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="id_on_channel" invisible="1"/>
+                <field name="weight_in_oz" string="Weight" invisible="1" force_save="1"/>
+                <field name="height" string="Height" invisible="1" force_save="1"/>
+                <field name="width" string="Width" invisible="1" force_save="1"/>
+                <field name="depth" string="Depth" invisible="1" force_save="1"/>
+                <field name="is_publish_message_removed" invisible="1"/>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <!--Message for 'In Progress'-->
+                <div class="alert alert-warning alert-dismissible text-left"
+                     attrs="{'invisible': [('state', '!=', 'in_progress')]}"
+                     role="alert">
+                    This product is being published to channel. Please wait...
+                </div>
+                <!--Message for 'Publish'-->
+                <div class="alert alert-info alert-dismissible text-left"
+                     attrs="{'invisible': ['|', ('state', '!=', 'published'), ('is_publish_message_removed', '=', True)]}"
+                     t-ignore="True" role="status">
+                    This product has been published to channel successfully!
+                    <button name="remove_publish_message"
+                            type="object"
+                            class="btn btn-small btn-link"
+                            style="float:right; padding:0">&amp;times;</button>
+                </div>
+                <!--Message for 'Error'-->
+                <div class="alert alert-danger alert-dismissible text-left"
+                     attrs="{'invisible': [('state', '!=', 'error')]}"
+                     t-ignore="True" role="status">
+                    <span>
+                        <field name="error_message"
+                               style="background-color: rgb(248, 225, 224); color: #a94442; border:none"/>
+                    </span>
+                </div>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+
+                    </div>
+                    <field name="image_variant_1920" widget="image" class="oe_avatar" force_save="1"
+                           options='{"preview_image": "image_variant_1920", "size": [90, 90]}' />
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Product Name"/>
+                        <h1>
+                            <field name="name" placeholder="Product Name"
+                                   readonly="True"
+                                   force_save="1"
+                                   required="True" />
+                        </h1>
+                    </div>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

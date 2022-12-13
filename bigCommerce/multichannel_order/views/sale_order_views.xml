@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_store_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.store.list.select</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="90"/>
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <search string="Search Sales Order">
+                <field name="name" string="Order" filter_domain="['|','|','|',('name','ilike',self),
+                    ('client_order_ref','ilike',self),('partner_id','child_of',self),('channel_order_ref','ilike',self)]"/>
+                <field name="partner_id" operator="child_of"/>
+                <field name="order_line" string="Product" filter_domain="[('order_line.product_id', 'ilike', self)]"/>
+                <!-- We only allow to search on the following sale order line fields (product, name) because the other fields, such as price, quantity, ...
+                    will not be searched as often, and if they need to be searched it's usually in the context of products
+                    and then they can be searched from the page listing the sale order lines related to a product (from the product itself).
+                -->
+                <field name="shipping_status" invisible="1"/>
+                <separator/>
+                <filter string="Quotation"
+                        domain="[('state','=','draft')]" name="draft"/>
+                <filter string="Sales Order"
+                        domain="[('state','=','sale')]" name="sales_order"/>
+                <filter string="Done"
+                        domain="[('state','=','done')]" name="done"/>
+                <filter string="Canceled"
+                        domain="[('state','=','cancel')]" name="cancel"/>
+                <separator/>
+                <filter string="Unshipped"
+                        domain="[('shipping_status','=','unshipped')]" name="unshipped"/>
+                <filter string="Partially Shipped"
+                        domain="[('shipping_status','=','partially_shipped')]" name="partially_shipped"/>
+                <filter string="Fully Shipped"
+                        domain="[('shipping_status','=','shipped')]" name="fully_shipped"/>
+                <separator/>
+                <filter invisible="1" string="Late Activities" name="activities_overdue"
+                    domain="[('activity_ids.date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                    help="Show all records which has next action date is before today"/>
+                <filter invisible="1" string="Today Activities" name="activities_today"
+                    domain="[('activity_ids.date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter invisible="1" string="Future Activities" name="activities_upcoming_all"
+                    domain="[('activity_ids.date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="customer" string="Customer" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Shipping Status" name="shipping_status" domain="[]" context="{'group_by':'shipping_status'}"/>
+                    <filter string="Order Date" name="order_month" domain="[]" context="{'group_by': 'date_order'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_order_form_omni_manage_channel_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="priority">1000</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+               <field name="customer_channel_id" attrs="{'invisible': [('platform', '=', False)]}"/>
+            </field>
+            <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+                <attributes name="attrs">{'invisible': ['|',('state', 'not in', ['sent']),('platform', '!=', False)]}</attributes>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                <attributes name="attrs">{'invisible': ['|',('state', 'not in', ['draft']),('platform', '!=', False)]}</attributes>
+            </xpath>
+
+            <button name="action_draft" position="replace">
+                <button name="action_draft" type="object"
+                        string="Set to Quotation"
+                        attrs="{'invisible': ['|',('state', 'not in', ['cancel']),('platform', '!=', False)]}"/>
+            </button>
+            
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="is_from_channel" invisible="1"/>
+                <field name="is_done_physical_shipping" invisible="1"/>
+                <field name="channel_id" widget="channel_many2one"
+                       attrs="{'invisible': [('channel_id','=',False)]}"
+                       force_save="1" options="{'no_open':True,'no_create':True}"/>
+                <field name="platform" invisible="1"/>
+                <field name="id_on_channel" invisible="1"/>
+                <field name="channel_order_ref" string="Order ID on Channel"
+                       invisible="1"
+                       readonly="True"/>
+                <field name="display_status_on_channel"
+                       attrs="{'invisible': [('platform', '=', False)]}"
+                       invisible="1"
+                       string="Status on Channel"/>
+                <field name="order_status_channel_id"
+                       invisible="1"
+                       readonly="True"/>
+                <field name="requested_shipping_method" 
+                attrs="{'invisible': [('channel_id', '=', False)]}"/>
+                <field name="shipping_status" />
+            </xpath>
+            <xpath expr="//form//header//button[@name='action_draft']" position="after">
+                <field name="shipping_status" invisible="1"/>
+                <button name="re_create_physical_transfer"
+                        attrs="{'invisible': ['|', ('is_done_physical_shipping', '=', True), ('state', '!=', 'sale')]}"
+                        type="object" string="Re-create Transfers"/>
+                <field name="is_cancelled_on_channel" invisible="1"/>
+                <button name="%(order_channel_cancel_confirmation_action)d" type="action" string="Cancel on online store"
+                        attrs="{'invisible': ['|', '|', ('is_from_channel', '=', False), ('state', '!=', 'cancel'), ('is_cancelled_on_channel', '=', True)]}"/>
+            </xpath>
+
+            <field name="partner_id" position="attributes">
+                <attribute name="context">{'search_default_customer':1}</attribute>
+            </field>
+            <field name="partner_invoice_id" position="attributes">
+                <attribute name="context">{'show_address': 1}</attribute>
+            </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="context">{'show_address': 1}</attribute>
+            </field>
+            <field name="partner_shipping_id" position="after">
+                <field name="is_replacement" 
+                string="Replacement Order"
+                attrs="{'invisible': [('is_replacement', '=', False)]}"/>
+                <field name="replaced_order_id" 
+                string="Replaced Order"
+                attrs="{'invisible': ['|',('is_replacement','=',False),('replaced_order_id', '=', False)]}"/>
+                <field name="replaced_id_on_channel" 
+                string="Replaced Order"
+                attrs="{'invisible': ['|',('is_replacement','=',False),('replaced_order_id', '!=', False)]}"/>
+            </field>
+            <field name="validity_date" position="after">
+                <field name="write_date" string="Last Updated"/>
+            </field>
+            <field name="payment_term_id" position="after">
+                <field name="payment_gateway_name" string="Payment Gateway"/>
+            </field>
+            <notebook position="inside">
+                <page string="Notes" name="comments">
+                    <group string="Customer Comments">
+                        <field name="customer_message"
+                               placeholder="Type any comments about this order here. The order comments will be visible on invoices printed from the store."
+                               nolabel="1"/>
+                    </group>
+                    <group string="Staff Notes">
+                        <field name="staff_notes"
+                               placeholder="Type any staff notes about this order here. Staff notes are only viewable in the store control panel and not viewable by customers."
+                               nolabel="1"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_store_order_form_omni_manage_channel_inherit" model="ir.ui.view">
+        <field name="name">sale.store.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="view_order_form_omni_manage_channel_inherit"/>
+        <field name="arch" type="xml">
+            <form position="attributes">
+                <attribute name="create">0</attribute>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_order_form_inherit_sale_stock" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.stock.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <button name="action_view_delivery" position="after">
+                <button type="object"
+                    name="action_view_service_delivery"
+                    class="oe_stat_button"
+                    icon="fa-list"
+                    context="{'link_sale_id': active_id}"
+                    attrs="{'invisible': [('service_delivery_count', '=', 0)]}" groups="base.group_user" style="width:15%">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="service_delivery_count" widget="statinfo" nolabel="1" class="mr4" />
+                        </span>
+                        <span class="o_stat_text">Other Fulfillments</span>
+                       </div>
+                </button>
+            </button>
+        </field>
+    </record>
+
+    <record id="sale_order_view_search_inherit_quotation" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.quotation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <filter name="sales" position="after">
+                <separator/>
+                <filter string="Unshipped"
+                        domain="[('shipping_status','=','unshipped')]" name="unshipped"/>
+                <filter string="Partially Shipped"
+                        domain="[('shipping_status','=','partially_shipped')]" name="partially_shipped"/>
+                <filter string="Fully Shipped"
+                        domain="[('shipping_status','=','shipped')]" name="fully_shipped"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter_inherit" model="ir.ui.view">
+        <field name="name">sale.order.list.select</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="channel_order_ref" invisible="1"/>
+                <field name="channel_id" invisible="1"/>
+                <field name="shipping_status" invisible="1"/>
+                <field name="state" invisible="1"/>
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="filter_domain">['|','|','|',('name','ilike',self),
+                    ('client_order_ref','ilike',self),('partner_id','child_of',self),('channel_order_ref','ilike',self)]</attribute>
+            </field>
+            <filter name="salesperson" position="before">
+                <filter string="Store" name="channel" domain="[]" context="{'group_by':'channel_id'}"/>
+            </filter>
+        </field>
+    </record>
+    
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="customer_channel_id" optional="show"/>
+            </field>
+            <field name="name" position="after">
+                <field name="channel_order_ref" string="Order ID on Channel" invisible="1"/>
+                <field name="channel_id" string="Store" widget="channel_many2one" options="{'no_open':True,'no_create':True}" optional="show"/>
+                <field name="date_order" string="Order Date" optional="show"/>
+            </field>
+            <field name="state" position="before">
+                <field name="shipping_status" string="Shipping Status"
+                       decoration-success="shipping_status == 'shipped'"
+                       decoration-warning="shipping_status == 'unshipped'"
+                       decoration-info="shipping_status == 'partially_shipped'" widget="badge" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="customer_channel_id" optional="show"/>
+            </field>
+            <field name="date_order" position="before">
+                <field name="channel_order_ref" string="Order ID on Channel" invisible="1"/>
+                <field name="channel_id" string="Store" widget="channel_many2one" options="{'no_open':True,'no_create':True}" optional="show"/>
+            </field>
+            <field name="invoice_status" position="before">
+                <field name="shipping_status" string="Shipping Status"
+                       decoration-success="shipping_status == 'shipped'"
+                       decoration-warning="shipping_status == 'unshipped'"
+                       decoration-info="shipping_status == 'partially_shipped'" widget="badge" optional="show"/>
+            </field>
+        </field>
+    </record>
+    
+
+    <record id="search_view_sales_orders" model="ir.ui.view">
+        <field name="name">sale.order.list.select</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale"/>
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="before">
+                <field name="shipping_status" invisible="1"/>
+                <separator/>
+                <filter string="Quotation"
+                        domain="[('state','=','draft')]" name="draft"/>
+                <filter string="Sales Order"
+                        domain="[('state','=','sale')]" name="sales_order"/>
+                <filter string="Done"
+                        domain="[('state','=','done')]" name="done"/>
+                <filter string="Canceled"
+                        domain="[('state','=','cancel')]" name="cancel"/>
+                <separator/> 
+                <filter string="Unshipped"
+                        domain="[('shipping_status','=','unshipped')]" name="unshipped"/>
+                <filter string="Partially Shipped"
+                        domain="[('shipping_status','=','partially_shipped')]" name="partially_shipped"/>
+                <filter string="Fully Shipped"
+                        domain="[('shipping_status','=','shipped')]" name="fully_shipped"/>
+                <separator/>
+            </filter>
+            <filter name="channel" position="after">
+                <filter string="Shipping Status" name="shipping_status" domain="[]" context="{'group_by':'shipping_status'}"/>
+                <filter string="Status" name="status" domain="[]" context="{'group_by':'state'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_all_store_orders_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <tree string="All Orders" class="o_sale_order"
+                  decoration-bf="message_needaction==True" decoration-muted="state=='cancel'" create="0">
+                <field name="message_needaction" invisible="1"/>
+                <field name="name" string="Order Number"/>
+                <field name="date_order" string="Order Date"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="customer_channel_id" string="Customer Account"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="amount_total" sum="Total Tax Included" widget="monetary" string="Total"/>
+                <field name="shipping_status" string="Shipping Status"
+                       decoration-success="shipping_status == 'shipped'"
+                       decoration-warning="shipping_status == 'unshipped'"
+                       decoration-info="shipping_status == 'partially_shipped'" widget="badge"/>
+                <field name="state" string="Status"
+                       decoration-success="state == 'done'"
+                       decoration-warning="state == 'cancel'"
+                       decoration-info="state == 'draft' or state == 'sale' or state == 'sent'" widget="badge"/>
+                <field name="invoice_status" decoration-success="invoice_status == 'invoiced'" decoration-info="invoice_status == 'to invoice'" decoration-warning="invoice_status == 'upselling'" widget="badge"/>
+                <field name="state" invisible="1"/>
+                <field name="write_date" string="Last Updated"/>
+            </tree>
+        </field>
+    </record>
+
+    <template id="exception_on_order">
+        <div>
+            <!--Exception(s) occurred on the order:-->
+            <!--<a href="#" data-oe-model="sale.order" t-att-data-oe-id="origin_order.id"><t t-esc="origin_order.name"/></a>.-->
+            <p><t t-esc="title"/></p>
+            <div class="mt16">
+                <p>Exception(s):</p>
+                <ul t-foreach="exceptions" t-as="exception">
+                    <li>
+                        <span><t t-esc="exception['title']"/></span>
+                        :
+                        <span><t t-esc="exception['reason']"/></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+    <template id="exception_shipping_address_changes">
+        <div>
+            <p><t t-esc="title"/></p>
+            <div class="mt16 row">
+                <ul>
+                    <li t-foreach="differs" t-as="differ">
+                        <span><t t-esc="differ['field']"/></span>
+                        :
+                        <span><t t-esc="differ['from']"/></span>
+                        <i class="fa fa-long-arrow-right"></i>
+                        <span><t t-esc="differ['to']"/></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+</odoo>

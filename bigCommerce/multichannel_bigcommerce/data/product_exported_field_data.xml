@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!--Master Template Fields-->
+    <record id="master_template_field_name" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">name</field>
+        <field name="odoo_field_id" ref='product.field_product_template__name'/>
+        <field name="mapping_field_name">name</field>
+        <field name="store_field_name">Name</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="master_template_field_sku" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">sku</field>
+        <field name="odoo_field_id" ref='product.field_product_template__default_code'/>
+        <field name="mapping_field_name">default_code</field>
+        <field name="store_field_name">SKU</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="master_template_field_price" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">price</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__lst_price'/>
+        <field name="mapping_field_name">lst_price</field>
+        <field name="store_field_name">Default Price</field>
+    </record>
+    <record id="master_template_field_retail_price" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">retail_price</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__retail_price'/>
+        <field name="mapping_field_name">retail_price</field>
+        <field name="store_field_name">MSRP</field>
+    </record>
+    <record id="master_template_field_weight" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">weight</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__weight_in_oz'/>
+        <field name="mapping_field_name">weight_in_oz</field>
+        <field name="store_field_name">Weight</field>
+    </record>
+    <record id="master_template_field_dimensions" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">dimensions</field>
+        <field name="mapping_field_name">dimensions</field>
+        <field name="store_field_name">Dimensions</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__dimensions'/>
+    </record>
+    <record id="master_template_field_mpn" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">mpn</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__mpn'/>
+        <field name="mapping_field_name">mpn</field>
+        <field name="store_field_name">MPN</field>
+    </record>
+    <record id="master_template_field_upc" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">upc</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__upc'/>
+        <field name="mapping_field_name">upc</field>
+        <field name="store_field_name">Product UPC/EAN</field>
+    </record>
+    <record id="master_template_field_gtin" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">gtin</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__gtin'/>
+        <field name="mapping_field_name">gtin</field>
+        <field name="store_field_name">GTIN</field>
+    </record>
+    <record id="master_template_field_brand" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">brand_id</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__brand_id'/>
+        <field name="mapping_field_name">brand_id</field>
+        <field name="store_field_name">Brand</field>
+    </record>
+    <record id="master_template_field_images" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">images</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__product_channel_image_ids'/>
+        <field name="store_field_name">Images</field>
+    </record>
+    <record id="master_template_field_description_sale" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">description</field>
+        <field name="odoo_field_id" ref='product.field_product_template__description_sale'/>
+        <field name="mapping_field_name">description_sale</field>
+        <field name="store_field_name">Description</field>
+    </record>
+    <record id="master_template_field_type" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">type</field>
+        <field name="store_field_name">Product Type</field>
+        <field name="mapping_field_name">type</field>
+        <field name="virtual_level">master_template</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="master_template_field_inventory_tracking" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">inventory_tracking</field>
+        <field name="store_field_name">Inventory Tracking</field>
+        <field name="virtual_level">master_template</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+
+    <!--Master Variant Fields-->
+
+    <record id="master_variant_field_mapping_id" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">id</field>
+        <field name="store_field_name">ID</field>
+        <field name="virtual_level">master_variant</field>
+        <field name="mapping_field_name">id_on_channel</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="master_variant_field_mapping_product_id" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">product_id</field>
+        <field name="store_field_name">Product</field>
+        <field name="virtual_level">master_variant</field>
+        <field name="mapping_field_name">product_channel_tmpl_id</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="master_variant_field_price" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">price</field>
+        <field name="store_field_name">Default Price</field>
+        <field name="odoo_field_id" ref='product.field_product_product__lst_price'/>
+        <field name="mapping_field_name">lst_price</field>
+        <field name="related_template_field_id" ref="master_template_field_price"/>
+    </record>
+    <record id="master_variant_field_retail_price" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">retail_price</field>
+        <field name="store_field_name">MSRP</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_product__retail_price'/>
+        <field name="mapping_field_name">retail_price</field>
+        <field name="related_template_field_id" ref="master_template_field_retail_price"/>
+    </record>
+    <record id="master_variant_field_weight" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">weight</field>
+        <field name="store_field_name">Weight</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_product__weight_in_oz'/>
+        <field name="mapping_field_name">weight_in_oz</field>
+        <field name="related_template_field_id" ref="master_template_field_weight"/>
+    </record>
+    <record id="master_variant_field_dimensions" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">dimensions</field>
+        <field name="store_field_name">Dimensions</field>
+        <field name="mapping_field_name">dimensions</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_product__dimensions'/>
+        <field name="related_template_field_id" ref="master_template_field_dimensions"/>
+    </record>
+    <record id="master_variant_field_upc" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">upc</field>
+        <field name="store_field_name">UPC</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_product__upc'/>
+        <field name="mapping_field_name">upc</field>
+        <field name="related_template_field_id" ref="master_template_field_upc"/>
+    </record>
+    <record id="master_variant_field_mpn" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">mpn</field>
+        <field name="store_field_name">MPN</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_product__mpn'/>
+        <field name="mapping_field_name">mpn</field>
+        <field name="related_template_field_id" ref="master_template_field_upc"/>
+    </record>
+    <record id="master_variant_field_sku" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">sku</field>
+        <field name="store_field_name">SKU</field>
+        <field name="odoo_field_id" ref='product.field_product_product__default_code'/>
+        <field name="mapping_field_name">default_code</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="master_variant_field_options" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">option_values</field>
+        <field name="store_field_name">Options</field>
+        <field name="odoo_field_id" ref='product.field_product_product__product_template_attribute_value_ids'/>
+        <field name="mapping_field_name">attribute_value_ids</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="master_variant_field_image_url" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">image_url</field>
+        <field name="store_field_name">Thumbnail</field>
+        <field name="odoo_field_id" ref='product.field_product_product__image_variant_1920'/>
+        <field name="mapping_field_name">image_variant_1920</field>
+        <field name="related_template_field_id" ref="master_template_field_images"/>
+    </record>
+
+    <!--Mapping Template-->
+    <record id="mapping_template_field_id" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">id</field>
+        <field name="store_field_name">ID</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__id_on_channel'/>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="mapping_template_field_categories" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">categories</field>
+        <field name="store_field_name">Categories</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__categ_ids'/>
+    </record>
+    <record id="mapping_template_field_sale_price" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">sale_price</field>
+        <field name="store_field_name">Sale Price</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__sale_price'/>
+    </record>
+    <record id="mapping_template_field_bpn" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">bin_picking_number</field>
+        <field name="store_field_name">Bin Picking Number (BPN)</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__bin_picking_number'/>
+    </record>
+    <record id="mapping_template_field_tax_class" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">tax_class_id</field>
+        <field name="store_field_name">Tax Class</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__tax_class_id'/>
+    </record>
+    <record id="mapping_template_field_tax_code" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">product_tax_code</field>
+        <field name="store_field_name">Tax Provider Tax Code</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__tax_code'/>
+    </record>
+    <record id="mapping_template_field_is_featured" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">is_featured</field>
+        <field name="store_field_name">Feature Product</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__is_featured'/>
+    </record>
+    <record id="mapping_template_field_sort_order" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">sort_order</field>
+        <field name="store_field_name">Sort Order</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__sort_order'/>
+    </record>
+    <record id="mapping_template_field_fixed_cost_shipping_price" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">fixed_cost_shipping_price</field>
+        <field name="store_field_name">Fixed Shipping Price</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__fixed_cost_shipping_price'/>
+    </record>
+    <record id="mapping_template_field_free_shipping" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">is_free_shipping</field>
+        <field name="store_field_name">Free Shipping</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__is_free_shipping'/>
+    </record>
+    <record id="mapping_template_field_order_quantity_minimum" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">order_quantity_minimum</field>
+        <field name="store_field_name">Minimum Purchase Quantity</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__min_order_qty'/>
+    </record>
+    <record id="mapping_template_field_order_quantity_maximum" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">order_quantity_maximum</field>
+        <field name="store_field_name">Maximum Purchase Quantity</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__max_order_qty'/>
+    </record>
+    <record id="mapping_template_field_is_visible" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">is_visible</field>
+        <field name="store_field_name">Visible on Storefront</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__is_visible'/>
+    </record>
+    <record id="mapping_template_field_purchasing_disabled" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">purchasing_disabled</field>
+        <field name="store_field_name">Purchasable (Variant)</field>
+        <field name="virtual_level">mapping_template</field>
+    </record>
+    <record id="mapping_template_field_inventory_warning_level" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">inventory_warning_level</field>
+        <field name="store_field_name">Low Stock</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__warning_quantity'/>
+    </record>
+    <record id="mapping_template_field_related_products" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">related_products</field>
+        <field name="store_field_name">Related Products</field>
+        <field name="virtual_level">mapping_template</field>
+    </record>
+    <record id="mapping_template_field_warranty" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">warranty</field>
+        <field name="store_field_name">Warranty Information</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__warranty'/>
+    </record>
+    <record id="mapping_template_field_search_keywords" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">search_keywords</field>
+        <field name="store_field_name">Search Keywords</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__search_keywords'/>
+    </record>
+    <record id="mapping_template_field_availability" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">availability</field>
+        <field name="store_field_name">Availability Options</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__availability'/>
+    </record>
+    <record id="mapping_template_field_availability_description" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">availability_description</field>
+        <field name="store_field_name">Availability Text</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__availability_description'/>
+    </record>
+    <record id="mapping_template_field_sort_order" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">sort_order</field>
+        <field name="store_field_name">Sort Order</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__sort_order'/>
+    </record>
+    <record id="mapping_template_field_condition" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">condition</field>
+        <field name="store_field_name">Condition</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__bigcommerce_product_condition'/>
+    </record>
+    <record id="mapping_template_field_is_condition_shown" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">is_condition_shown</field>
+        <field name="store_field_name">Show condition on storefront</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__bigcommerce_is_product_condition_shown'/>
+    </record>
+    <record id="mapping_template_field_page_title" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">page_title</field>
+        <field name="store_field_name">Page Title</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__page_title'/>
+    </record>
+    <record id="mapping_template_field_meta_description" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">meta_description</field>
+        <field name="store_field_name">Meta Description</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__meta_description'/>
+    </record>
+    <record id="mapping_template_field_preorder_release_date" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">preorder_release_date</field>
+        <field name="store_field_name">[Preorder] Release Date</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__preorder_release_date'/>
+    </record>
+    <record id="mapping_template_field_preorder_message" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">preorder_message</field>
+        <field name="store_field_name">[Preorder] Message</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__preorder_message'/>
+    </record>
+    <record id="mapping_template_field_is_preorder_only" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">is_preorder_only</field>
+        <field name="store_field_name">Remove pre-order status on this date</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__preorder_auto_disable'/>
+    </record>
+    <record id="mapping_template_field_custom_url" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">custom_url</field>
+        <field name="store_field_name">Product URL</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel__slug'/>
+    </record>
+    <record id="mapping_template_field_open_graph_type" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">open_graph_type</field>
+        <field name="store_field_name">[Open Graph Sharing] Object Type</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__open_graph_type'/>
+    </record>
+    <record id="mapping_template_field_open_graph_title" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">open_graph_title</field>
+        <field name="store_field_name">[Open Graph Sharing] Title</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__open_graph_title'/>
+    </record>
+    <record id="mapping_template_field_open_graph_description" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">open_graph_description</field>
+        <field name="store_field_name">[Open Graph Sharing] Description</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__open_graph_description'/>
+    </record>
+    <record id="mapping_template_field_open_graph_use_meta_description" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">open_graph_use_meta_description</field>
+        <field name="store_field_name">[Open Graph Sharing] Use meta description</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__open_graph_use_meta_description'/>
+    </record>
+    <record id="mapping_template_field_open_graph_use_product_name" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">open_graph_use_product_name</field>
+        <field name="store_field_name">[Open Graph Sharing] Use product name</field>
+        <field name="odoo_field_id" ref='multichannel_bigcommerce.field_product_channel__open_graph_use_product_name'/>
+    </record>
+    <record id="mapping_template_field_open_graph_use_image" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">open_graph_use_image</field>
+        <field name="store_field_name">[Open Graph Sharing] Image</field>
+        <field name="virtual_level">mapping_template</field>
+    </record>
+    <record id="mapping_template_field_custom_fields" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">custom_fields</field>
+        <field name="store_field_name">Custom Fields</field>
+        <field name="virtual_level">mapping_template</field>
+    </record>
+    <record id="mapping_template_field_bulk_pricing_rules" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">bulk_pricing_rules</field>
+        <field name="store_field_name">Bulk Pricing</field>
+        <field name="virtual_level">mapping_template</field>
+    </record>
+
+    <!--Mapping Variant-->
+    <record id="mapping_variant_field_id" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">id</field>
+        <field name="store_field_name">ID</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel_variant__id_on_channel'/>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="mapping_variant_field_product_id" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">product_id</field>
+        <field name="store_field_name">Product</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel_variant__product_channel_tmpl_id'/>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="mapping_variant_field_sale_price" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">sale_price</field>
+        <field name="store_field_name">Sale Price</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel_variant__sale_price'/>
+        <field name="related_template_field_id" ref="mapping_template_field_sale_price"/>
+    </record>
+    <record id="mapping_variant_field_fixed_cost_shipping_price" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">fixed_cost_shipping_price</field>
+        <field name="store_field_name">Fixed Shipping Price</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel_variant__fixed_cost_shipping_price'/>
+        <field name="related_template_field_id" ref="mapping_template_field_fixed_cost_shipping_price"/>
+    </record>
+    <record id="mapping_variant_field_free_shipping" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">is_free_shipping</field>
+        <field name="store_field_name">Free Shipping</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel_variant__is_free_shipping'/>
+        <field name="related_template_field_id" ref="mapping_template_field_free_shipping"/>
+    </record>
+    <record id="mapping_variant_field_bpn" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">bin_picking_number</field>
+        <field name="store_field_name">Bin Picking Number (BPN)</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel_variant__bin_picking_number'/>
+        <field name="related_template_field_id" ref="mapping_template_field_bpn"/>
+    </record>
+    <record id="mapping_variant_field_purchasing_disabled" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">purchasing_disabled</field>
+        <field name="store_field_name">Purchasable</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel_variant__purchasing_disabled'/>
+        <field name="related_template_field_id" ref="mapping_template_field_purchasing_disabled"/>
+    </record>
+    <record id="mapping_variant_field_inventory_warning_level" model="product.exported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">inventory_warning_level</field>
+        <field name="store_field_name">Low Stock</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_channel_variant__warning_quantity'/>
+        <field name="related_template_field_id" ref="mapping_template_field_inventory_warning_level"/>
+    </record>
+</odoo>

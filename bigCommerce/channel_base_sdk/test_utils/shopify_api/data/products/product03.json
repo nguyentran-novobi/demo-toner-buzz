@@ -1,0 +1,61 @@
+{
+  "product": {
+    "id": 6086393725098,
+    "title": "MRS-1374 upated2",
+    "body_html": "\u003cp style='margin:0px;font-size:13px;font-family:\"Lucida Grande\", Helvetica, Verdana, Arial, sans-serif;'\u003e\u003cbr\u003e\u003c\/p\u003e",
+    "vendor": "QA-OmniChannel",
+    "product_type": "",
+    "created_at": "2020-11-19T23:23:27-05:00",
+    "handle": "mrs-1374",
+    "updated_at": "2021-03-03T21:47:25-05:00",
+    "published_at": "2020-11-19T23:23:27-05:00",
+    "template_suffix": "",
+    "status": "active",
+    "published_scope": "web",
+    "tags": "",
+    "admin_graphql_api_id": "gid:\/\/shopify\/Product\/6086393725098",
+    "variants": [
+      {
+        "id": 37609692692650,
+        "product_id": 6086393725098,
+        "title": "Blue",
+        "price": "0.00",
+        "sku": "DHJDJD01232-12",
+        "position": 1,
+        "inventory_policy": "deny",
+        "compare_at_price": null,
+        "fulfillment_service": "manual",
+        "inventory_management": "shopify",
+        "option1": "Blue",
+        "option2": null,
+        "option3": null,
+        "created_at": "2020-11-19T23:23:27-05:00",
+        "updated_at": "2021-03-03T21:47:25-05:00",
+        "taxable": true,
+        "barcode": "",
+        "grams": 4536,
+        "image_id": null,
+        "weight": 10.0,
+        "weight_unit": "lb",
+        "inventory_item_id": 39702928392362,
+        "inventory_quantity": 4,
+        "old_inventory_quantity": 4,
+        "requires_shipping": true,
+        "admin_graphql_api_id": "gid:\/\/shopify\/ProductVariant\/37609692692650"
+      }
+    ],
+    "options": [
+      {
+        "id": 7773804232874,
+        "product_id": 6086393725098,
+        "name": "Color",
+        "position": 1,
+        "values": [
+          "Blue"
+        ]
+      }
+    ],
+    "images": [],
+    "image": null
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "id": 100748,
+      "product_id": 30931,
+      "sku": "SKU-MO7UN-SG",
+      "sku_id": 70076,
+      "price": null,
+      "calculated_price": 219,
+      "sale_price": null,
+      "retail_price": null,
+      "map_price": null,
+      "weight": null,
+      "calculated_weight": 88,
+      "width": null,
+      "height": null,
+      "depth": null,
+      "is_free_shipping": false,
+      "fixed_cost_shipping_price": 0,
+      "purchasing_disabled": false,
+      "purchasing_disabled_message": "",
+      "image_url": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/product_images\/attribute_rule_images\/70000_source_1572495912.jpg",
+      "cost_price": 209,
+      "upc": "",
+      "mpn": "",
+      "gtin": "",
+      "inventory_level": 0,
+      "inventory_warning_level": 0,
+      "bin_picking_number": "BPN141",
+      "option_values": [
+        {
+          "id": 69613,
+          "label": "Space Grey",
+          "option_id": 34808,
+          "option_display_name": "COLOR"
+        }
+      ]
+    },
+    {
+      "id": 100749,
+      "product_id": 30931,
+      "sku": "SKU-MO7UN-W",
+      "sku_id": 70077,
+      "price": null,
+      "calculated_price": 219,
+      "sale_price": null,
+      "retail_price": null,
+      "map_price": null,
+      "weight": null,
+      "calculated_weight": 88,
+      "width": null,
+      "height": null,
+      "depth": null,
+      "is_free_shipping": false,
+      "fixed_cost_shipping_price": 0,
+      "purchasing_disabled": false,
+      "purchasing_disabled_message": "",
+      "image_url": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/product_images\/attribute_rule_images\/70002_source_1572495931.jpg",
+      "cost_price": 209,
+      "upc": "",
+      "mpn": "",
+      "gtin": "",
+      "inventory_level": 0,
+      "inventory_warning_level": 0,
+      "bin_picking_number": "BPN141",
+      "option_values": [
+        {
+          "id": 69614,
+          "label": "White",
+          "option_id": 34808,
+          "option_display_name": "COLOR"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 2,
+      "count": 2,
+      "per_page": 50,
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {
+        "current": "?page=1&limit=50"
+      }
+    }
+  }
+}

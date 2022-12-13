@@ -1,0 +1,11 @@
+[
+  {
+    "id": 3,
+    "coupon_id": 1,
+    "order_id": 120,
+    "code": "S2549JM0Y",
+    "amount": 5,
+    "type": 2,
+    "discount": 5
+  }
+]

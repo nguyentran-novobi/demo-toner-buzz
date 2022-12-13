@@ -1,0 +1,26 @@
+[
+  {
+    "id": "0",
+    "name": "Default Tax Class",
+    "date_modified": "2021-04-22T08:11:28+00:00",
+    "date_created": "2021-04-22T08:11:28+00:00"
+  },
+  {
+    "id": "1",
+    "name": "Non-Taxable Products",
+    "date_modified": "2021-03-09T06:15:04+00:00",
+    "date_created": "2021-03-09T06:15:04+00:00"
+  },
+  {
+    "id": "2",
+    "name": "Shipping",
+    "date_modified": "2021-03-09T06:15:04+00:00",
+    "date_created": "2021-03-09T06:15:04+00:00"
+  },
+  {
+    "id": "3",
+    "name": "Gift Wrapping",
+    "date_modified": "2021-03-09T06:15:04+00:00",
+    "date_created": "2021-03-09T06:15:04+00:00"
+  }
+]

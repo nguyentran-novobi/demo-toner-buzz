@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_merge_info_composer" model="ir.ui.view">
+            <field name="name">product.merge.info.composer.form</field>
+            <field name="model">product.merge.info.composer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="product_tmpl_id" invisible="1"/>
+                        <div>
+                            <label for="product_template_merge_info_id"/>
+                            <field name="product_template_merge_info_id" string="Channel"
+                               widget="radio"
+                               options="{'no_open':True, 'no_create':True, 'no_create_edit':True}"
+                               domain="[('product_tmpl_id.id', '=', product_tmpl_id)]"/>
+                        </div>
+                        <field name="is_show_type" invisible="1"/>
+                        <field name="is_show_name" invisible="1"/>
+                        <field name="is_show_lst_price" invisible="1"/>
+                        <field name="is_show_retail_price" invisible="1"/>
+                        <field name="is_show_sku" invisible="1"/>
+                        <field name="is_show_mpn" invisible="1"/>
+                        <field name="is_show_brand_id" invisible="1"/>
+                        <field name="is_show_depth" invisible="1"/>
+                        <field name="is_show_height" invisible="1"/>
+                        <field name="is_show_weight_in_oz" invisible="1"/>
+                        <field name="is_show_width" invisible="1"/>
+                        <field name="is_show_description" invisible="1"/>
+                        <field name="is_show_variant" invisible="1"/>
+                        <field name="is_show_upc" invisible="1"/>
+                        <field name="is_show_ean" invisible="1"/>
+                        <field name="is_show_gtin" invisible="1"/>
+                        <field name="is_show_isbn" invisible="1"/>
+
+                        <section attrs="{'invisible':[('product_template_merge_info_id','=',False)]}">
+                            <div class="row">
+                                <div class="col-md-3" style="font-weight:bold">Fields</div>
+                                <div class="col-md-4" style="font-weight:bold; text-align:center">
+                                    <p>Current Value</p>
+                                </div>
+                                <div class="col-md-4" style="font-weight:bold; text-align:center">
+                                    <p>Updated Value</p>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_type','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_type"/>Product Type
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_type"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_type" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_name','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_name"/>Name
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_name"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_name" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_sku','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_sku"/>SKU
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_sku"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_sku" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_mpn','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_mpn"/>Manufacture Part Number
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_mpn"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_mpn" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                             <div class="row" attrs="{'invisible':[('is_show_upc','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_upc"/>UPC
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_upc"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_upc" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                             <div class="row" attrs="{'invisible':[('is_show_ean','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_ean"/>EAN
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_ean"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_ean" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                             <div class="row" attrs="{'invisible':[('is_show_gtin','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_gtin"/>GTIN
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_gtin"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_gtin" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                             <div class="row" attrs="{'invisible':[('is_show_isbn','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_isbn"/>ISBN
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_isbn"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_isbn" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_brand_id','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_brand_id"/>Brand
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_brand_id"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_brand_id" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_lst_price','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_lst_price"/>Default Price
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_lst_price"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_lst_price" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_retail_price','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_retail_price"/>MSRP</div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_retail_price"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_retail_price" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_weight_in_oz','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_weight_in_oz"/>Weight (Ounces)
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_weight_in_oz"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_weight_in_oz" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_width','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_width"/>Width (Inches)
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_width"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_width" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_height','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_height"/>Height (Inches)
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_height"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_height" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_depth','=',False)]}">
+                                <div class="col-md-3" style="font-weight:bold">
+                                    <field name="is_update_depth"/>Depth (Inches)
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="current_depth"/>
+                                </div>
+                                <div class="col-md-4" style="text-align:center">
+                                    <field name="new_depth" readonly="1" force_save="1"/>
+                                </div>
+                            </div>
+
+                            <div class="row" attrs="{'invisible':[('is_show_description','=',False)]}">
+                                <div class="col-md-10" style="font-weight:bold">
+                                    <field name="is_update_description"/>Description is changed
+                                </div>
+                                <field name="current_description" invisible="1"/>
+                                <field name="new_description" invisible="1" force_save="1"/>
+                            </div>
+                            <div class="row" attrs="{'invisible':[('is_show_variant','=',False)]}">
+                                <div class="col-10" style="font-weight:bold">
+                                    <field name="is_update_variant"/>Something changed on variants (eg: Name, SKU, Weight, etc.)
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:20px; font-size:11pt">
+                                <div class="col-md-10">
+                                    <i>For all present unchecked fields, they will be kept here and you can merge later</i>
+                                </div>
+                            </div>
+                        </section>
+                    </sheet>
+                    <footer>
+                        <field name="is_checked" invisible="1"/>
+                        <button name="merge" type="object"
+                                attrs="{'invisible':['|', ('product_template_merge_info_id','=',False), ('is_checked','=',False)]}"
+                                confirm="These changes will be updated on all channels. Do you want to proceed it?"
+                                close="1"
+                                class="btn btn-primary">Merge
+                        </button>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

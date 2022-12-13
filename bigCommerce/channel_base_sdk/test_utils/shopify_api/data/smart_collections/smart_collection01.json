@@ -1,0 +1,23 @@
+{
+  "smart_collection": {
+    "id": 242065375402,
+    "handle": "collection-auto-2",
+    "title": "Collection (auto 2)",
+    "updated_at": "2021-02-01T00:10:20-05:00",
+    "body_html": "\u003cp\u003e\u003cbr\u003e\u003c\/p\u003e",
+    "published_at": "2021-01-31T22:46:44-05:00",
+    "sort_order": "manual",
+    "template_suffix": null,
+    "products_count": 3,
+    "disjunctive": false,
+    "rules": [
+      {
+        "column": "title",
+        "relation": "contains",
+        "condition": "have variants"
+      }
+    ],
+    "published_scope": "web",
+    "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/242065375402"
+  }
+}

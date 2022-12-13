@@ -1,0 +1,16 @@
+<odoo>
+    <data noupdate="1">
+        <record id="menu_bigcommerce_listings" model="ir.ui.menu">
+            <field name="name">BigCommerce</field>
+            <field name="active" eval="False"/>
+            <field name="parent_id" ref="omni_manage_channel.menu_listings_root"/>
+            <field name="sequence">1</field>
+        </record>
+        <record id="menu_bigcommerce_orders" model="ir.ui.menu">
+            <field name="name">BigCommerce</field>
+            <field name="active" eval="False"/>
+            <field name="parent_id" ref="omni_manage_channel.menu_orders_root"/>
+            <field name="sequence">1</field>
+        </record>
+    </data>
+</odoo>

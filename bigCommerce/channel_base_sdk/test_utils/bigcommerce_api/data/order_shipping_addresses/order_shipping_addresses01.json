@@ -1,0 +1,38 @@
+[
+  {
+    "id": 42,
+    "order_id": 122,
+    "first_name": "Amos",
+    "last_name": "Wall",
+    "company": "",
+    "street_1": "16689 Helen Junction Apt. 349",
+    "street_2": "",
+    "city": "South Kristen",
+    "zip": "72460",
+    "country": "United States",
+    "country_iso2": "US",
+    "state": "Michigan",
+    "email": "aporia2025@yahoo.com",
+    "phone": "(994) 832-4233",
+    "items_total": 1,
+    "items_shipped": 0,
+    "shipping_method": "None",
+    "base_cost": "0.0000",
+    "cost_ex_tax": "0.0000",
+    "cost_inc_tax": "0.0000",
+    "cost_tax": "0.0000",
+    "cost_tax_class_id": 2,
+    "base_handling_cost": "0.0000",
+    "handling_cost_ex_tax": "0.0000",
+    "handling_cost_inc_tax": "0.0000",
+    "handling_cost_tax": "0.0000",
+    "handling_cost_tax_class_id": 2,
+    "shipping_zone_id": 1,
+    "shipping_zone_name": "United States",
+    "shipping_quotes": {
+      "url": "https:\/\/api.bigcommerce.com\/stores\/iar3k45i85\/v2\/orders\/122\/shipping_addresses\/42\/shipping_quotes",
+      "resource": "\/orders\/122\/shipping_addresses\/42\/shipping_quotes"
+    },
+    "form_fields": []
+  }
+]

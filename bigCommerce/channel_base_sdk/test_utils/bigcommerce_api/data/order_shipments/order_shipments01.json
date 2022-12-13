@@ -1,0 +1,100 @@
+[
+  {
+    "id": 2,
+    "order_id": 105,
+    "customer_id": 95,
+    "order_address_id": 6,
+    "date_created": "Wed, 26 Jun 2019 02:05:44 +0000",
+    "tracking_number": "",
+    "merchant_shipping_cost": "0.0000",
+    "shipping_method": "None",
+    "comments": "",
+    "shipping_provider": "",
+    "tracking_carrier": "",
+    "tracking_link": "",
+    "billing_address": {
+      "first_name": "Amos",
+      "last_name": "Wall",
+      "company": "",
+      "street_1": "16689 Helen Junction Apt. 349",
+      "street_2": "",
+      "city": "South Kristen",
+      "state": "Michigan",
+      "zip": "72460",
+      "country": "United States",
+      "country_iso2": "US",
+      "phone": "(994) 832-4233",
+      "email": "aporia2025@yahoo.com"
+    },
+    "shipping_address": {
+      "first_name": "Amos",
+      "last_name": "Wall",
+      "company": "",
+      "street_1": "5355 Nichole Prairie",
+      "street_2": "Suite 617",
+      "city": "West Ashley",
+      "state": "West Virginia",
+      "zip": "95666",
+      "country": "United States",
+      "country_iso2": "US",
+      "phone": "(994) 832-4233",
+      "email": "aporia2025@yahoo.com"
+    },
+    "items": [
+      {
+        "order_product_id": 8,
+        "product_id": 77,
+        "quantity": 3
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "order_id": 105,
+    "customer_id": 95,
+    "order_address_id": 7,
+    "date_created": "Wed, 26 Jun 2019 02:05:48 +0000",
+    "tracking_number": "",
+    "merchant_shipping_cost": "0.0000",
+    "shipping_method": "None",
+    "comments": "",
+    "shipping_provider": "",
+    "tracking_carrier": "",
+    "tracking_link": "",
+    "billing_address": {
+      "first_name": "Amos",
+      "last_name": "Wall",
+      "company": "",
+      "street_1": "16689 Helen Junction Apt. 349",
+      "street_2": "",
+      "city": "South Kristen",
+      "state": "Michigan",
+      "zip": "72460",
+      "country": "United States",
+      "country_iso2": "US",
+      "phone": "(994) 832-4233",
+      "email": "aporia2025@yahoo.com"
+    },
+    "shipping_address": {
+      "first_name": "Amos",
+      "last_name": "Wall",
+      "company": "",
+      "street_1": "16689 Helen Junction Apt. 349",
+      "street_2": "",
+      "city": "South Kristen",
+      "state": "Michigan",
+      "zip": "72460",
+      "country": "United States",
+      "country_iso2": "US",
+      "phone": "(994) 832-4233",
+      "email": "aporia2025@yahoo.com"
+    },
+    "items": [
+      {
+        "order_product_id": 7,
+        "product_id": 77,
+        "quantity": 7
+      }
+    ]
+  }
+]

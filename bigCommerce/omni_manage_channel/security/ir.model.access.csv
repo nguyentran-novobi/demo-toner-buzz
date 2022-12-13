@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ecommerce_channel_user,ecommerce.channel.user,model_ecommerce_channel,base.group_user,1,0,0,0
+access_ecommerce_channel_admin,ecommerce.channel.admin,model_ecommerce_channel,base.group_erp_manager,1,1,1,0
+access_ecommerce_channel_system,ecommerce.channel.system,model_ecommerce_channel,base.group_system,1,1,1,1
+access_customer_channel_user,customer.channel.user,model_customer_channel,base.group_user,1,0,0,0
+access_customer_channel_admin,customer.channel.admin,model_customer_channel,base.group_erp_manager,1,1,1,1

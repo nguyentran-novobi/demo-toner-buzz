@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="job_function_set_price_in_queue" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_pricelist"/>
+        <field name="method">set_price_in_queue</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "set_price_in_queue"}' />
+    </record>
+
+    <record id="job_function_push_to_channel_product_channel" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel"/>
+        <field name="method">_push_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_push_to_channel"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_update_product_channel" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel"/>
+        <field name="method">put_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "put_to_channel"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 180, 10: 300, 15: 600}" />
+    </record>
+
+    <record id="job_function_update_product_channel_variant" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel_variant"/>
+        <field name="method">put_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "put_to_channel"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 180, 10: 300, 15: 600}" />
+    </record>
+
+    <record id="job_function_update_inventory_product_channel_variant" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel_variant"/>
+        <field name="method">_update_inventory</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "_update_inventory"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_post_product_channel_variant" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel_variant"/>
+        <field name="method">_post_product_variant_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_post_product_variant_to_channel"}' />
+    </record>
+
+    <record id="job_function_put_product_variant_to_channel" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel_variant"/>
+        <field name="method">_put_product_variant_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_put_product_variant_to_channel"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_sync_in_queue_job" model="queue.job.function">
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="method">_sync_in_queue_job</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "_sync_in_queue_job"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 180, 10: 300, 15: 600}" />
+    </record>
+
+    <record id="job_function_update_from_master_data" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel"/>
+        <field name="method">update_from_master_data</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "update_from_master_data"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_create_from_master_data" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel"/>
+        <field name="method">create_from_master_data</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "create_from_master_data"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+</odoo>

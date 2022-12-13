@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="bigcommerce_view_import_other_data" model="ir.ui.view">
+        <field name="name">import.other.data</field>
+        <field name="model">import.other.data</field>
+        <field name="inherit_id" ref="multichannel_product.view_import_other_data"/>
+        <field name="arch" type="xml">
+            <field name="operation_type" position="after">
+                <field name="is_bc_category" invisible="1"/>
+                <field name="bc_category_operation_type" attrs="{'invisible': ['|', ('is_bc_category', '!=', True), ('platform', '!=', 'bigcommerce')]}" widget="radio"/>
+            </field>
+            <field name="operation_type" position="attributes">
+                <attribute name="attrs">{'invisible': [('platform', '=', 'bigcommerce'), ('is_bc_category', '=', True)]}</attribute>
+            </field>
+            <group name="by_ids" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('operation_type', '!=', 'by_ids'), '&amp;', ('platform', '=', 'bigcommerce'), ('is_bc_category', '=', True)]}</attribute>
+            </group>
+            <field name="ids_on_channel" position="attributes">
+                <attribute name="attrs">{'required': [('operation_type', '=', 'by_ids'), ('is_bc_category', '=', False)]}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

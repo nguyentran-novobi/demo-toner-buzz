@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="export_product_composer_form" model="ir.ui.view">
+            <field name="name">export.product.composer</field>
+            <field name="model">export.product.composer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <p>
+                                If there is a mapping, the selected product(s) will be updated to the online store. 
+                                If no mapping, the product(s) will be created on the online store.
+                            </p>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="product_tmpl_id" string="Product"
+                                       attrs="{'invisible':[('product_tmpl_id', '=', False)]}"/>
+                                <field name="product_tmpl_id" readonly="1" nolabel="1"
+                                       options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"
+                                       attrs="{'invisible':[('product_tmpl_id', '=', False)]}"/>
+                                <label for="channel_ids" string="Stores"/>
+                                <field name="channel_ids" nolabel="1"
+                                       widget="many2many_tags"
+                                       context="{'with_platform': True}"
+                                       options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"/>
+                                <field name="product_product_count" invisible="1"/>
+                            </group>
+                        </group>
+                        <div>
+                            <b style="font-size: 14px">SKUs to Export</b>
+                        </div>
+                        <field name="product_preview_ids" attrs="{'invisible': [('channel_ids', '=', [])]}"
+                                options="{'no_create': True, 'no_create_edit':True, 'no_open': True}">
+                            <tree>
+                                <field name="default_code" string="SKU"/>
+                                <field name="product_id" string="Product"/>
+                                <field name="product_channel_variant_id" string="Product Mapping"/>
+                                <field name="channel_id"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <footer>
+                        <button string="Export" class="oe_highlight" 
+                        name="export" type="object" />
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+    </data>
+</odoo>

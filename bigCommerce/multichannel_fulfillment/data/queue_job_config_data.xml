@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="job_function_service_picking_post_shipment_to_channel" model="queue.job.function">
+        <field name="model_id" ref="multichannel_fulfillment.model_stock_service_picking"/>
+        <field name="method">_post_shipment_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_post_shipment_to_channel"}' />
+    </record>
+
+    <record id="job_function_service_picking_put_shipment_to_channel" model="queue.job.function">
+        <field name="model_id" ref="multichannel_fulfillment.model_stock_service_picking"/>
+        <field name="method">_put_shipment_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_put_shipment_to_channel"}' />
+    </record>
+
+    <record id="job_function_picking_post_shipment_to_channel" model="queue.job.function">
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="method">_post_shipment_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_post_shipment_to_channel"}' />
+    </record>
+
+    <record id="job_function_picking_put_shipment_to_channel" model="queue.job.function">
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="method">_put_shipment_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_put_shipment_to_channel"}' />
+    </record>
+
+    <record id="job_function_done_inventory_sync" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_ecommerce_channel"/>
+        <field name="method">done_inventory_sync</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "done_inventory_sync"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 180, 10: 300, 100: 600}" />
+    </record>
+
+    <record id="job_function_bulk_sync" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_ecommerce_channel"/>
+        <field name="method">_bulk_sync</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_bulk_sync"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+</odoo>

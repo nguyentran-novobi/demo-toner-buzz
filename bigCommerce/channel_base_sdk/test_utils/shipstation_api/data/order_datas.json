@@ -1,0 +1,325 @@
+{
+  "orders": [
+    {
+      "orderId": 987654321,
+      "orderNumber": "Test-International-API-DOCS",
+      "orderKey": "Test-International-API-DOCS",
+      "orderDate": "2015-06-28T17:46:27.0000000",
+      "createDate": "2015-08-17T09:24:14.7800000",
+      "modifyDate": "2015-08-17T09:24:16.4800000",
+      "paymentDate": "2015-06-28T17:46:27.0000000",
+      "shipByDate": "2015-07-05T00:00:00.0000000",
+      "orderStatus": "awaiting_shipment",
+      "customerId": 63310475,
+      "customerUsername": "sholmes1854@methodsofdetection.com",
+      "customerEmail": "sholmes1854@methodsofdetection.com",
+      "billTo": {
+        "name": "Sherlock Holmes",
+        "company": null,
+        "street1": null,
+        "street2": null,
+        "street3": null,
+        "city": null,
+        "state": null,
+        "postalCode": null,
+        "country": null,
+        "phone": null,
+        "residential": null,
+        "addressVerified": null
+      },
+      "shipTo": {
+        "name": "Sherlock Holmes",
+        "company": "",
+        "street1": "221 B Baker St",
+        "street2": "",
+        "street3": null,
+        "city": "London",
+        "state": "",
+        "postalCode": "NW1 6XE",
+        "country": "GB",
+        "phone": null,
+        "residential": true,
+        "addressVerified": "Address not yet validated"
+      },
+      "items": [
+        {
+          "orderItemId": 136282568,
+          "lineItemKey": null,
+          "sku": "Ele-1234",
+          "name": "Elementary Disguise Kit",
+          "imageUrl": null,
+          "weight": {
+            "value": 12,
+            "units": "ounces"
+          },
+          "quantity": 2,
+          "unitPrice": 49.99,
+          "taxAmount": null,
+          "shippingAmount": null,
+          "warehouseLocation": "Aisle 1, Bin 7",
+          "options": [],
+          "productId": 11780610,
+          "fulfillmentSku": "Ele-1234",
+          "adjustment": false,
+          "upc": null,
+          "createDate": "2015-08-17T09:24:14.78",
+          "modifyDate": "2015-08-17T09:24:14.78"
+        },
+        {
+          "orderItemId": 136282569,
+          "lineItemKey": null,
+          "sku": "CN-9876",
+          "name": "Fine White Oak Cane",
+          "imageUrl": null,
+          "weight": {
+            "value": 80,
+            "units": "ounces"
+          },
+          "quantity": 1,
+          "unitPrice": 225,
+          "taxAmount": null,
+          "shippingAmount": null,
+          "warehouseLocation": "Aisle 7, Bin 34",
+          "options": [],
+          "productId": 11780609,
+          "fulfillmentSku": null,
+          "adjustment": false,
+          "upc": null,
+          "createDate": "2015-08-17T09:24:14.78",
+          "modifyDate": "2015-08-17T09:24:14.78"
+        }
+      ],
+      "orderTotal": 387.97,
+      "amountPaid": 412.97,
+      "taxAmount": 27.99,
+      "shippingAmount": 35,
+      "customerNotes": "Please be careful when packing the disguise kits in with the cane.",
+      "internalNotes": "Mr. Holmes called to upgrade his shipping to expedited",
+      "gift": false,
+      "giftMessage": null,
+      "paymentMethod": null,
+      "requestedShippingService": "Priority Mail Int",
+      "carrierCode": "stamps_com",
+      "serviceCode": "usps_priority_mail_international",
+      "packageCode": "package",
+      "confirmation": "delivery",
+      "shipDate": "2015-04-25",
+      "holdUntilDate": null,
+      "weight": {
+        "value": 104,
+        "units": "ounces"
+      },
+      "dimensions": {
+        "units": "inches",
+        "length": 40,
+        "width": 7,
+        "height": 5
+      },
+      "insuranceOptions": {
+        "provider": null,
+        "insureShipment": false,
+        "insuredValue": 0
+      },
+      "internationalOptions": {
+        "contents": "merchandise",
+        "customsItems": [
+          {
+            "customsItemId": 11558268,
+            "description": "Fine White Oak Cane",
+            "quantity": 1,
+            "value": 225,
+            "harmonizedTariffCode": null,
+            "countryOfOrigin": "US"
+          },
+          {
+            "customsItemId": 11558267,
+            "description": "Elementary Disguise Kit",
+            "quantity": 2,
+            "value": 49.99,
+            "harmonizedTariffCode": null,
+            "countryOfOrigin": "US"
+          }
+        ],
+        "nonDelivery": "return_to_sender"
+      },
+      "advancedOptions": {
+        "warehouseId": 98765,
+        "nonMachinable": false,
+        "saturdayDelivery": false,
+        "containsAlcohol": false,
+        "mergedOrSplit": false,
+        "mergedIds": [],
+        "parentId": null,
+        "storeId": 12345,
+        "customField1": "SKU: CN-9876 x 1",
+        "customField2": "SKU: Ele-123 x 2",
+        "customField3": null,
+        "source": null,
+        "billToParty": null,
+        "billToAccount": null,
+        "billToPostalCode": null,
+        "billToCountryCode": null
+      },
+      "tagIds": null,
+      "userId": null,
+      "externallyFulfilled": false,
+      "externallyFulfilledBy": null
+    },
+    {
+      "orderId": 123456789,
+      "orderNumber": "TEST-ORDER-API-DOCS",
+      "orderKey": "0f6bec18-9-4771-83aa-f392d84f4c74",
+      "orderDate": "2015-06-29T08:46:27.0000000",
+      "createDate": "2015-07-16T14:00:34.8230000",
+      "modifyDate": "2015-08-17T09:21:59.4430000",
+      "paymentDate": "2015-06-29T08:46:27.0000000",
+      "shipByDate": "2015-07-05T00:00:00.0000000",
+      "orderStatus": "awaiting_shipment",
+      "customerId": 37701499,
+      "customerUsername": "headhoncho@whitehouse.gov",
+      "customerEmail": "headhoncho@whitehouse.gov",
+      "billTo": {
+        "name": "The President",
+        "company": null,
+        "street1": null,
+        "street2": null,
+        "street3": null,
+        "city": null,
+        "state": null,
+        "postalCode": null,
+        "country": null,
+        "phone": null,
+        "residential": null,
+        "addressVerified": null
+      },
+      "shipTo": {
+        "name": "The President",
+        "company": "US Govt",
+        "street1": "1600 Pennsylvania Ave",
+        "street2": "Oval Office",
+        "street3": null,
+        "city": "Washington",
+        "state": "DC",
+        "postalCode": "20500",
+        "country": "US",
+        "phone": "555-555-5555",
+        "residential": false,
+        "addressVerified": "Address validation warning"
+      },
+      "items": [
+        {
+          "orderItemId": 128836912,
+          "lineItemKey": "vd08-MSLbtx",
+          "sku": "ABC123",
+          "name": "Test item #1",
+          "imageUrl": null,
+          "weight": {
+            "value": 24,
+            "units": "ounces"
+          },
+          "quantity": 2,
+          "unitPrice": 99.99,
+          "taxAmount": null,
+          "shippingAmount": null,
+          "warehouseLocation": "Aisle 1, Bin 7",
+          "options": [
+            {
+              "name": "Size",
+              "value": "Large"
+            }
+          ],
+          "productId": 7239919,
+          "fulfillmentSku": null,
+          "adjustment": false,
+          "upc": null,
+          "createDate": "2015-07-16T14:00:34.823",
+          "modifyDate": "2015-07-16T14:00:34.823"
+        },
+        {
+          "orderItemId": 128836913,
+          "lineItemKey": null,
+          "sku": "DISCOUNT CODE",
+          "name": "10% OFF",
+          "imageUrl": null,
+          "weight": {
+            "value": 0,
+            "units": "ounces"
+          },
+          "quantity": 1,
+          "unitPrice": -20.55,
+          "taxAmount": null,
+          "shippingAmount": null,
+          "warehouseLocation": null,
+          "options": [],
+          "productId": null,
+          "fulfillmentSku": null,
+          "adjustment": true,
+          "upc": null,
+          "createDate": "2015-07-16T14:00:34.823",
+          "modifyDate": "2015-07-16T14:00:34.823"
+        }
+      ],
+      "orderTotal": 194.43,
+      "amountPaid": 218.73,
+      "taxAmount": 5,
+      "shippingAmount": 10,
+      "customerNotes": "Please ship as soon as possible!",
+      "internalNotes": "Customer called and would like to upgrade shipping",
+      "gift": true,
+      "giftMessage": "Thank you!",
+      "paymentMethod": "Credit Card",
+      "requestedShippingService": "Priority Mail",
+      "carrierCode": "fedex",
+      "serviceCode": "fedex_home_delivery",
+      "packageCode": "package",
+      "confirmation": "delivery",
+      "shipDate": "2015-07-02",
+      "holdUntilDate": null,
+      "weight": {
+        "value": 48,
+        "units": "ounces"
+      },
+      "dimensions": {
+        "units": "inches",
+        "length": 7,
+        "width": 5,
+        "height": 6
+      },
+      "insuranceOptions": {
+        "provider": "carrier",
+        "insureShipment": true,
+        "insuredValue": 200
+      },
+      "internationalOptions": {
+        "contents": null,
+        "customsItems": null,
+        "nonDelivery": null
+      },
+      "advancedOptions": {
+        "warehouseId": 98765,
+        "nonMachinable": false,
+        "saturdayDelivery": false,
+        "containsAlcohol": false,
+        "mergedOrSplit": false,
+        "mergedIds": [],
+        "parentId": null,
+        "storeId": 12345,
+        "customField1": "Custom data that you can add to an order. See Custom Field #2 & #3 for more info!",
+        "customField2": "Per UI settings, this information can appear on some carrier's shipping labels. See link below",
+        "customField3": "https://help.shipstation.com/hc/en-us/articles/206639957",
+        "source": "Webstore",
+        "billToParty": null,
+        "billToAccount": null,
+        "billToPostalCode": null,
+        "billToCountryCode": null
+      },
+      "tagIds": null,
+      "userId": null,
+      "externallyFulfilled": false,
+      "externallyFulfilledBy": null
+    }
+  ],
+  "total": 2,
+  "page": 1,
+  "pages": 0
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="audit_stock_quant_table" model="ir.config_parameter">
+        <field name="key">audit.stock.quant.table</field>
+        <field name="value">False</field>
+    </record>
+</odoo>

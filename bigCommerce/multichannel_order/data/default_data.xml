@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo noupdate="1">    
+    <record id="tax_product_template" model="product.template">
+        <field name="name">Tax</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+    <record id="shipping_cost_product" model="product.template">
+        <field name="name">Shipping Cost</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+    <record id="wrapping_cost_product" model="product.template">
+        <field name="name">Wrapping Cost</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+    <record id="handling_cost_product" model="product.template">
+        <field name="name">Handling Cost</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+    <record id="discount_product" model="product.template">
+        <field name="name">Discount</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+    <record id="insurance_cost_product" model="product.template">
+        <field name="name">Insurance Cost</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+    <record id="miscellaneous_cost_product" model="product.template">
+        <field name="name">Miscellaneous Cost</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+    <record id="adjustment_cost_product" model="product.template">
+        <field name="name">Adjustment</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+    <record id="fee_cost_product" model="product.template">
+        <field name="name">Fee</field>
+        <field name="type">service</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">False</field>
+        <field name="active" eval="False"/>
+        <field name="invoice_policy">order</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_log_filter" model="ir.ui.view">
+        <field name="name">log.filter.list</field>
+        <field name="model">omni.log</field>
+        <field name="arch" type="xml">
+            <search string="Search Log">
+                <field name="entity_name" string="Name" filter_domain="['|', ('entity_name', 'ilike', self), ('channel_record_id', 'ilike', self)]"/>                
+                <field name="create_uid"/>
+                <field name="is_resolved" invisible="True"/>
+                <filter string="Today" name="logs_today"
+                    domain="[('create_date', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <separator/>
+                <filter string="Draft"
+                        domain="[('status','=','draft')]" name="draft"/>
+                <filter string="Success"
+                        domain="[('status','=','done')]" name="done"/>
+                <filter string="Failed"
+                        domain="[('status','=','failed')]" name="failed"/>
+                <separator/>
+                <filter string="Resolved"
+                        domain="[('is_resolved','=',True)]" name="resolved"/>
+                <filter string="Unresolved"
+                        domain="[('is_resolved','=',False)]" name="unresolved"/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="status" domain="[]" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="re_import_action" model="ir.actions.server">
+        <field name="name">Re-Import</field>
+        <field name="model_id" ref="model_omni_log"/>
+        <field name="binding_model_id" ref="model_omni_log"/>
+        <field name="binding_view_types">list</field>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">action = records.multi_import()</field>
+    </record>
+
+    <record id="re_export_action" model="ir.actions.server">
+        <field name="name">Re-Export</field>
+        <field name="model_id" ref="model_omni_log"/>
+        <field name="binding_model_id" ref="model_omni_log"/>
+        <field name="binding_view_types">list</field>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">action = records.multi_export()</field>
+    </record>
+
+    <record id="mark_as_resolved_action" model="ir.actions.server">
+        <field name="name">Mark as Resolved</field>
+        <field name="model_id" ref="model_omni_log"/>
+        <field name="binding_model_id" ref="model_omni_log"/>
+        <field name="binding_view_types">list</field>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">action = records.multi_resolved()</field>
+    </record>
+
+    <record id="unresolved_action" model="ir.actions.server">
+        <field name="name">Unresolve</field>
+        <field name="model_id" ref="model_omni_log"/>
+        <field name="binding_model_id" ref="model_omni_log"/>
+        <field name="binding_view_types">list</field>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">action = records.multi_unresolved()</field>
+    </record>
+
+    <record id="action_omni_log" model="ir.actions.act_window">
+        <field name="name">Logs</field>
+        <field name="res_model">omni.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_log_filter"/>
+    </record>
+
+    <record id="omni_log_base_import_tree_view" model="ir.ui.view">
+        <field name="name">omni.log.base.import.tree</field>
+        <field name="model">omni.log</field>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0">
+                <field name="channel_id" invisible="1"/>
+                <field name="create_uid" string="Imported by"/>
+                <field name="channel_record_id" string="ID on Store"/>
+                <field name="create_date"/>
+                <field name="write_date"/>
+                <field name="status" 
+                    decoration-success="status == 'done'"
+                    decoration-danger="status == 'failed'"
+                    decoration-info="status == 'draft'" widget="badge"/>
+                <field name="message" invisible="1"/>
+                <field name="message_display" string="Message"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="omni_log_base_import_form_view" model="ir.ui.view">
+        <field name="name">omni.log.base.import.form</field>
+        <field name="model">omni.log</field>
+        <field name="arch" type="xml">
+            <form string="Import Log" edit="0" create="0">
+                <header>
+                    <button name="run" 
+                    attrs="{'invisible': ['|', ('is_resolved', '=', True), ('status', 'in', ['draft', 'done'])]}"
+                    type="object" string="Re-Import" class="btn btn-primary"/>
+                    <button name="toogle_resolved" 
+                    attrs="{'invisible': ['|', ('is_resolved', '=', True), ('status', 'in', ['draft', 'done'])]}"
+                    type="object" string="Mark as Resolved" class="btn btn-secondary"/>
+                    <field name="is_resolved" invisible="True"/>
+                    <button name="toogle_resolved" 
+                    attrs="{'invisible': ['|',('is_resolved', '=', False),('status', '=', 'done')]}"
+                    type="object" string="Unresolve" class="btn btn-secondary"/>
+                </header>
+                <sheet>
+                    <group name="top">
+                        <group name="left">
+                            <field name="channel_id" invisible="1"/>
+                            <field name="channel_record_id"/>
+                        </group>
+                        <group name="right">
+                            <field name="res_model" invisible="1"/>
+                            <field name="create_uid" string="Imported by"  
+                            options="{'no_create': True, 'no_open': True}"/>
+                            <field name="create_date"/>
+                            <field name="write_date"/>
+                            <field name="status" 
+                                    decoration-success="status == 'done'"
+                                    decoration-danger="status == 'failed'"
+                                    decoration-info="status == 'draft'" widget="badge"/>
+
+                        </group>
+                    </group>
+                    <group>
+                        <field name="message"/>
+                    </group>
+                    <group>
+                        <field name="datas_string" 
+                        string="Import Data"
+                        widget="ace" options="{'mode': 'python'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="omni_log_base_export_tree_view" model="ir.ui.view">
+        <field name="name">omni.log.base.export.tree</field>
+        <field name="model">omni.log</field>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0">
+                <field name="channel_id" invisible="1"/>
+                <field name="create_uid" string="Exported by"/>
+                <field name="operation_type" string="Action"/>
+                <field name="create_date"/>
+                <field name="write_date"/>
+                <field name="status" 
+                    decoration-success="status == 'done'"
+                    decoration-danger="status == 'failed'"
+                    decoration-info="status == 'draft'" widget="badge"/>
+                <field name="message" invisible="1"/>
+                <field name="message_display" string="Message"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="omni_log_base_export_form_view" model="ir.ui.view">
+        <field name="name">omni.log.base.export.form</field>
+        <field name="model">omni.log</field>
+        <field name="arch" type="xml">
+            <form string="Export Log" edit="0" create="0">
+                <header>
+                    <button name="run" type="object" 
+                    attrs="{'invisible': ['|', ('is_resolved', '=', True), ('status', 'in', ['draft', 'done'])]}"
+                    string="Re-Export" class="btn btn-primary"/>
+                    <button name="toogle_resolved" 
+                    attrs="{'invisible': ['|', ('is_resolved', '=', True), ('status', 'in', ['draft', 'done'])]}"
+                    type="object" string="Mark as Resolved" class="btn btn-secondary"/>
+                    <field name="is_resolved" invisible="1"/>
+                    <button name="toogle_resolved" 
+                    attrs="{'invisible': ['|',('is_resolved', '=', False),('status', '=', 'done')]}"
+                    type="object" string="Unresolve" class="btn btn-secondary"/>
+                </header>
+                <sheet>
+                    <group name="top">
+                        <group name="left">
+                            <field name="channel_id" invisible="1"/>
+                            <field name="operation_type" string="Action"/>
+                        </group>
+                        <group name="right">
+                            <field name="create_uid" string="Exported by"  
+                            options="{'no_create': True, 'no_open': True}"/>
+                            <field name="create_date"/>
+                            <field name="write_date"/>
+                            <field name="status" 
+                                    decoration-success="status == 'done'"
+                                    decoration-danger="status == 'failed'"
+                                    decoration-info="status == 'draft'" widget="badge"/>
+
+                        </group>
+                    </group>
+                    <group>
+                        <field name="message"/>
+                    </group>
+                    <group>
+                        <field name="datas_string" 
+                        string="Export Data"
+                        widget="ace" options="{'mode': 'python'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

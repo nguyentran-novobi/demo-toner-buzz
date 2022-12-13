@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_template_notify_user" model="mail.template">
+        <field name="name">Complete Synchronization</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="email_from">${object.company_id and object.company_id.email or ''}</field>
+        <field name="partner_to">${object.id}</field>
+        <field name="reply_to">${ctx.get('reply_to')}</field>
+        <field name="mail_to">${ctx.get('reply_to')}</field>
+        <field name="subject">Your synchronization is complete</field>
+        <field name="lang">${object.lang}</field>
+        <field name="body_html" type="xml">
+            <div style="background:#F0F0F0;color:#606060;padding:10px 0px;font-family:Roboto;font-size:13px;text-align:center;">
+                <div style="text-align:center;height:180px;">
+                    <img src="/nerp_trial/static/src/img/nerp_banner.png" alt="Novobi Banner" />
+                </div>
+                <div style="text-align:justify;">
+                    <p>Your synchronization is done</p>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>

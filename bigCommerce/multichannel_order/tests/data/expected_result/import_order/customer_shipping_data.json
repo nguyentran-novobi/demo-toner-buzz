@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Hong Noa",
+        "street": "Waldowstr. 70",
+        "city": "Ellwangen",
+        "country_code": "DE",
+        "email": false,
+        "phone": false,
+        "zip": "73479"
+    }
+]

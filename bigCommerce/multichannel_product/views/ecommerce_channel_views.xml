@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_ecommerce_channel_form_settings_product_configuration" model="ir.ui.view">
+            <field name="name">ecommerce.channel.settings.form.product.configuration</field>
+            <field name="model">ecommerce.channel</field>
+            <field name="inherit_id" ref="omni_manage_channel.view_ecommerce_channel_form_settings"/>
+            <field name="priority">40</field>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page name="product_configuration_page" string="Product Configuration">
+                        <group name="top">
+                            <group>
+                                <label for="auto_create_master_product"/>
+                                <div>
+                                    <field name="is_mapping_managed" invisible="1"/>
+                                    <field name="auto_create_master_product"/>
+                                    <p class="text-muted">
+                                        <field name="auto_create_master_product_help_text" nolabel="1"/>
+                                    </p>
+                                </div>
+                            </group>
+                        </group>
+                        <group name="bottom" attrs="{'invisible': [('is_mapping_managed','=', False)]}">
+                            <field name="can_export_product" invisible="1"/>
+                            <group name="master_template_exported_field" attrs="{'invisible': [('can_export_product', '=', False)]}">
+                                <field name="can_export_product_from_master" />
+                                <label for="master_template_exported_field_ids"
+                                    attrs="{'invisible': [('can_export_product_from_master','=', False)]}"
+                                    string="Product Fields to export to Store"/>
+                                <div attrs="{'invisible': [('can_export_product_from_master','=', False)]}">
+                                    <field name="master_template_exported_field_ids"
+                                    domain="[('platform', '=', platform),('is_fixed','=',False),('level', '=', 'master_template')]"
+                                    widget="many2many_checkboxes"/>
+                                    <p class="text-muted">
+                                        <field name="master_exported_field_help_text" nolabel="1"/>
+                                    </p>
+                                </div>
+                            </group>
+
+                            <group name="mapping_template_exported_field" attrs="{'invisible': [('can_export_product', '=', False)]}">
+                                <field name="can_export_product_from_mapping"/>
+                                <field name="mapping_template_exported_field_ids"
+                                       string="Product Mapping Fields are exported to store"
+                                       attrs="{'invisible': [('can_export_product_from_mapping','=', False)]}"
+                                       domain="[('platform', '=', platform),('is_fixed','=',False),('level', '=', 'mapping_template')]"
+                                       widget="many2many_checkboxes"/>
+                            </group>
+
+                            <group>
+
+                                <label for="auto_override_product" string="Auto Overridden Product Info after Importing"/>
+                                <div>
+                                    <field name="auto_override_product"/>
+                                    <p class="text-muted">
+                                        <p class="text-muted">Automatically override product information if product mapping is linked to product</p>
+                                        <p class="text-muted">Default values to create a new product: SKU, Name, Variants</p>
+                                    </p>
+                                </div>
+
+                                <field name="auto_override_imported_field_ids"
+                                       string="Product Fields are Overridden"
+                                       attrs="{'invisible': [('auto_override_product','=', False)]}"
+                                       domain="[('platform', '=', platform),('level', '=', 'master_template')]"
+                                       widget="many2many_checkboxes"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

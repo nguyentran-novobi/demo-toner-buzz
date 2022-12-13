@@ -1,0 +1,271 @@
+{
+  "data": [
+    {
+      "id": 35,
+      "name": "Sagaform",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": "",
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/brands\/sagaform\/",
+        "is_customized": true
+      }
+    },
+    {
+      "id": 36,
+      "name": "OFS",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": "",
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/brands\/ofs\/",
+        "is_customized": true
+      }
+    },
+    {
+      "id": 37,
+      "name": "Common Good",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": "",
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/brands\/common-good\/",
+        "is_customized": true
+      }
+    },
+    {
+      "id": 38,
+      "name": "May' s shop",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/may-s-shop\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 40,
+      "name": "May's shop",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/mays-shop\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 41,
+      "name": "\u1ea5dasds",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/dasds\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 42,
+      "name": "Sellbrite",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/sellbrite\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 43,
+      "name": "Non Hue",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/non-hue\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 44,
+      "name": "Nautica",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/nautica\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 45,
+      "name": "Push Brand 1",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": "",
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/push-brand-1\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 49,
+      "name": "Apple",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/apple\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 50,
+      "name": "Omni",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/omni\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 51,
+      "name": "Panasonic",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/panasonic\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 52,
+      "name": "Google",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/google\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 53,
+      "name": "Philips",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/philips\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 54,
+      "name": "Lenovo",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/lenovo\/",
+        "is_customized": false
+      }
+    },
+    {
+      "id": 55,
+      "name": "Sony",
+      "page_title": "",
+      "meta_keywords": [
+        ""
+      ],
+      "meta_description": null,
+      "image_url": "",
+      "search_keywords": "",
+      "custom_url": {
+        "url": "\/sony\/",
+        "is_customized": false
+      }
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 17,
+      "count": 17,
+      "per_page": 50,
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {
+        "current": "?page=1&limit=50"
+      }
+    }
+  }
+}

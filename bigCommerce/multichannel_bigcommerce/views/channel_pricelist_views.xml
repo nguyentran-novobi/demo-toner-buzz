@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright © 2021 Novobi, LLC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="view_channel_pricelist_rule_form" model="ir.ui.view">
+        <field name="name">channel.pricelist.rule.form</field>
+        <field name="model">channel.pricelist.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" invisible="1"/>
+                            <field name="pricelist_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="channel_id" invisible="1"/>
+                            <field name="product_channel_variant_id" string="Product"/>
+                            <field name="product_lst_price" string="Default Price" widget="monetary"/>
+                            <field name="product_sale_price" string="Sale Price" widget="monetary"/>
+                            <field name="product_retail_price" string="MSRP Price" widget="monetary"/>
+                        </group>
+                        <group>
+                            <field name="product_default_code" string="SKU"/>
+                            <label for="override_lst_price" string="New Price"/>
+                            <div class="o_row">
+                                <field name="is_override_lst_price" nolabel="1"/>
+                                <field name="override_lst_price" nolabel="1" widget="monetary"
+                                       attrs="{'invisible': [('is_override_lst_price', '=', False)]}"/>
+                            </div>
+                            <label for="override_sale_price" string="New Sale Price"/>
+                            <div class="o_row">
+                                <field name="is_override_sale_price" nolabel="1"/>
+                                <field name="override_sale_price" nolabel="1" widget="monetary"
+                                       attrs="{'invisible': [('is_override_sale_price', '=', False)]}"/>
+                            </div>
+                            <label for="override_retail_price" string="New MSRP Price"/>
+                            <div class="o_row">
+                                <field name="is_override_retail_price" nolabel="1"/>
+                                <field name="override_retail_price" nolabel="1" widget="monetary"
+                                       attrs="{'invisible': [('is_override_retail_price', '=', False)]}"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group string="New Bulk Pricing">
+                        <group>
+                            <field name="bulk_pricing_discount_type" string="Discount Type" required="1"/>
+                        </group>
+                        <group colspan="12">
+                            <field name="bulk_pricing_rule_ids" nolabel="1"
+                                   context="{'default_channel_pricelist_rule_id': id, 'default_currency_id': currency_id}">
+                                <tree editable="bottom">
+                                    <field name="channel_pricelist_rule_id" invisible="1"/>
+                                    <field name="default_price" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="quantity_min"/>
+                                    <field name="discount_type" invisible="1"/>
+                                    <field name="discount_amount_percent" string="% Discount" attrs="{'column_invisible': [('parent.bulk_pricing_discount_type', '!=', 'percent')]}"/>
+                                    <field name="discount_amount_fixed" widget="monetary" string="Fixed Amount" attrs="{'column_invisible': [('parent.bulk_pricing_discount_type', '!=', 'fixed')]}"/>
+                                    <field name="discount_amount_price" widget="monetary" string="Off/Unit" attrs="{'column_invisible': [('parent.bulk_pricing_discount_type', '!=', 'price')]}"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="unit_price"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_channel_pricelist_rule_tree" model="ir.ui.view">
+        <field name="name">channel.pricelist.rule.tree</field>
+        <field name="model">channel.pricelist.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="pricelist_id" invisible="1"/>
+                <field name="product_channel_variant_id" string="Product"/>
+                <field name="product_default_code" string="SKU"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_channel_pricelist_form" model="ir.ui.view">
+        <field name="name">channel.pricelist.form</field>
+        <field name="model">channel.pricelist</field>
+        <field name="arch" type="xml">
+            <form>
+                <header name="header">
+                    <button name="export_to_channel"
+                            type="object" class="btn btn-primary"
+                            attrs="{'invisible': [('is_exported_to_store', '=', True)]}"
+                            confirm="Are you sure you want to create a new pricelist on the online store?"
+                            string="Export to Store"/>
+                    <button name="export_to_channel"
+                            type="object" class="btn btn-primary"
+                            attrs="{'invisible': [('is_exported_to_store', '=', False)]}"
+                            confirm="Are you sure you want to update changes to the online store?"
+                            string="Export to Store"/>
+                </header>
+                <div class="alert alert-warning mb-0" role="alert" attrs="{'invisible': [('is_sync_in_progress', '=', False)]}">
+                    It will take a while to export price rules to store.
+                </div>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="id" invisible="1"/>
+                            <field name="channel_id" invisible="1"/>
+                            <field name="id_on_channel" invisible="1"/>
+                            <field name="is_exported_to_store" string="Exported to Store" readonly="1"/>
+                            <field name="need_to_export" readonly="1" invisible="1"/>
+                            <field name="need_to_export_display" string="Need to Export"
+                                   attrs="{'invisible': [('is_exported_to_store', '=', False)]}"/>
+                            <field name="is_published" string="Publish on Storefront"/>
+                            <field name="is_sync_in_progress" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="channel_currency_ids" invisible="1"/>
+                            <field name="currency_id" required="1"/>
+                            <label for="channel_customer_group_ids" string="Customer Groups"/>
+                            <div>
+                                <field name="channel_customer_group_ids" widget="many2many_tags"
+                                       domain="[('channel_id', '=', channel_id), ('id_on_channel', '!=', False), ('channel_pricelist_id', 'in', (False, id))]"/>
+                                <div class="text-muted">
+                                    You can only select customer groups that have not been assigned to any pricelists
+                                </div>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="price_rule_page" string="Price Rules">
+                            <field name="rule_ids" nolabel="1"
+                                   context="{
+                                   'tree_view_ref': 'multichannel_bigcommerce.view_channel_pricelist_rule_tree',
+                                   'form_view_ref': 'multichannel_bigcommerce.view_channel_pricelist_rule_form',
+                                   }"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_channel_pricelist_tree" model="ir.ui.view">
+        <field name="name">channel.pricelist.tree</field>
+        <field name="model">channel.pricelist</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Price List"/>
+                <field name="channel_customer_group_ids" widget="many2many_tags"/>
+                <field name="is_exported_to_store" string="Exported to Store"/>
+                <field name="need_to_export_display" string="Need to Export"/>
+                <field name="channel_id" string="Store" widget="channel_many2one" options="{'no_open':True,'no_create':True}"/>
+                <field name="is_published" string="Publish on Storefront"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_channel_pricelist" model="ir.actions.act_window">
+        <field name="name">Price Lists</field>
+        <field name="res_model">channel.pricelist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Define a new Price List
+            </p>
+        </field>
+    </record>
+
+    <template id="exception_on_channel_pricelist">
+        <div>
+            <p><t t-esc="title"/></p>
+            <div class="mt16">
+                <p>Exception(s):</p>
+                <ul t-foreach="exceptions" t-as="exception">
+                    <li>
+                        <span><t t-esc="exception['title']"/>:</span>
+                        <span><t t-esc="exception['reason']"/></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+</odoo>

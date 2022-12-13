@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "B2B",
+    "is_default": false,
+    "category_access": {
+      "type": "all"
+    },
+    "discount_rules": [
+      {
+        "type": "price_list",
+        "price_list_id": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "5% Discount",
+    "is_default": false,
+    "category_access": {
+      "type": "specific",
+      "categories": [
+        18
+      ]
+    },
+    "discount_rules": [
+      {
+        "type": "all",
+        "method": "percent",
+        "amount": "5.0000"
+      }
+    ],
+    "is_group_for_guests": true
+  }
+]

@@ -1,0 +1,29 @@
+.o_data_cell.o_image_url_cell{
+    text-align: center;
+}
+.o_data_cell .custom-checkbox {
+    text-align: center;
+}
+.o_editable_list .o_data_cell.o_image_cell{
+    height:90px
+}
+.set_width_300{
+    width:300px
+}
+.product-master-list{
+    th[data-name='name']{
+        width: 300px !important;
+        max-width: 300px !important;
+    }
+}
+.product-channel-list{
+    th[data-name='name']{
+        width: 300px !important;
+        max-width: 300px !important;
+    }
+}
+.o_data_cell.o_image_cell{
+    .o_field_image.o_field_empty{
+        display: inline-block !important;
+    }
+}

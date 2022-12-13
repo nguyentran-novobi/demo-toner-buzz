@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="bigcommerce_product_channel_category_form" model="ir.ui.view">
+        <field name="name">bigcommerce.product.channel.category.form</field>
+        <field name="model">product.channel.category</field>
+        <field name="inherit_id" ref="multichannel_product.product_channel_category_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header[@name='header']" position="inside">
+                <button name="bigcommerce_export_category"
+                        string="Export to Store"
+                        type="object"
+                        class="oe_highlight"
+                        confirm="Are you sure you want to export changes to the online store?"
+                        attrs="{'invisible':['|', '|', ('platform', '!=', 'bigcommerce'), ('need_to_export_display', '!=', True), ('is_exported_to_store', '!=', True)]}"/>
+                <button name="bigcommerce_export_category"
+                        string="Export to Store"
+                        type="object"
+                        confirm="Are you sure you want to export changes to the online store?"
+                        attrs="{'invisible':['|', '|', ('platform', '!=', 'bigcommerce'), ('need_to_export_display', '=', True), ('is_exported_to_store', '!=', True)]}"/>
+                <button name="bigcommerce_export_category"
+                        string="Export to Store"
+                        type="object"
+                        class="oe_highlight"
+                        confirm="Are you sure you want to create a new category on store?"
+                        attrs="{'invisible':['|', ('platform', '!=', 'bigcommerce'), ('is_exported_to_store', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//group[@name='top']" position="after">
+                <group attrs="{'invisible':[('platform', '!=', 'bigcommerce')]}">
+                    <group>
+                        <label for="url"/>
+                        <div class="o_row">
+                            <field name="url" required="1"/>
+                            <button name="action_generate_url" type="object"
+                                class="btn btn-link oe_inline">
+                                <i class="fa fa-arrow-right"/> Generate
+                            </button>
+                        </div>
+                    </group>
+                </group>
+                <group>
+                    <field name="description"/>
+                </group>
+                <group attrs="{'invisible':[('platform', '!=', 'bigcommerce')]}">
+                    <group>
+                        <field name="sort_order"/>
+                    </group>
+                    <group>
+                        <field name="bc_default_product_sort"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//group[@name='internal_group']" position="before">
+                <group string="Search Engine Optimization" attrs="{'invisible':[('platform', '!=', 'bigcommerce')]}">
+                    <field name="page_title"/>
+                    <field name="meta_keywords"/>
+                    <field name="meta_description"/>
+                    <field name="search_keywords"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

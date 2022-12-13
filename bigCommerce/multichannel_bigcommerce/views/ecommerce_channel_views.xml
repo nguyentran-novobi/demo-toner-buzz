@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_ecommerce_channel_form_settings_product_configuration" model="ir.ui.view">
+            <field name="name">ecommerce.channel.settings.form.product.configuration</field>
+            <field name="model">ecommerce.channel</field>
+            <field name="inherit_id" ref="multichannel_product.view_ecommerce_channel_form_settings_product_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='product_configuration_page']/group[@name='top']" position="inside">
+                    <group attrs="{'invisible':[('platform','!=','bigcommerce')]}">
+                        <label for="default_categ_id"/>
+                        <div>
+                            <field name="default_categ_id" 
+                            options="{'no_open':True,'no_create':True, 'no_create_edit':True}"
+                            domain="[('channel_id.id', '=', id)]"/>
+                            <p class="text-muted">
+                                Default category for new mappings created from system to store
+                            </p>
+                        </div>
+                        <label for="currency_ids" string="Currencies"/>
+                        <div>
+                            <field name="currency_ids" widget="many2many_tags" readonly="1"/>
+                            <div class="text-muted">
+                                Default currency for creating new pricelists:
+                                <field name="currency_id" nolabel="1" readonly="1" options="{'no_open': True}"/>
+                            </div>
+                            <button name="refresh_currencies" class="btn-link" type="object" icon="fa-refresh" string="Refresh Currencies"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_ecommerce_channel_form_settings_order_configuration" model="ir.ui.view">
+            <field name="name">ecommerce.channel.settings.form.order.configuration</field>
+            <field name="model">ecommerce.channel</field>
+            <field name="inherit_id" ref="multichannel_order.view_ecommerce_channel_form_settings"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='order_fulfillment_settings']/group[@name='left']" position="inside">
+                    <label for="auto_export_shipment_to_store" string="Enable Export Shipment" attrs="{'invisible':[('platform','!=','bigcommerce')]}"/>
+                    <div attrs="{'invisible':[('platform','!=','bigcommerce')]}">
+                        <field name="auto_export_shipment_to_store"/>
+                        <p class="text-muted">
+                            Automatically update your shipping information for order in this store
+                        </p>
+                    </div>
+                </xpath>
+                <field name="default_shipping_policy" position="before">
+                    <field name="manage_taxes_on_order_lines"
+                    attrs="{'invisible':[('platform','!=','bigcommerce')],'required':[('platform','=','bigcommerce'),('write_date','!=',False)]}"/>
+                </field>
+                <field name="default_shipping_cost_product_id" position="after">
+                    <field name="default_handling_cost_product_id" 
+                    attrs="{'invisible':[('platform','!=','bigcommerce')],'required':[('platform','=','bigcommerce'),('write_date','!=',False)]}"/>
+                    <field name="default_wrapping_cost_product_id" 
+                    attrs="{'invisible':[('platform','!=','bigcommerce')], 'required':[('platform','=','bigcommerce'),('write_date','!=',False)]}"/>
+                </field>
+                <div name="payment_settings" position="inside">
+                    <button name="action_refresh_payment_gateway_list" type="object"
+                        class="btn btn-link oe_inline"
+                        attrs="{'invisible':[('platform','!=','bigcommerce')]}">
+                        <i class="fa fa-arrow-right"/> Refresh payment gateway list
+                    </button>
+                </div>
+            </field>
+        </record>
+
+        <record id="view_fulfillment_ecommerce_channel_form_settings_inherit" model="ir.ui.view">
+            <field name="name">ecommerce.channel.form.inherit</field>
+            <field name="model">ecommerce.channel</field>
+            <field name="inherit_id" ref="multichannel_fulfillment.view_ecommerce_channel_form_settings_inherit"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="bc_store_hash"
+                           string="Store Hash"
+                           attrs="{'invisible':[('platform','!=','bigcommerce')],
+                           'required': [('platform', '=', 'bigcommerce')],
+                           'readonly': [('write_date', '!=', False)]}"/>
+                    <field name="app_client_id"
+                           string="App ClientID"
+                           attrs="{'invisible':[('platform','!=','bigcommerce')],
+                           'required': [('platform', '=', 'bigcommerce')]}"/>
+                    <field name="bc_access_token"
+                           string="Access Token"
+                           password="1"
+                           attrs="{'invisible':[('platform','!=','bigcommerce')],
+                           'required': [('platform', '=', 'bigcommerce')]}"/>
+                </field>
+                <group name="inventory_sync" position="before">
+                    <group name="physical_dimension_settings"
+                           attrs="{'invisible':['|', ('platform','!=','bigcommerce'), ('write_date','=',False)]}"
+                           string="Physical Dimensions Settings">
+                        <field name="weight_unit" string="Weight Measurement"
+                               attrs="{'invisible':[('platform','!=','bigcommerce')],
+                               'required': [('platform', '=', 'bigcommerce')]}"/>
+                        <field name="dimension_unit" string="Length Measurement"
+                               attrs="{'invisible':[('platform','!=','bigcommerce')],
+                               'required': [('platform', '=', 'bigcommerce')]}"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>

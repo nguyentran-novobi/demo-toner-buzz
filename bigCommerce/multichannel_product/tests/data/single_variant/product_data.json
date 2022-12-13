@@ -1,0 +1,72 @@
+[
+    {
+        "is_visible": false, 
+        "published_scope": false, 
+        "barcode": "", 
+        "common_attribute_line_ids": [
+            [
+                5, 
+                0, 
+                0
+            ]
+        ], 
+        "state": "published", 
+        "mpn": "", 
+        "is_free_shipping": false, 
+        "vendor_id": null, 
+        "attribute_line_ids": [], 
+        "inventory_quantity": 0, 
+        "height": 0.0, 
+        "max_order_qty": 0.0, 
+        "inventory_tracking": false, 
+        "sort_order": 0, 
+        "platform": "none", 
+        "variants": [
+            {
+                "requires_shipping": true, 
+                "inventory_quantity": 100.0, 
+                "inventory_tracking": true, 
+                "compare_at_price": 0.0, 
+                "id": "41484428247278", 
+                "sku": "ESS-OIL-LVD-001", 
+                "name": "Plant Therapy Lavender Essential Oil", 
+                "variant_title": "Default Title", 
+                "option2": null, 
+                "option3": null, 
+                "option1": "Default Title", 
+                "description": "", 
+                "price": 6.95, 
+                "barcode": "", 
+                "image_id": null, 
+                "retail_price": 6, 
+                "option_values": [], 
+                "purchasing_disabled": false, 
+                "product_id": "7328441434350", 
+                "description_sale": "Lavender oil is ultra-versatile and loaded with benefits. That's probably why it's one the most popular and widely used essential oils. Diffuse a few drops at night to create a warm, calm atmosphere that is perfect for sleeping and relaxation.", 
+                "inventory_item_id": "43580885532910", 
+                "position": 1
+            }
+        ], 
+        "retail_price": 6, 
+        "fixed_cost_shipping_price": 0.0, 
+        "id": "7328441434350", 
+        "condition": false, 
+        "description": "", 
+        "sku": "ESS-OIL-LVD-001", 
+        "depth": 0.0, 
+        "slug": "", 
+        "bin_picking_number": "", 
+        "name": "Plant Therapy Lavender Essential Oil", 
+        "width": 0.0, 
+        "url": "product/7328441434350", 
+        "type": "physical", 
+        "min_order_qty": 0.0,
+        "availability": "available", 
+        "channel_id": null, 
+        "price": 6.95,
+        "weight": 1.0,
+        "sale_price": 10,
+        "meta_description": "", 
+        "description_sale": "Lavender oil is ultra-versatile and loaded with benefits. That's probably why it's one the most popular and widely used essential oils. Diffuse a few drops at night to create a warm, calm atmosphere that is perfect for sleeping and relaxation."
+    }
+]

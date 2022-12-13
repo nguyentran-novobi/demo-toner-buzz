@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="payment_gateway_tree_view" model="ir.ui.view">
+        <field name="name">payment.gateway.tree</field>
+        <field name="model">channel.payment.gateway</field>
+        <field name="arch" type="xml">
+            <tree string="Payment Gateways" editable="bottom">
+                <field name="name" string="Name"/>
+                <field name="code" string="Code"/>
+                <field name="channel_id" string="Store" widget="channel_many2one" readonly="1" force_save="1" options="{'no_open':True,'no_create':True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_payment_gateways" model="ir.actions.act_window">
+        <field name="name">Payment Gateways</field>
+        <field name="res_model">channel.payment.gateway</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+</odoo>

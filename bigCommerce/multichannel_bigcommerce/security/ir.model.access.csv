@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tax_class_user,tax.class.user,model_tax_class,base.group_user,1,0,0,0
+access_tax_class_manager,tax.class.manager,model_tax_class,omni_manage_channel.group_listing_manager,1,1,1,1
+access_product_bulk_pricing_rule_user,product.bulk.pricing.rule.user,model_product_bulk_pricing_rule,omni_manage_channel.group_listing_user,1,1,1,1
+access_product_channel_custom_field_line_user,product.channel.custom.field.line.user,model_product_channel_custom_field_line,omni_manage_channel.group_listing_user,1,1,1,1
+access_channel_pricelist_user,channel.pricelist.user,model_channel_pricelist,omni_manage_channel.group_listing_user,1,1,1,1
+access_channel_pricelist_rule_user,channel.pricelist.rule.user,model_channel_pricelist_rule,omni_manage_channel.group_listing_user,1,1,1,1
+access_export_pricelist_composer_user,export.pricelist.composer.user,model_export_pricelist_composer,omni_manage_channel.group_listing_user,1,1,1,1

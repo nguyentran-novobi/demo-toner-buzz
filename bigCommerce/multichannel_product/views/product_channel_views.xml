@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_product_channel_tree" model="ir.ui.view">
+            <field name="name">product.channel.tree</field>
+            <field name="model">product.channel</field>
+            <field name="arch" type="xml">
+                <tree string="Product Mappings" default_order="write_date desc"
+                      create="0" delete="1" decoration-danger="state=='error'"
+                      class="product-channel-list"
+                      js_class="product_mapping_list">
+                    <field name="name" string="Name"/>
+                    <field name="default_code" string="SKU"/>
+                    <field name="product_tmpl_id" string="Product" groups="product.group_product_variant"/>
+                    <field name="currency_id" invisible="1" />
+                    <field name="product_variant_count" string="Variants" optional="show"/>
+                    <field name="state"
+                           decoration-info="state == 'draft'"
+                           decoration-warning="state in ('in_progress','updated')"
+                           decoration-success="state == 'published'"
+                           decoration-danger="state == 'error'"
+                           widget="badge"
+                           invisible="1"/>
+                    <field name="is_needed_to_export" string="Need to Export" optional="show"/>
+                    <field name="platform" invisible="1"/>
+                    <field name="channel_id" string="Store" widget="name_image_url" optional="show"/>
+                    <field name="write_date" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_channel_form" model="ir.ui.view">
+            <field name="name">product.channel.form</field>
+            <field name="model">product.channel</field>
+            <field name="arch" type="xml">
+                <form string="Product Channel" create="0" delete="1" js_class="product_mapping_form">
+                    <field name="currency_id" invisible="1"/>
+                    <field name="product_tmpl_id" invisible="1"/>
+                    <field name="channel_id" invisible="1" force_save="1"/>
+                    <field name="id_on_channel" invisible="1"/>
+                    <field name="product_variant_count" invisible="1" />
+                    <field name="id" invisible="1" />
+                    <field name="weight_in_oz" string="Weight" invisible="1" force_save="1"/>
+                    <field name="height" string="Height"  invisible="1" force_save="1"/>
+                    <field name="width" string="Width" invisible="1" force_save="1"/>
+                    <field name="depth" string="Depth"  invisible="1" force_save="1"/>
+                    <field name="upc" string="UPC"  invisible="1" force_save="1"/>
+                    <field name="ean" string="EAN"  invisible="1" force_save="1"/>
+                    <field name="gtin" string="GTIN"  invisible="1" force_save="1"/>
+                    <field name="platform" invisible="1"/>
+                    <field name="is_visible" invisible="1"/>
+                    <field name="is_show_variants" invisible="1"/>
+                    <header>
+                        <field name="state" invisible="1"/>
+                        <field name="is_needed_to_export" invisible="1"/>
+                        <button name="export_from_mapping" type="object" class="btn-primary"
+                                attrs="{'invisible':[('is_needed_to_export','!=',True)]}"
+                                string="Export to Store"
+                                confirm="Are you sure you want to export changes to the online store?"/>
+                        <button name="remove_online_and_mapping"
+                                type="object" class="btn btn-secondary" string="Delete on Store"
+                                confirm="This action will delete your product on the online store and the product mapping in Odoo. Do you want to continue?"/>
+                    </header>
+                    <!--Message for 'Error'-->
+                    <div class="alert alert-danger alert-dismissible text-left"
+                         attrs="{'invisible': [('state', '!=', 'error')]}"
+                         t-ignore="True" role="status">
+                        <span>
+                            <field name="error_message" style="background-color: rgb(248, 225, 224); color: #a94442; border:none"/>
+                        </span>
+                    </div>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="%(action_product_channel_image_tree_view_only)d" type="action">
+                                <i class="fa fa-fw o_button_icon fa-image" />
+                                <span>Images</span>
+                            </button>
+                            <button class="oe_stat_button" name="open_on_store" type="object"
+                                    attrs="{'invisible':['|',('id_on_channel','=',False),('is_visible', '=', False)]}">
+                                <i class="fa fa-fw o_button_icon fa-eye" />
+                                <span>View on Store</span>
+                            </button>
+                        </div>
+                        <!-- <field name="image_1920" widget="image" class="oe_avatar" force_save="1"
+                               options='{"preview_image": "image_1920", "size": [90, 90]}' /> -->
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name" string="Product Name"/>
+                            <h1>
+                                <field name="name" placeholder="Product Name"
+                                       readonly="True"
+                                       force_save="1"
+                                       required="True" />
+                            </h1>
+                        </div>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_channel_search" model="ir.ui.view">
+            <field name="name">product.channel.search</field>
+            <field name="model">product.channel</field>
+            <field name="arch" type="xml">
+                <search string="Product Mappings">
+                    <field name="name" string="Product"/>
+                    <filter name="is_needed_to_export" string="Need to Export" domain="[('is_needed_to_export','=',True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_product_channel_tree" model="ir.actions.act_window">
+            <field name="name">Product Mapping</field>
+            <field name="res_model">product.channel</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_product_channel_search"/>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_product_channel_tree')})]"/>
+        </record>
+    </data>
+</odoo>

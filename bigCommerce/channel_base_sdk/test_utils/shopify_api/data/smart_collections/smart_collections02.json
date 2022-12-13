@@ -1,0 +1,29 @@
+{
+  "smart_collections": [
+    {
+      "id": 234866835626,
+      "handle": "auto-1",
+      "title": "Auto 1",
+      "updated_at": "2021-03-23T07:59:58-04:00",
+      "body_html": "\u003cp\u003e\u003cbr\u003e\u003c\/p\u003e",
+      "published_at": "2020-11-02T03:43:48-05:00",
+      "sort_order": "manual",
+      "template_suffix": null,
+      "disjunctive": true,
+      "rules": [
+        {
+          "column": "title",
+          "relation": "contains",
+          "condition": "product"
+        },
+        {
+          "column": "variant_weight",
+          "relation": "greater_than",
+          "condition": "10"
+        }
+      ],
+      "published_scope": "web",
+      "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/234866835626"
+    }
+  ]
+}

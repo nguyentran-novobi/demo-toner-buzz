@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "is_default": true,
+    "last_updated": "Fri, 08 Oct 2021 02:52:05 +0000",
+    "country_iso2": "US",
+    "default_for_country_codes": [
+      "US"
+    ],
+    "currency_code": "USD",
+    "currency_exchange_rate": "1.0000000000",
+    "name": "US Dollar",
+    "token": "$",
+    "auto_update": false,
+    "token_location": "left",
+    "decimal_token": ".",
+    "thousands_token": ",",
+    "decimal_places": 2,
+    "enabled": true,
+    "is_transactional": true,
+    "use_default_name": false
+  },
+  {
+    "id": 2,
+    "is_default": false,
+    "last_updated": "Fri, 08 Oct 2021 04:06:08 +0000",
+    "country_iso2": null,
+    "default_for_country_codes": [],
+    "currency_code": "EUR",
+    "currency_exchange_rate": "0.8654000000",
+    "name": "Euro",
+    "token": "Euro",
+    "auto_update": false,
+    "token_location": "left",
+    "decimal_token": ".",
+    "thousands_token": ",",
+    "decimal_places": 2,
+    "enabled": true,
+    "is_transactional": true,
+    "use_default_name": false
+  }
+]

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_import_order_operation" model="ir.ui.view">
+            <field name="name">import.order.operation.form</field>
+            <field name="model">import.order.operation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <p>Please select an operation</p>
+                        <group>
+                            <group>
+                                <field name="channel_id" invisible="1" readonly="1" force_save="1"/>
+                                <field name="operation_type" widget="radio"/>
+                            </group>
+                        </group>
+                        <group attrs="{'invisible': [('operation_type', '!=', 'by_time_range')]}">
+                            <group>
+                                <field name="from_date" attrs="{'required': [('operation_type', '=', 'by_time_range')]}"/>
+                                <field name="to_date" attrs="{'required': [('operation_type', '=', 'by_time_range')]}"/>
+                            </group>
+                        </group>
+                        <group attrs="{'invisible': [('operation_type', '!=', 'by_ids')]}">
+                            <label for="order_ids"/>
+                            <div>
+                                <field name="order_ids" attrs="{'required': [('operation_type', '=', 'by_ids')]}"/>
+                                <p class="text-muted">
+                                    <field name="help_text" nolabel="1"/>
+                                </p>
+                            </div>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Import" name="run" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+    </data>
+</odoo>

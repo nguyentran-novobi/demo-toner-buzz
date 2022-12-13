@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Hung Nguyen",
+        "street": "Waldowstr. 90",
+        "city": "Ellwangen",
+        "country_code": "DE",
+        "email": "hung.nguyen@example.com",
+        "phone": "0999999999",
+        "zip": "73479"
+    }
+]

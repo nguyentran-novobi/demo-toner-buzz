@@ -1,0 +1,36 @@
+.o_kanban_ecommerce_channel {
+    &.o_kanban_ungrouped {
+        .o_kanban_record {
+            width: 500px;
+        }
+    }
+    .o_kanban_card_header{
+        min-height: 100px;
+    }
+    .o_primary{
+        min-height: 40px;
+    }
+}
+
+.o_form_view {
+    .o_ecommerce_channel_desc {
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            i.fa {
+                margin-right: 5px;
+
+                &.fa-check {
+                    color: green;
+                }
+            }
+        }
+    }
+    .o_warning_text {
+        color: #f0ad4e;
+    }
+}
+.dropdown-item.oe_kanban_action.oe_kanban_action_a{
+    padding-left: 10px;
+}

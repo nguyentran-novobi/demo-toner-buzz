@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "company": "",
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "email": "jane@example.com",
+    "phone": "",
+    "form_fields": [
+      {
+        "name": "Account Sign Up Field",
+        "value": "123dadf"
+      }
+    ],
+    "date_created": "Wed, 10 Jan 2018 21:02:23 +0000",
+    "date_modified": "Thu, 10 May 2018 20:18:01 +0000",
+    "store_credit": "0.0000",
+    "registration_ip_address": "64.183.182.114",
+    "customer_group_id": 1,
+    "notes": "",
+    "tax_exempt_category": "",
+    "reset_pass_on_login": false,
+    "accepts_marketing": true,
+    "addresses": {
+      "url": "https://api.bigcommerce.com/stores/iar3k45i85/v2/customers/1/addresses",
+      "resource": "/customers/1/addresses"
+    }
+  },
+  {
+    "id": 2,
+    "company": "",
+    "first_name": "BigCommerce",
+    "last_name": "BigCommerce",
+    "email": "bc@example.com",
+    "phone": "",
+    "form_fields": {},
+    "date_created": "Wed, 10 Jan 2018 21:24:05 +0000",
+    "date_modified": "Wed, 10 Jan 2018 21:24:05 +0000",
+    "store_credit": "0.0000",
+    "registration_ip_address": "64.183.182.114",
+    "customer_group_id": 0,
+    "notes": "",
+    "tax_exempt_category": "",
+    "reset_pass_on_login": false,
+    "accepts_marketing": true,
+    "addresses": {
+      "url": "https://api.bigcommerce.com/stores/iar3k45i85/v2/customers/2/addresses",
+      "resource": "/customers/2/addresses"
+    }
+  }
+]

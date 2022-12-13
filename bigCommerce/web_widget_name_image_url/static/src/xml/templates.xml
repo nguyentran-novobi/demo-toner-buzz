@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="FieldNameImageURL">
+        <t t-foreach="widget.custom_tags" t-as="tag">
+            <p style="margin-bottom: 5px; display:block">
+                <t t-if="tag.image_url">
+                    <span class="oe_form_field oe_form_field_image" t-att-style="widget.attrs.style">
+                        <img t-att-src="tag.image_url"
+                        style="border:0; margin:5px"
+                        t-att-name="tag.name"
+                        width="20"/>
+                    </span>
+                </t>
+                <span>
+                    <t t-esc="tag.name"/>
+                </span>
+            </p>
+        </t>
+    </t>
+</templates>

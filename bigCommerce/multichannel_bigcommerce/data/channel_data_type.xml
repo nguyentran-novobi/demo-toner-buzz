@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="channel_category_data_type" model="channel.data.type">
+        <field name="platform">bigcommerce</field>
+        <field name="name">Category</field>
+        <field name="res_model">product.channel.category</field>
+    </record>
+
+    <record id="channel_pricelist_data_type" model="channel.data.type">
+        <field name="platform">bigcommerce</field>
+        <field name="name">Price List</field>
+        <field name="res_model">channel.pricelist</field>
+    </record>
+
+    <record id="channel_customer_group_data_type" model="channel.data.type">
+        <field name="platform">bigcommerce</field>
+        <field name="name">Customer Group</field>
+        <field name="res_model">channel.customer.group</field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+[
+  {
+    "id": 13,
+    "order_id": 109,
+    "order_address_id": 15,
+    "tax_rate_id": 2,
+    "sales_tax_id": "2",
+    "tax_class_id": 0,
+    "name": "Test US",
+    "class": "Default Tax Class",
+    "rate": "10.0000",
+    "priority": 0,
+    "priority_amount": "31.1800",
+    "line_amount": "31.1800"
+  },
+  {
+    "id": 14,
+    "order_id": 109,
+    "order_address_id": 14,
+    "tax_rate_id": 2,
+    "sales_tax_id": "2",
+    "tax_class_id": 0,
+    "name": "Test US",
+    "class": "Default Tax Class",
+    "rate": "10.0000",
+    "priority": 0,
+    "priority_amount": "13.3600",
+    "line_amount": "13.3600"
+  }
+]

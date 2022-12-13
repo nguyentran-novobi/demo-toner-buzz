@@ -1,0 +1,55 @@
+{
+    'name': 'Product Management',
+    'version': '15.1.0',
+    'summary': '',
+    'author': 'Novobi LLC',
+    'category': 'E-commerce Connectors',
+    'depends': [
+        'omni_manage_channel',
+    ],
+    'data': [
+        'security/ir.model.access.csv',
+
+        'data/queue_job_config_data.xml',
+
+        'views/omnichannel_dashboard_views.xml',
+        'views/ecommerce_channel_views.xml',
+        'views/product_channel_variant_views.xml',
+        'views/product_channel_image_views.xml',
+        'views/product_template_views.xml',
+        'views/product_channel_views.xml',
+        'views/product_brand_views.xml',
+        'views/product_channel_category_views.xml',
+        'views/product_views.xml',
+        'views/product_channel_vendor_views.xml',
+        'views/stock_quant_views.xml',
+        'views/listing_mapping_views.xml',
+        'views/product_exported_field_views.xml',
+        'views/product_alternate_sku_views.xml',
+        'views/res_config_settings_views.xml',
+
+        'wizard/product_channel_composer.xml',
+        'wizard/product_change_channel.xml',
+        'wizard/export_product_composer.xml',
+        'wizard/product_merge_info_composer.xml',
+        'wizard/import_other_data_composer.xml',
+        'wizard/import_product_composer.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+    'assets': {
+        'web.assets_backend': [
+            'multichannel_product/static/src/scss/style.scss',
+            'multichannel_product/static/src/js/publishing_product.js',
+            'multichannel_product/static/src/js/product_mapping_form.js',
+            'multichannel_product/static/src/js/list_renderer.js',
+            'multichannel_product/static/src/js/view_dialogs.js',
+            'multichannel_product/static/src/js/abstract_storage_service.js',
+            'multichannel_product/static/src/js/history_back.js',
+        ],
+    },
+    'license': 'OPL-1',
+    'pre_init_hook': 'pre_init_hook',
+}
+

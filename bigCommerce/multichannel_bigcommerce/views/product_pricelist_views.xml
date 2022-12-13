@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright © 2021 Novobi, LLC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="view_product_pricelist_form" model="ir.ui.view">
+        <field name="name">product.pricelist.form</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <header>
+                    <button name="%(multichannel_bigcommerce.action_export_pricelist_to_channel)d" type="action" string="Export to Store" class="btn-primary"/>
+                </header>
+            </sheet>
+        </field>
+    </record>
+</odoo>

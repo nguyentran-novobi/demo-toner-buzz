@@ -1,0 +1,7 @@
+{
+    "active": true, 
+    "platform": false,
+    "name": "Test Store", 
+    "auto_create_master_product": false,
+    "weight_unit": "oz"
+}

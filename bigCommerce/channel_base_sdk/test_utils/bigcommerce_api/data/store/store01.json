@@ -1,0 +1,62 @@
+{
+  "id": "iar3k45i85",
+  "domain": "novobi.mybigcommerce.com",
+  "secure_url": "https:\/\/novobi.mybigcommerce.com",
+  "control_panel_base_url": "https:\/\/store-iar3k45i85.mybigcommerce.com",
+  "status": "prelaunch",
+  "name": "Novobi_BigCommerce",
+  "first_name": "Ha",
+  "last_name": "Pham",
+  "address": "8920 Business Park Dr\nSuite 250\nAustin, TX 78759",
+  "country": "United States",
+  "country_code": "US",
+  "phone": "",
+  "admin_email": "ha.pham@novobi.com",
+  "order_email": "info@novobi.mybigcommerce.com",
+  "favicon_url": "https:\/\/cdn11.bigcommerce.com\/r-f4a31069d7d40701da7cfa55caaabe998e8118d5\/img\/bc_favicon.ico",
+  "timezone": {
+    "name": "Europe\/London",
+    "raw_offset": 0,
+    "dst_offset": 0,
+    "dst_correction": false,
+    "date_format": {
+      "display": "M jS Y",
+      "export": "M jS Y",
+      "extended_display": "M jS Y @ g:i A"
+    }
+  },
+  "language": "en",
+  "currency": "USD",
+  "currency_symbol": "$",
+  "decimal_separator": ".",
+  "thousands_separator": ",",
+  "decimal_places": 2,
+  "currency_symbol_location": "left",
+  "weight_units": "Ounces",
+  "dimension_units": "Inches",
+  "dimension_decimal_places": 2,
+  "dimension_decimal_token": ".",
+  "dimension_thousands_token": ",",
+  "plan_name": "Partner Sandbox",
+  "plan_level": "Sandbox Store",
+  "plan_is_trial": false,
+  "industry": "Computers\/Electronics",
+  "logo": {
+    "url": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/product_images\/novobi-vietnam-logo_1559267569__30954.png"
+  },
+  "is_price_entered_with_tax": true,
+  "store_id": 1000376536,
+  "default_site_id": 1000,
+  "default_channel_id": 1,
+  "active_comparison_modules": [],
+  "features": {
+    "stencil_enabled": true,
+    "sitewidehttps_enabled": true,
+    "facebook_catalog_id": "275646936649937",
+    "checkout_type": "optimized",
+    "wishlists_enabled": true,
+    "graphql_storefront_api_enabled": true,
+    "shopper_consent_tracking_enabled": false,
+    "multi_storefront_enabled": false
+  }
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="exclude_inventory_sync_view_form" model="ir.ui.view">
+        <field name="name">exclude.inventory.sync.form</field>
+        <field name="model">exclude.inventory.sync</field>
+        <field name="arch" type="xml">
+            <form string="Add Rule">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" invisible="1"/>
+                            <field name="applied_on" widget="radio"/>
+                            <field name="categ_ids" attrs="{
+                                  'invisible':[('applied_on', '!=', '2_product_category')],
+                                  'required':[('applied_on', '=', '2_product_category')]}"
+                                options="{'no_create':1}" widget="many2many_tags"/>
+                            <field name="product_tmpl_ids" attrs="{
+                            'invisible':[('applied_on', '!=', '1_product')],
+                            'required':[('applied_on', '=', '1_product')]}"
+                            options="{'no_create':1}" widget="many2many_tags"/>
+                            <field name="product_product_ids" attrs="{
+                            'invisible':[('applied_on', '!=', '0_product_variant')],
+                            'required':[('applied_on', '=', '0_product_variant')]}"
+                            options="{'no_create':1}" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

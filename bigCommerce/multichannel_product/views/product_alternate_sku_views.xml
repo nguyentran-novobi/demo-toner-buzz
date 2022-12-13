@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_alternate_sku_tree_view" model="ir.ui.view">
+        <field name="name">product.alternate.sku.tree.view</field>
+        <field name="model">product.alternate.sku</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name" string="Alternate SKU" required="1"/>
+                <field name="channel_id" string="Store" required="1" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"/>
+                <field name="product_channel_variant_id" string="Product Mapping" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

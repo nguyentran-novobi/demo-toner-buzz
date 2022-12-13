@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright © 2021 Novobi, LLC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="view_order_channel_cancel_confirmation_view" model="ir.ui.view">
+        <field name="name">order.channel.cancel.confirmation.form</field>
+        <field name="model">order.channel.cancel.confirmation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="sale_order_id" invisible="1"/>
+                    <group>
+                        <group>
+                            <field name="is_credit_note_creation_enabled" string="Create Credit Note"/>
+                            <field name="credit_note_reason" string="Reason" attrs="{'invisible': [('is_credit_note_creation_enabled', '=', False)]}"/>
+                            <field name="credit_note_date" string="Date" attrs="{'invisible': [('is_credit_note_creation_enabled', '=', False)], 'required': [('is_credit_note_creation_enabled', '!=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="is_notification_email_enabled" string="Notify by Email"/>
+                            <field name="notification_email_template_id" string="Email Template" attrs="{'invisible': [('is_notification_email_enabled', '=', False)], 'required': [('is_notification_email_enabled', '!=', False)]}"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="button_confirm" string="Cancel on online store" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="order_channel_cancel_confirmation_action" model="ir.actions.act_window">
+        <field name="name">Cancel Order on Online Store</field>
+        <field name="res_model">order.channel.cancel.confirmation</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_sale_order_id': active_id}</field>
+    </record>
+</odoo>

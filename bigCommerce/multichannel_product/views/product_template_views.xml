@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_client_view_master_product" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="stock.product_template_search_form_view_stock"/>
+        <field name="context" eval="
+            {
+                'search_default_consumable': 0,
+                'default_detailed_type': 'product'
+            }"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a product ...
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_omniborder_products" name="Products" action="action_client_view_master_product"
+                  parent="omni_manage_channel.menu_multichannel_root" sequence="2"/>
+
+    <record id="multichannel_product_template_tree_view" model="ir.ui.view">
+        <field name="name">multichannel.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Product"
+                  default_order="write_date desc" class="product-master-list">
+                <field name="name" string="Product Name"/>
+                <field name="default_code"/>
+                <field name="display_number_variants" string="Variants" />
+                <field name="qty_available" string="Quantity On Hand"/>
+                <field name="free_qty" string="Available"/>
+                <field name="active_channel_ids" string="Stores"
+                       widget="name_image_url" />
+                <field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom"/>
+                <field name="active" invisible="1"/>
+                <field name="write_date" />
+            </tree>
+        </field>
+    </record>
+
+    <!--For Both Product Template and Product Form-->
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="is_show_variants" invisible="1"/>
+            </xpath>
+
+            <!--Product Template Image-->
+            <field name="image_1920" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <!--/Product Template Image-->
+
+            <xpath expr="//field[@name='categ_id']" position="attributes">
+                <attribute name="string">Internal Category</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="brand_id" string="Brand"/>
+            </xpath>
+
+            <!--Invisible 'Counterpart Locations' from view-->
+            <xpath expr="//group[@name='stock_property']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!--/Invisible 'Counterpart Locations' from view-->
+
+
+            <!--Remove pricelist button-->
+            <xpath expr="//button[@name='open_pricelist_rules']" position="replace" ></xpath>
+
+            <xpath expr="//label[@for='standard_price']" position="before">
+                <field name="retail_price" string="MSRP"
+                        widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"
+                       attrs="{'invisible': [('is_show_variants', '=', True),('is_product_variant', '=', False)]}"/>
+            </xpath>
+
+            <!--Edit Package dimensions in template-->
+            <xpath expr="//label[@for='weight']" position="attributes" >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[@name='weight']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//group[@name='group_lots_and_weight']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+
+            <xpath expr="//group[@name='group_lots_and_weight']" position="before">
+                <field name="weight_in_oz" invisible="1"/>
+                <group name="group_package_dimension" string="Dimensions &amp; Weight"
+                       attrs="{'invisible': ['&amp;',('is_product_variant', '=', False), '|', ('type', '=', 'service'), ('is_show_variants', '=', True)]}">
+                    <label for="width" string="Width"/>
+                    <div class="o_row" name="width_unit_comp">
+                        <field name="width" nolabel="1"/>
+                        <span><field name="length_uom_name"/></span>
+                    </div>
+                    <label for="depth" string="Depth"/>
+                    <div class="o_row" name="depth_unit_comp">
+                        <field name="depth" nolabel="1"/>
+                        <span><field name="length_uom_name"/></span>
+                    </div>
+                    <label for="height" string="Height"/>
+                    <div class="o_row" name="height_unit_comp">
+                        <field name="height" nolabel="1"/>
+                        <span><field name="length_uom_name"/></span>
+                    </div>
+                    <label for="weight_unit_comp" string="Weight"/>
+                    <div class="o_row" name="weight_unit_comp">
+                        <field id="weight_unit_comp" name="weight" nolabel="1"/>
+                        <span><field name="weight_uom_name"/></span>
+                    </div>
+                </group>
+            </xpath>
+             <!--Edit Package dimension in template-->
+
+            <!--new PAGE: Product Identifiers-->
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page string="Product Identifier" name="product_identifier"
+                      attrs="{'invisible': [('is_product_variant', '=', False),('is_show_variants', '=', True)]}">
+                    <group>
+                        <group name="product_identifier_left">
+                            <field name="upc"/>
+                            <field name="ean"/>
+                            <field name="gtin"/>
+                            <field name="isbn"/>
+                        </group>
+                        <group name="product_identifier_right">
+                            <field name="mpn" string="Manufacturer Part Number (MPN)"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="alternate_sku" string="Alternate SKUs" attrs="{'invisible': ['|',('create_date','=',False),'&amp;',('is_product_variant', '=', False), ('is_show_variants', '=', True)]}">
+                    <field name="create_date" invisible="1"/>
+                    <field name="product_alternate_sku_ids" nolabel="1" context="{'tree_view_ref':'multichannel_product.product_alternate_sku_tree_view'}"/>
+                    <group colspan="12">
+                        <p class="text-muted">Product Mapping will be removed automatically when Alternate SKU is updated or deleted</p>
+                    </group>
+                </page>
+            </xpath>
+            <!--/new PAGE: Product Identifiers-->
+        </field>
+    </record>
+
+    <!--Only for Product Template Form-->
+    <record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <!--Display "Create product channel button"-->
+            <xpath expr="//header" position="inside">
+                <field name="is_show_variants" invisible="1"/>
+                <field name="id" invisible="1"/>
+                <button name="button_export_to_channel"
+                        class="btn btn-primary"
+                        groups="omni_manage_channel.group_listing_user"
+                        type="object" string="Export to Store"/>
+            </xpath>
+
+            <!--Display number of channel-->
+            <xpath expr="//div[hasclass('oe_button_box')]/button[1]" position="before">
+                <field name="product_channel_count" invisible="1"/>
+                <button name="open_product_mapping_views" type="object"
+                        attrs="{'invisible': [('product_channel_count', '&lt;', 1)]}"
+                        icon="fa-globe" class="oe_stat_button" string="Product Mappings">
+                </button>
+                <button name="%(multichannel_product.product_channel_image_action)d" type="action"
+                        string="Images" icon="fa-file-image-o" class="oe_stat_button">
+                </button>
+            </xpath>
+            <!--/Display number of channel-->
+
+            <!-- Remove Replenish Button-->
+            <xpath expr="//button[3]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- /Remove Replenish Button-->
+        </field>
+    </record>
+
+    <record id="product_template_form_view_procurement_button_inherit" model="ir.ui.view">
+        <field name="name">product.template.procurement.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <button name="action_open_quants" position="after">
+                <button class="oe_stat_button"
+                       name="action_open_free_qty"
+                       icon="fa-cubes"
+                       type="object" attrs="{'invisible':[('type', '!=', 'product')]}">
+                       <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="free_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                <field name="uom_name"/>
+                            </span>
+                            <span class="o_stat_text">Available</span>
+                       </div>
+                </button>
+            </button>
+        </field>
+    </record>
+
+    <record id="action_export_to_channel" model="ir.actions.act_window">
+        <field name="name">Export to Store</field>
+        <field name="res_model">export.product.composer</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_view_types">list</field>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+    </record>
+</odoo>

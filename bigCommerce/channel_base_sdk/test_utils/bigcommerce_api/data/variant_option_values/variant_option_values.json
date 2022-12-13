@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "id": 69613,
+      "label": "Space Grey",
+      "sort_order": 0,
+      "value_data": null,
+      "is_default": false
+    },
+    {
+      "id": 69614,
+      "label": "White",
+      "sort_order": 1,
+      "value_data": null,
+      "is_default": false
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 2,
+      "count": 2,
+      "per_page": 50,
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {
+        "current": "?page=1&limit=50"
+      }
+    }
+  }
+}

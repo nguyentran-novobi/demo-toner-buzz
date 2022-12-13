@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_omni_log_public,omni.log.public,model_omni_log,,1,0,0,0
+access_omni_log_user,omni.log.user,model_omni_log,base.group_user,1,1,1,0
+access_omni_log_admin,omni.log.admin,model_omni_log,base.group_erp_manager,1,1,1,1

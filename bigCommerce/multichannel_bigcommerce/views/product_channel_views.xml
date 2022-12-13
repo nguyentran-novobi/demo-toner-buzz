@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_bigcommerce_product_channel_form" model="ir.ui.view">
+            <field name="name">bigcommerce.product.channel.form</field>
+            <field name="model">product.channel</field>
+            <field name="priority">20</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="multichannel_product.view_product_channel_form"/>
+            <field name="arch" type="xml">
+                <button name="export_from_mapping" position="attributes">
+                    <attribute name="string">Export to Store</attribute>
+                </button>
+                <button name="remove_online_and_mapping" position="attributes">
+                    <attribute name="string">Delete on Store</attribute>
+                </button>
+                <sheet position="inside">
+                    <section id="bigcommerce_platform">
+                        <div class="oe_row">
+                            <field name="is_needed_to_export" class="oe_inline"/>
+                            <label for="is_needed_to_export" string="Need to Export"/>
+                        </div>
+                        <div class="oe_row">
+                            <field name="is_visible" class="oe_inline"/>
+                            <label for="is_visible" string="Visible on Storefront"/>
+                        </div>
+                        <group>
+                            <group name="basic_information_left">
+                                <field name="product_tmpl_id" string="Product" readonly="1" attrs="{'invisible': [('product_tmpl_id', '=', False)]}"/>
+                                <field name="product_product_id" string="Product" readonly="1" attrs="{'invisible': ['|', ('product_tmpl_id', '!=', False), ('product_variant_count', '!=', 0)]}"/>
+                                <field name="id_on_channel" string="ID on Store" readonly="1"/>
+                                <field name="type" string="Product Type" required="1" force_save="1"/>
+                                <field name="categ_ids" string="Categories" widget="many2many_tags"
+                                       domain="[('channel_id','=',channel_id), ('id_on_channel', '!=', False)]"
+                                       context="{'default_channel_id': channel_id}"
+                                       options="{'no_create': True}"
+                                />
+                            </group>
+                            <group name="basic_information_right">
+                                <field name="default_code"
+                                       attrs="{'invisible':[('is_show_variants', '=', True)]}"
+                                       readonly="1"
+                                       force_save="1"/>
+                                <field name="lst_price"
+                                       widget="monetary"
+                                       readonly="1"
+                                       options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                       attrs="{'invisible':[('is_show_variants', '=', True)]}"
+                                       string="Default Price(excluding tax)" required="1"/>
+                                <label for="weight_display" attrs="{'invisible':['|', ('type', '=', 'digital'), ('is_show_variants', '=', True)]}" string="Weight"/>
+                                <div class="o_row" name="weight_display" attrs="{'invisible':['|', ('type', '=', 'digital'), ('is_show_variants', '=', True)]}">
+                                    <field name="weight_display" string="Weight"
+                                           readonly="1" force_save="1"/>
+                                    <span>
+                                        <field name="weight_unit_symbol"/>
+                                    </span>
+                                </div>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Product Information" name="product_information">
+                                <group>
+                                    <group string="Product Identifiers"
+                                           attrs="{'invisible':[('is_show_variants', '=', True)]}"
+                                           name="product_identifiers">
+                                         <field name="mpn"
+                                               string="Manufacturer Part Number (MPN)"
+                                               force_save="1"
+                                               attrs="{'invisible':[('is_show_variants', '=', True)]}"/>
+                                         <field name="upc" string="Product UPC/EAN"
+                                               force_save="1"
+                                               attrs="{'invisible':[('is_show_variants', '=', True)]}"/>
+                                         <field name="gtin" string="Global Trade Number (GTN)"
+                                               attrs="{'invisible':[('is_show_variants', '=', True)]}"/>
+                                        <field name="bin_picking_number" string="Bin Picking Number (BPN)"
+                                               attrs="{'invisible':[('is_show_variants', '=', True)]}"/>
+                                    </group>
+                                    <group string="Advanced Pricing &amp; Tax" name="pricing_and_tax">
+                                        <field name="sale_price"
+                                               string="Sale Price"
+                                               widget="monetary"
+                                               attrs="{'invisible':[('is_show_variants', '=', True)]}"
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="retail_price"
+                                               attrs="{'invisible':[('is_show_variants', '=', True)]}"
+                                               widget="monetary"
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                               string="MSRP" readonly="True" force_save="1"/>
+                                        <field name="tax_class_id" string="Tax Class"
+                                               domain="[('channel_id', '=', channel_id)]"
+                                               options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                                        <field name="tax_code" string="Tax Provider Tax Code"/>
+                                    </group>
+                                    <group string="Inventory" name="product_inventory">
+                                        <field name="inventory_tracking" string="Track Quantity"/>
+                                        <field name="warning_quantity"
+                                               string="Low Stock"
+                                               widget="integer"
+                                               attrs="{'invisible':['|', ('inventory_tracking', '=', False), ('is_show_variants', '=', True)]}"/>
+                                    </group>
+                                    <group string="Bulk Pricing" name="product_bulk_pricing">
+                                        <div colspan="12" name="product_bulk_pricing_help" class="text-muted">
+                                            <span>Create bulk pricing rules to offer price discounts based on quantity breaks</span>
+                                        </div>
+                                        <group colspan="12">
+                                            <field name="bulk_pricing_discount_type" string="Discount Type" required="1"/>
+                                        </group>
+                                        <group colspan="12">
+                                            <field name="bulk_pricing_rule_ids" nolabel="1" context="{'default_product_channel_id': id}">
+                                                <tree editable="bottom">
+                                                    <field name="product_channel_id" invisible="1"/>
+                                                    <field name="default_price" invisible="1"/>
+                                                    <field name="currency_id" invisible="1"/>
+                                                    <field name="quantity_min"/>
+                                                    <field name="quantity_max"/>
+                                                    <field name="discount_type" invisible="1"/>
+                                                    <field name="discount_amount_percent" string="% Discount" attrs="{'column_invisible': [('parent.bulk_pricing_discount_type', '!=', 'percent')]}"/>
+                                                    <field name="discount_amount_fixed" widget="monetary" string="Fixed Amount" attrs="{'column_invisible': [('parent.bulk_pricing_discount_type', '!=', 'fixed')]}"/>
+                                                    <field name="discount_amount_price" widget="monetary" string="Off/Unit" attrs="{'column_invisible': [('parent.bulk_pricing_discount_type', '!=', 'price')]}"/>
+                                                    <field name="currency_id" invisible="1"/>
+                                                    <field name="unit_price" attrs="{'column_invisible': [('parent.product_variant_count', '&gt;', 0)]}"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </group>
+                                </group>
+                                <group name="description" string="Description">
+                                    <field name="description_sale" nolabel="1" readonly="1"/>
+                                </group>
+                            </page>
+                            <page string="Product Options" name="product_options">
+                                <group string="Variant Options">
+                                    <field name="attribute_line_ids" nolabel="1" readonly="1" force_save="1">
+                                        <tree string="Variants" create="false" edit="false" delete="false">
+                                            <field name="attribute_id"/>
+                                            <field name="value_ids" widget="many2many_tags"/>
+                                        </tree>
+                                        <form create="false" edit="false" delete="false">
+                                            <group>
+                                                <group>
+                                                    <label for="attribute_id" string="Attribute" />
+                                                    <field name="attribute_id" nolabel="1"/>
+                                                </group>
+                                                <group>
+                                                    <label for="value_ids" string="Attribute Values" />
+                                                    <field name="value_ids" widget="many2many_tags" nolabel="1"/>
+                                                </group>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                                <group string="Variants" attrs="{'invisible':[('is_show_variants', '=', False)]}">
+                                    <field name="product_variant_ids" nolabel="1" domain="[('attribute_value_ids', '!=', False)]"
+                                           string="Variants"
+                                           force_save="1">
+                                        <tree string="Variants" delete="0" create="0">
+                                            <field name="product_product_id" attrs="{'column_invisible': [('parent.product_tmpl_id', '!=', False)]}"/>
+                                            <field name="name" invisible="1"/>
+                                            <field name="upc" invisible="1" force_save="1"/>
+                                            <field name="ean" invisible="1" force_save="1"/>
+                                            <field name="gtin" invisible="1" force_save="1"/>
+                                            <field name="isbn" invisible="1" force_save="1"/>
+                                            <field name="mpn" invisible="1" force_save="1"/>
+                                            <field name="weight_in_oz" invisible="1" force_save="1"/>
+                                            <field name="depth" invisible="1" force_save="1"/>
+                                            <field name="height" invisible="1" force_save="1"/>
+                                            <field name="width" invisible="1" force_save="1"/>
+                                            <field name="sale_price" invisible="1"/>
+                                            <field name="standard_price" invisible="1" force_save="1"/>
+                                            <field name="retail_price" invisible="1" force_save="1"/>
+                                            <field name="purchasing_disabled" string="Purchasing disable" invisible="1"/>
+                                            <field name="purchasable" string="Purchasable"/>
+                                            <!-- <field name="image_variant_1920" widget='image' string="Image"
+                                            options='{"size": [70, 70]}'/> -->
+                                            <field name="default_code" force_save="1" readonly="1"/>
+                                            <field name="attribute_value_ids" widget="many2many_tags" readonly="1" force_save="1"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="lst_price" widget='monetary'
+                                                   options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                                   string="Default Price"/>
+                                            <field name="free_qty" string="Available" widget="integer"/>
+                                        </tree>
+                                        <form string="Product Variant" create="0">
+                                            <field name="product_product_id" invisible="1"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="name" invisible="1"/>
+                                            <field name="upc" invisible="1" force_save="1"/>
+                                            <field name="ean" invisible="1" force_save="1"/>
+                                            <field name="gtin" invisible="1" force_save="1"/>
+                                            <field name="isbn" invisible="1" force_save="1"/>
+                                            <field name="mpn" invisible="1" force_save="1"/>
+                                            <field name="weight_in_oz" invisible="1" force_save="1"/>
+                                            <field name="weight_display" invisible="1"/>
+                                            <field name="width_display" invisible="1"/>
+                                            <field name="depth_display" invisible="1"/>
+                                            <field name="height_display" invisible="1"/>
+                                            <field name="depth" invisible="1" force_save="1"/>
+                                            <field name="height" invisible="1" force_save="1"/>
+                                            <field name="width" invisible="1" force_save="1"/>
+                                            <field name="retail_price" invisible="1" force_save="1"/>
+                                            <field name="type" invisible="1"/>
+                                            <field name="inventory_tracking" invisible="1"/>
+                                            <sheet>
+                                                <field name="image_variant_1920" widget="image" class="oe_avatar"
+                                                       options='{"preview_image": "image_variant_1920", "size": [90, 90]}' readonly="1"/>
+                                                <div class="oe_title">
+                                                    <label class="oe_edit_only" for="name" string="Product Name"/>
+                                                    <h1>
+                                                        <field name="name" placeholder="Product Name"
+                                                               readonly="True"
+                                                               force_save="1"
+                                                               required="True" />
+                                                    </h1>
+                                                </div>
+                                                <div class="oe_row">
+                                                    <field name="purchasing_disabled" string="Purchasing disable" invisible="1"/>
+                                                    <field name="purchasable" class="oe_inline"/>
+                                                    <label for="purchasable" string="Purchasable"/>
+                                                </div>
+                                                <div>
+                                                    <label for="product_product_id" string="Product"/>
+                                                    <field name="product_product_id" readonly="1"/>
+                                                </div>
+                                                <group>
+                                                    <group string="Attributes">
+                                                        <field name="attribute_value_ids" string="Attribute Values" widget="many2many_tags" force_save="1"/>
+                                                    </group>
+                                                </group>
+                                                <group>
+                                                    <group string="Product Identifier">
+                                                        <field name="default_code" force_save="1" readonly="1"/>
+                                                        <field name="mpn" string="Manufacturer Part Number (MPN)"
+                                                               force_save="1" readonly="1"/>
+                                                        <field name="upc" string="UPC" force_save="1" readonly="1"/>
+                                                        <field name="bin_picking_number"
+                                                               string="Bin Picking Number (BPN)"/>
+                                                    </group>
+                                                    <group string="Pricing">
+                                                        <field name="lst_price"
+                                                               string="Default Price"
+                                                               readonly="1"
+                                                               widget="monetary"
+                                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                                        <field name="sale_price"
+                                                               string="Sale Price"
+                                                               widget="monetary"
+                                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                                    </group>
+                                                </group>
+                                                <group>
+                                                    <group name="inventory" string="Inventory"
+                                                           attrs="{'invisible':['|', ('type', '=', 'digital'), ('inventory_tracking', '=', False)]}">
+                                                        <field name="warning_quantity" string="Low Stock"/>
+                                                    </group>
+                                                    <group name="inventory_empty"
+                                                           attrs="{'invisible':[('type', '!=', 'digital'), ('inventory_tracking', '=', True)]}">
+                                                        <!-- Intentionally left blank -->
+                                                    </group>
+                                                    <group string="Dimensions &amp; Weight"
+                                                           attrs="{'invisible':[('type', '=', 'digital')]}"
+                                                           name="dimension_and_weight">
+                                                        <label for="weight_display" string="Weight"/>
+                                                        <div class="o_row" name="weight_display">
+                                                            <field name="weight_display" string="Weight" required="1"/>
+                                                            <span>
+                                                                <field name="weight_unit_symbol"/>
+                                                            </span>
+                                                        </div>
+                                                        <label for="height_display" string="Height"/>
+                                                        <div class="o_row" name="height_display">
+                                                            <field name="height_display" string="Height"/>
+                                                            <span>
+                                                                <field name="dimension_unit_symbol"/>
+                                                            </span>
+                                                        </div>
+                                                        <label for="width_display" string="Width"/>
+                                                        <div class="o_row" name="width_display">
+                                                            <field name="width_display" string="Width"/>
+                                                            <span>
+                                                                <field name="dimension_unit_symbol"/>
+                                                            </span>
+                                                        </div>
+                                                        <label for="depth_display" string="Depth"/>
+                                                        <div class="o_row" name="depth_display">
+                                                            <field name="depth_display" string="Depth"/>
+                                                            <span>
+                                                                <field name="dimension_unit_symbol"/>
+                                                            </span>
+                                                        </div>
+                                                    </group>
+                                                </group>
+                                            </sheet>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Storefront" name="storefront">
+                                <group name="storefront_details" string="Storefront Details">
+                                    <group>
+                                        <field name="is_featured" string="Set as a Featured Product on my Storefront"/>
+                                        <field name="search_keywords" string="Search Keywords"/>
+                                        <field name="availability_description" string="Availability Text"/>
+                                        <field name="warranty" string="Warranty Information"/>
+                                    </group>
+                                    <group>
+                                        <field name="sort_order"/>
+                                        <field name="bigcommerce_product_condition" string="Condition" required="1"/>
+                                        <field name="bigcommerce_is_product_condition_shown" string="Show condition on storefront"/>
+                                    </group>
+                                </group>
+                                <group name="storefront_custom_fields" string="Custom Fields">
+                                    <field name="custom_field_ids" nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="product_channel_id" invisible="1"/>
+                                            <field name="key" string="Custom Field Name" required="1"/>
+                                            <field name="value" string="Custom Field Value" required="1"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group name="storefront_related_products" string="Related Products">
+                                    <field name="is_related_product_auto" string="Automatically show related products on my storefront"/>
+                                    <field name="related_product_list" invisible="1"/>
+                                    <field name="related_product_ids" widget="many2many_tags" attrs="{'invisible': [('is_related_product_auto', '=', True)]}"/>
+                                </group>
+                            </page>
+                            <page string="Fulfillment" name="fulfillment">
+                                <group attrs="{'invisible':[('type', '=', 'digital')]}">
+                                    <group string="Shipping Details" name="shipping_details">
+                                        <label for="fixed_cost_shipping_price" string="Fixed Shipping Price" />
+                                        <field name="fixed_cost_shipping_price" widget="monetary" nolabel="1"/>
+                                        <field name="is_free_shipping" />
+                                    </group>
+                                    <group string="Dimensions &amp; Weight"
+                                           attrs="{'invisible':['|', ('type', '=', 'digital'), ('is_show_variants', '=', True)]}"
+                                           name="dimension_and_weight">
+                                        <label for="weight_display" string="Weight"/>
+                                        <div class="o_row" name="weight_display">
+                                            <field name="weight_display" string="Weight"/>
+                                            <span><field name="weight_unit_symbol"/></span>
+                                        </div>
+                                        <label for="height_display" string="Height"/>
+                                        <div class="o_row" name="height_display">
+                                            <field name="height_display" string="Height" />
+                                            <span><field name="dimension_unit_symbol"/></span>
+                                        </div>
+                                        <label for="width_display" string="Width"/>
+                                        <div class="o_row" name="width_display">
+                                            <field name="width_display" string="Width"/>
+                                            <span><field name="dimension_unit_symbol"/></span>
+                                        </div>
+                                        <label for="depth_display" string="Depth"/>
+                                        <div class="o_row" name="depth_display">
+                                            <field name="depth_display" string="Depth"/>
+                                            <span><field name="dimension_unit_symbol"/></span>
+                                        </div>
+                                    </group>
+                                </group>
+                                <group string="Purchasability" name="purchasability">
+                                    <group name="availability">
+                                        <group colspan="12">
+                                            <field name="availability" string="Availability Options" required="1" widget="radio"/>
+                                        </group>
+                                        <group colspan="12" attrs="{'invisible': [('availability', '!=', 'preorder')]}">
+                                            <field name="preorder_message" string="Message"/>
+                                            <field name="preorder_release_date" string="Release Date"/>
+                                            <field name="preorder_auto_disable" string="Remove pre-order status on this date"/>
+                                        </group>
+                                        <group colspan="12">
+                                            <field name="min_order_qty" string="Minimum Purchase Quantity" widget="integer"/>
+                                            <field name="max_order_qty" string="Maximum Purchase Quantity" widget="integer"/>
+                                        </group>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="SEO &amp; Sharing" name="seo_sharing">
+                                <group name="seo" string="Search Engine Optimization">
+                                    <group>
+                                        <field name="page_title"/>
+                                    </group>
+                                    <group>
+                                        <label for="slug" string="Product URL"/>
+                                        <div class="o_row">
+                                            <field name="slug" required="1" nolabel="1"/>
+                                            <button name="generate_new_slug" class="btn-link" type="object" icon="fa-arrow-right" string="Generate"/>
+                                        </div>
+                                    </group>
+                                    <group colspan="12">
+                                        <field name="meta_description"/>
+                                    </group>
+                                </group>
+                                <group name="sharing" string="Open Graph Sharing">
+                                    <group name="open_graph_type">
+                                        <field name="open_graph_type" required="1" string="Object Type"/>
+                                    </group>
+                                    <group>
+                                        <!-- Intentionally left blank -->
+                                    </group>
+                                    <group name="open_graph_title">
+                                        <field name="open_graph_use_product_name" string="Use product name"/>
+                                        <field name="open_graph_title" string="Title"
+                                               attrs="{'invisible': [('open_graph_use_product_name', '=', True)]}"/>
+                                    </group>
+                                    <group name="open_graph_use_image">
+                                        <field name="open_graph_use_image_option" string="Image" widget="radio"/>
+                                    </group>
+                                    <group name="open_graph_title" colspan="12">
+                                        <field name="open_graph_use_meta_description" string="Use meta description"/>
+                                        <field name="open_graph_description" string="Description"
+                                               attrs="{'invisible': [('open_graph_use_meta_description', '=', True)]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </section>
+                </sheet>
+            </field>
+        </record>
+    </data>
+</odoo>

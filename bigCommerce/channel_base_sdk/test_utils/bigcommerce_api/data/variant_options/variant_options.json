@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "id": 34808,
+      "product_id": 30931,
+      "name": "COLOR1570418770-30931",
+      "display_name": "COLOR",
+      "type": "radio_buttons",
+      "sort_order": 0,
+      "option_values": [
+        {
+          "id": 69613,
+          "label": "Space Grey",
+          "sort_order": 0,
+          "value_data": null,
+          "is_default": false
+        },
+        {
+          "id": 69614,
+          "label": "White",
+          "sort_order": 1,
+          "value_data": null,
+          "is_default": false
+        }
+      ],
+      "config": []
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 1,
+      "count": 1,
+      "per_page": 50,
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {
+        "current": "?page=1&limit=50"
+      }
+    }
+  }
+}

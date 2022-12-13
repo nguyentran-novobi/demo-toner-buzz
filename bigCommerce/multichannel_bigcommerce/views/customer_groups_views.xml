@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="bigcommerce_customer_group_tree_view" model="ir.ui.view">
+        <field name="name">customer.group.tree</field>
+        <field name="model">channel.customer.group</field>
+        <field name="inherit_id" ref="multichannel_order.customer_group_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="channel_pricelist_id" string="Price List"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="bigcommerce_customer_group_form_view" model="ir.ui.view">
+        <field name="name">customer.group.form</field>
+        <field name="model">channel.customer.group</field>
+        <field name="inherit_id" ref="multichannel_order.customer_group_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header[@name='header']" position="inside">
+                <button name="bigcommerce_export_customer_group"
+                        string="Export to Store"
+                        type="object"
+                        class="oe_highlight"
+                        confirm="Are you sure you want to export changes to the online store?"
+                        attrs="{'invisible':['|', '|', ('platform', '!=', 'bigcommerce'), ('need_to_export_display', '!=', True), ('is_exported_to_store', '!=', True)]}"/>
+                <button name="bigcommerce_export_customer_group"
+                        string="Export to Store"
+                        type="object"
+                        confirm="Are you sure you want to export changes to the online store?"
+                        attrs="{'invisible':['|', '|', ('platform', '!=', 'bigcommerce'), ('need_to_export_display', '=', True), ('is_exported_to_store', '!=', True)]}"/>
+                <button name="bigcommerce_export_customer_group"
+                        string="Export to Store"
+                        type="object"
+                        class="oe_highlight"
+                        confirm="Are you sure you want to create a new customer group on the online store?"
+                        attrs="{'invisible':['|', ('platform', '!=', 'bigcommerce'), ('is_exported_to_store', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//div[@name='content']" position="inside">
+                <group string="Group Access" attrs="{'invisible':[('platform','!=','bigcommerce')]}">
+                    <div class="oe_row">
+                        <field name="has_all_categories_access" class="oe_inline"/>
+                        <label for="has_all_categories_access" string="Customers in this group can see products in all categories across all channels"/>
+                    </div>
+                </group>
+                <group attrs="{'invisible':[('has_all_categories_access','=',True)]}">
+                    <group>
+                        <field name="categ_ids" widget="many2many_tags" attrs="{'required':[('has_all_categories_access','=', False), ('platform','=','bigcommerce')]}" domain="[('channel_id', '=', channel_id), ('id_on_channel', '!=', False)]"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

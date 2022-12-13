@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="job_function_order_shipment_sync_in_queue_job" model="queue.job.function">
+        <field name="model_id" ref="multichannel_order.model_order_shipment"/>
+        <field name="method">_sync_in_queue_job</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "_sync_in_queue_job"}' />
+    </record>
+
+    <record id="job_function_order_channel_transaction_sync_in_queue_job" model="queue.job.function">
+        <field name="model_id" ref="multichannel_order.model_order_channel_transaction"/>
+        <field name="method">_sync_in_queue_job</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "_sync_in_queue_job"}' />
+    </record>
+
+    <record id="job_function_order_sync_in_queue_job" model="queue.job.function">
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="method">_sync_in_queue_job</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "_sync_in_queue_job"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_order_post_order_to_channel" model="queue.job.function">
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="method">_post_order_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_post_order_to_channel"}' />
+    </record>
+
+    <record id="job_function_order_put_order_to_channel" model="queue.job.function">
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="method">_put_order_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "_put_order_to_channel"}' />
+    </record>
+
+    <record id="job_function_order_waiting_product" model="queue.job.function">
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="method">waiting_product</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "waiting_product"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_order_waiting_order" model="queue.job.function">
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="method">waiting_order</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "waiting_order"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_order_import_shipments" model="queue.job.function">
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="method">import_shipments</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "import_shipments"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+</odoo>

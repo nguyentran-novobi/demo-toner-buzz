@@ -1,0 +1,73 @@
+[
+    {
+        "name": "#1042",
+        "id": "4540854665454",
+        "channel_date_created": "2021-11-02T01:48:09",
+        "channel_order_ref": "1042",
+        "payment_gateway_code": "manual",
+        "staff_notes": "",
+        "payment_status_id": "paid",
+        "status_id": "unfulfilled",
+        "customer_id": 5792136003822,
+        "customer_data": {
+            "id": 5792136003822,
+            "name": "HooHoo Hi Hi Ha Ha",
+            "street": "LoLo. 10",
+            "street2": "",
+            "city": "Ellwangen",
+            "state_code": null,
+            "country_code": "DE",
+            "email": "hhhhhhhh@example.com",
+            "phone": "23456786543456",
+            "zip": "73479",
+            "company": null
+        },
+        "requested_shipping_method": "None",
+        "currency_code": "USD",
+        "customer_message": "Nothing to say to you, mom.",
+        "lines": [
+            {
+                "product_id": "LISTING02",
+                "default_code": "prod-2",
+                "variant_id": "LISTING02-VARIANT-1",
+                "id_on_channel": "LINE2",
+                "quantity": 5,
+                "name": "LISTING02-VARIANT-1",
+                "price": 20.0
+            }
+        ],
+        "billing_address": {
+            "name": "Hua Nguyen",
+            "street": "Waldowstr. 100",
+            "street2": "",
+            "city": "Ellwangen",
+            "state_code": null,
+            "country_code": "DE",
+            "email": "hung.nguyen@example.com",
+            "phone": "0888898889898",
+            "zip": "73479",
+            "company": null
+        },
+        "shipping_address": {
+            "name": "Hong Noan MIKKKK",
+            "street": "Lulu Street. 22",
+            "street2": "",
+            "city": "Ellwangen",
+            "state_code": null,
+            "country_code": "DE",
+            "email": "lulu.hong-noan@example.com",
+            "phone": null,
+            "zip": "73479",
+            "company": null
+        },
+        "taxes": [
+            {
+                "name": "Tax",
+                "amount": 0
+            }
+        ],
+        "shipping_cost": 0,
+        "discount_amount": 0,
+        "coupons": {}
+    }
+]

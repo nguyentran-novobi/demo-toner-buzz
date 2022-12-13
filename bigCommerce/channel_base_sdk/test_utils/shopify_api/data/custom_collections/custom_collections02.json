@@ -1,0 +1,16 @@
+{
+  "custom_collections": [
+    {
+      "id": 232279703722,
+      "handle": "frontpage",
+      "updated_at": "2021-03-23T04:50:05-04:00",
+      "published_at": "2020-10-21T21:45:09-04:00",
+      "sort_order": "best-selling",
+      "template_suffix": null,
+      "published_scope": "web",
+      "title": "Home page",
+      "body_html": "\u003cp\u003efalse\u003c\/p\u003e",
+      "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/232279703722"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[
+    {
+        "default_code": "",
+        "isbn": false, 
+        "name": "Apple AirPods with Wireless Charging Case",
+        "upc": false, 
+        "brand_id": false, 
+        "mpn": false, 
+        "ean": false,
+        "depth": 0.0, 
+        "height": 0.0, 
+        "width": 0.0, 
+        "lst_price": 0.0,
+        "invoice_policy": "delivery", 
+        "product_channel_image_ids": [], 
+        "image_1920": false, 
+        "gtin": false, 
+        "retail_price": 0,
+        "description_sale": "",
+        "description": ""
+    }
+]

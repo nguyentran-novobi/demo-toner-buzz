@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@t-if='doc.user_id.name']" position="replace">
+            <t t-if="doc.id_on_channel">
+                <div/>
+            </t>
+            <t t-else="">
+                <div t-if="doc.user_id.name" class="col-auto mw-100 mb-2">
+                    <strong>Salesperson:</strong>
+                    <p class="m-0" t-field="doc.user_id"/>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//span[@t-field='doc.name']" position="replace">
+            <t t-if="doc.channel_order_ref">
+                <span t-field="doc.channel_order_ref"/>
+            </t>
+            <t t-else="">
+                 <span t-field="doc.name"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>

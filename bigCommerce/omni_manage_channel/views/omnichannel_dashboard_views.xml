@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ecommerce_channel_kanban" model="ir.ui.view">
+            <field name="name">ecommerce.channel.kanban</field>
+            <field name="model">ecommerce.channel</field>
+            <field name="arch" type="xml">
+                <kanban quick_create="false" create="true"
+                        import="false"
+                        class="oe_background_grey o_kanban_dashboard o_kanban_view o_kanban_ecommerce_channel">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="platform"/>
+                    <field name="image_small"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                    <field name="show_on_dashboard"/>
+                    <field name="kanban_dashboard"/>
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="RecordTop">
+                            <div t-attf-class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <t t-if="record.platform.raw_value">
+                                            <img type="open"
+                                             t-attf-src="/omni_manage_channel/static/src/img/#{record.platform.raw_value}.png"
+                                             style="width:30px;margin:10px"
+                                             alt="Platform"/>
+                                        </t>
+                                        <t t-esc="record.name.value"/>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <field name="status" widget="label_selection"
+                                                       style="border:none"
+                                                       options="{'classes': {'disconnected': 'danger', 'connected': 'success'}}"/>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <span>Last order sync</span>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <field name="last_sync_order"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <span>Total sales last 30 days</span>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <span t-esc="dashboard.sales_total"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <span>Total orders last 30 days</span>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <span t-esc="dashboard.sales_unit"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="o_kanban_manage_button_section">
+                                    <a class="o_kanban_manage_toggle_button" href="#">
+                                        <i class="fa fa-ellipsis-v" aria-label="Selection" role="img" title="Selection"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </t>
+
+                        <t t-name="RecordManage">
+                            <div class="row">
+                                <t t-if="record.platform.raw_value">
+                                    <div class="col-4 o_kanban_card_manage_section o_kanban_manage_view">
+                                        <div class="o_kanban_card_manage_title">
+                                            <span role="separator">View</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 o_kanban_card_manage_section o_kanban_manage_action">
+                                        <div class="o_kanban_card_manage_title">
+                                            <span role="separator">Action</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 o_kanban_card_manage_section o_kanban_manage_log">
+                                        <div class="o_kanban_card_manage_title">
+                                            <span role="separator">Log</span>
+                                        </div>
+                                        <div name="import_logs"/>
+                                        <div name="export_logs"/>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div class="col-6 o_kanban_card_manage_section o_kanban_manage_view">
+                                        <div class="o_kanban_card_manage_title">
+                                            <span role="separator">View</span>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                            <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                <div class="col-8">
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+                            </div>
+
+                            <div groups="omni_manage_channel.group_listing_manager" 
+                            style="text-align:right"
+                            class="row o_kanban_card_manage_settings">
+                                <div role="menuitem" class="col-12">
+                                    <a type="object" name="open_settings">Settings</a>
+                                </div>
+                            </div>
+                        </t>
+
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}">
+                                <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/>
+                                <t t-call="RecordTop"/>
+                                <div class="container o_kanban_card_content">
+                                </div>
+                                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                    <t t-call="RecordManage"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!--EcommerceChannel-->
+
+        <record id="view_ecommerce_channel_form_settings" model="ir.ui.view">
+            <field name="name">ecommerce.channel.form.settings</field>
+            <field name="model">ecommerce.channel</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form create="0">
+                    <!--Message for 'Warning'-->
+                    <div class="alert alert-warning alert-dismissible text-left"
+                         attrs="{'invisible': [('warning_message', '=', False)]}"
+                         t-ignore="True" role="status">
+                        <span>
+                            <field name="warning_message"/>
+                        </span>
+                    </div>
+                    <header>
+                    </header>
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <field name="status" invisible="1"/>
+                        <field name="write_date" invisible="1"/>
+                        <field name="is_default_channel" invisible="1"/>
+                        <div class="oe_button_box"
+                             attrs="{'invisible': [('write_date', '=', False)]}"
+                             name="button_box">
+                            <button name="toggle_debug_logging" type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-pencil-square-o"
+                                    groups="base.group_no_one">
+                                <field name="debug_logging" widget="boolean_button" options="{'terminology': {
+                                    'string_true': 'Logging Enabled',
+                                    'hover_true': 'Disable Logging',
+                                    'string_false': 'Logging Disabled',
+                                    'hover_false': 'Enable Logging'
+                                }}"/>
+                            </button>
+                            <button name="disconnect"
+                                    attrs="{'invisible':[('status','=','disconnected')]}"
+                                    class="oe_stat_button"
+                                    confirm="Are you sure you want to disconnect this channel?"
+                                    type="object" icon="fa-globe">
+                                <field name="active" widget="boolean_button"
+                                    options='{"terminology": {"string_true": "Connected",
+                                                              "hover_true": "Disconnect",
+                                                              "string_false": "Disconnect",
+                                                              "hover_false": "Reconnect"}}'/>
+                            </button>
+                            <button name="reconnect"
+                                    attrs="{'invisible':[('status','=','connected')]}"
+                                    class="oe_stat_button"
+                                    type="object" icon="fa-globe">
+                                <field name="active" widget="boolean_button"
+                                    options='{"terminology": {"string_false": "Disconnected",
+                                                              "hover_false": "Reconnect",
+                                                              "string_true": "Connected",
+                                                              "hover_true": "Disconnect",}}'/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Store's name"
+                                       attrs="{'readonly': [('write_date', '!=', False)]}"
+                                       required="True"/>
+                            </h1>
+                        </div>
+                        <group name="common_information">
+                            <field name="platform" required="True" attrs="{'invisible':[('write_date', '!=', False)]}"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"
+                                   force_save="1"
+                                   options="{'no_create': True}"/>
+                            <field name="is_default_channel" invisible="1"/>
+                        </group>
+                        <notebook attrs="{'invisible':[('write_date', '=', False)]}">
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ecommerce_channel_setting" model="ir.actions.act_window">
+            <field name="name">Setting</field>
+            <field name="res_model">ecommerce.channel</field>
+            <field name="view_mode">form</field>
+            <field name="target">current</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('omni_manage_channel.view_ecommerce_channel_form_settings')})]"/>
+        </record>
+    </data>
+</odoo>

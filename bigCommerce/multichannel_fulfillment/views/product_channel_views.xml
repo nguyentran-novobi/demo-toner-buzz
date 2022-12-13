@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_channel_tree" model="ir.ui.view">
+        <field name="name">product.channel.tree</field>
+        <field name="model">product.channel</field>
+        <field name="inherit_id" ref="multichannel_product.view_product_channel_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="free_qty" string="Available" widget="integer" optional="show"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_product_channel_form" model="ir.ui.view">
+        <field name="name">product.channel.form</field>
+        <field name="model">product.channel</field>
+        <field name="inherit_id" ref="multichannel_product.view_product_channel_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button"
+                        name="free_qty"
+                        icon="fa-cubes"
+                        disabled="disabled">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="free_qty" widget="integer" nolabel="1" class="mr4"/>
+                        </span>
+                        <span class="o_stat_text">Available</span>
+                    </div>
+                </button>
+            </div>
+
+        </field>
+    </record>
+</odoo>

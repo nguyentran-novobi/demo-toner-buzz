@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_product_short_form" model="ir.ui.view">
+            <field name="name">multichannel_product.product.product.view.form.easy</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <form string="Variant Information">
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-building-o">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value" widget="statinfo">
+                                    <field name="qty_available" widget="statinfo" nolabel="1" class="mr4"/>
+                                    <field name="uom_name"/>
+                                </span>
+                                <span class="o_stat_text">On Hand</span>
+                            </div>
+                        </button>
+                    </div>
+                    <field name="product_tmpl_id" invisible="1"/>
+                    <field name="id" invisible="1"/>
+                    <field name="cost_method" invisible="1"/>
+                    <field name="image_variant_1920" class="oe_avatar" widget="image"/>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Product Name"/>
+                        <h1><field name="name" placeholder="e.g. Enterprise Subscription"
+                                   readonly="True" force_save="1"/></h1>
+                    </div>
+                    <group string="Attributes">
+                        <field name="product_template_attribute_value_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                    <group>
+                        <group string="Product Identifier" name="product_identifier">
+                            <field name="default_code"/>
+                            <field name="barcode"/>
+                            <field name="upc"/>
+                            <field name="ean"/>
+                            <field name="gtin"/>
+                            <field name="isbn"/>
+                            <field name="mpn" string="MPN"/>
+                        </group>
+                        <group name="pricing" string="Pricing">
+                            <field name="list_price" invisible="1"/>
+                            <field name="lst_price" string="Sales Price" widget='monetary'
+                                   force_save="1"
+                                   options="{'currency_field': 'currency_id', 'field_digits': True}" required="1"/>
+                            <field name="retail_price" widget='monetary'
+                                   string="MSRP"
+                                   options="{'currency_field': 'currency_id', 'field_digits': True}" />
+                            <label for="standard_price"/>
+                            <div name="standard_price_uom" class="o_row">
+                                <field name="standard_price"
+                                    attrs="{'readonly':[('cost_method', '!=', 'fifo')]}"
+                                    widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                    class="oe_inline"/>
+                            </div>
+                            <field name="currency_id" invisible='1'/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('type', '=', 'service')]}">
+                        <field name="type" invisible="1"/>
+                        <group>
+                            <!-- Intentionally left blank -->
+                        </group>
+                        <group name="group_package_dimension" string="Dimensions &amp; Weight" >
+                            <label for="width" string="Width"/>
+                            <div class="o_row" name="width_unit_comp">
+                                <field name="width" nolabel="1"/>
+                                <span><field name="length_uom_name"/></span>
+                            </div>
+                            <label for="depth" string="Depth"/>
+                            <div class="o_row" name="depth_unit_comp">
+                                <field name="depth" nolabel="1"/>
+                                <span><field name="length_uom_name"/></span>
+                            </div>
+                            <label for="height" string="Height"/>
+                            <div class="o_row" name="height_unit_comp">
+                                <field name="height" nolabel="1"/>
+                                <span><field name="length_uom_name"/></span>
+                            </div>
+                            <label for="weight_unit_comp" string="Weight"/>
+                            <div class="o_row" name="weight_unit_comp">
+                                <field id="weight_unit_comp" name="weight" nolabel="1"/>
+                                <span><field name="weight_uom_name"/></span>
+                            </div>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_form_view_procurement_button_inherit" model="ir.ui.view">
+            <field name="name">product.product.procurement.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                <button name="action_open_quants" position="after">
+                    <button class="oe_stat_button"
+                           name="action_open_free_qty"
+                           icon="fa-cubes"
+                           type="object" attrs="{'invisible':[('type', '!=', 'product')]}">
+                           <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="free_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                    <field name="uom_name"/>
+                                </span>
+                                <span class="o_stat_text">Available</span>
+                           </div>
+                    </button>
+                </button>
+                <div name="options" position="inside">
+                    <span class="d-inline-block">
+                        <field name="is_custom_product"/>
+                        <label for="is_custom_product"/>
+                    </span>
+                </div>
+            </field>
+        </record>
+
+        <record id="product_search_view" model="ir.ui.view">
+            <field name="name">product.product.search</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <filter name="filter_to_purchase" position="after">
+                    <filter string="Custom Product" name="filter_is_custom_product" domain="[('is_custom_product', '=', True)]"/>
+                </filter>
+            </field>
+        </record>
+    </data>
+</odoo>

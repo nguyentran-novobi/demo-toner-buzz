@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="job_function_bigcommerce_sync_inventory" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_ecommerce_channel"/>
+        <field name="method">_bigcommerce_sync_inventory</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_synching" />
+        <field name="related_action" eval='{"func_name": "_bigcommerce_sync_inventory"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_bigcommerce_get_data" model="queue.job.function">
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="method">bigcommerce_get_data</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "bigcommerce_get_data"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_bigcommerce_update_images" model="queue.job.function">
+        <field name="model_id" ref="multichannel_product.model_product_channel"/>
+        <field name="method">bigcommerce_update_images</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "bigcommerce_update_images"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_bigcommerce_export_category" model="queue.job.function">
+        <field name="model_id" ref="multichannel_bigcommerce.model_product_channel_category"/>
+        <field name="method">bigcommerce_export_category</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="related_action" eval='{"func_name": "bigcommerce_export_category"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+
+    <record id="job_function_bigcommerce_export_pricelist" model="queue.job.function">
+        <field name="model_id" ref="multichannel_bigcommerce.model_channel_pricelist"/>
+        <field name="method">bigcommerce_export_to_channel</field>
+        <field name="channel_id" ref="omni_manage_channel.channel_enforce" />
+        <field name="retry_pattern" eval="{1: 60, 5: 120, 10: 180, 15: 600}" />
+    </record>
+</odoo>

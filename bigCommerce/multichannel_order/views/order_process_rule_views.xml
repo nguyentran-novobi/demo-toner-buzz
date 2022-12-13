@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="order_process_rule_no_payment_tree_view" model="ir.ui.view">
+        <field name="name">order.process.rule.tree</field>
+        <field name="model">order.process.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="order_status_channel_ids" widget="many2many_tags" 
+                       string="Status(es) to Import"/>
+                <field name="is_order_confirmed"/>
+                <field name="is_invoice_created"/>
+                <field name="is_payment_created"/>
+            </tree>
+        </field>
+    </record>
+
+
+     <record id="order_process_rule_with_payment_tree_view" model="ir.ui.view">
+        <field name="name">order.process.rule.tree</field>
+        <field name="model">order.process.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="order_status_channel_ids" widget="many2many_tags" 
+                       string="Fulfillment Status(es) to Import"/>
+                <field name="payment_status_channel_ids" widget="many2many_tags" 
+                       string="Payment Status(es) to Import"/>
+                <field name="is_order_confirmed"/>
+                <field name="is_invoice_created"/>
+                <field name="is_payment_created"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="order_process_rule_form_view" model="ir.ui.view">
+        <field name="name">order.process.rule.form</field>
+        <field name="model">order.process.rule</field>
+        <field name="arch" type="xml">
+            <form string="Import &amp; Automation Settings">
+                <sheet>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group name="top">
+                        <group name="top_left">
+                            <field name="has_payment_statuses" invisible="1"/>
+                            <field name="channel_id" invisible="1"/>
+                            <field name="platform" invisible="1"/>
+                            <div class="o_td_label" attrs="{'invisible': [('has_payment_statuses', '=', True)]}">
+                                <label for="order_status_channel_ids" string="Status(es) to Import"/>
+                            </div>
+                            <field name="order_status_channel_ids"
+                                   nolabel="1"
+                                   attrs="{'invisible': [('has_payment_statuses', '=', True)]}"
+                                   widget="custom_many2many_checkboxes"
+                                   domain="[('platform', '=', platform),('type', '=', 'fulfillment')]"/>
+                            <div class="o_td_label" attrs="{'invisible': [('has_payment_statuses', '=', False)]}">
+                                <label for="order_status_channel_ids" string="Fulfillment Status(es) to Import"/>
+                            </div>
+                            <field name="order_status_channel_ids"
+                                   nolabel="1"
+                                   attrs="{'invisible': [('has_payment_statuses', '=', False)]}"
+                                   widget="custom_many2many_checkboxes"
+                                   domain="[('platform', '=', platform),('type', '=', 'fulfillment')]"/>
+                        </group>
+                        <group name="top_right">
+                            <field name="payment_status_channel_ids"
+                                    string="Payment Status(es) to Import"
+                                    attrs="{'invisible': [('has_payment_statuses', '=', False)]}"
+                                    widget="many2many_checkboxes"
+                                    domain="[('platform', '=', platform), ('type', '=', 'payment')]"/>
+                        </group>
+                    </group>
+                    <group name="bottom">
+                        <group name="bottom_left">
+                            <field name="is_order_confirmed"/>
+                            <field name="is_invoice_created" attrs="{'invisible': [('is_order_confirmed', '=', False)]}"/>
+                            <field name="create_invoice_trigger" string="When to create invoice"
+                                   attrs="{'invisible': [('is_invoice_created', '=', False)], 'required': [('is_invoice_created', '=', True)]}"/>
+                        </group>
+                        <group attrs="{'invisible': [('is_order_confirmed', '=', False)]}" name="bottom_right">
+                            <field name="is_payment_created" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_product_change_composer" model="ir.ui.view">
+            <field name="name">product.channel.composer</field>
+            <field name="model">product.channel.composer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_tmpl_id"/>
+                            <field name="channel_id"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Publish" name="publish" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+    </data>
+</odoo>

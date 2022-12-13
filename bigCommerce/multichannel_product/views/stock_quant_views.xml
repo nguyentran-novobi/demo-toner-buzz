@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="available_qty_tree_view" model="ir.ui.view">
+            <field name="name">available.qty.tree</field>
+            <field name="model">stock.quant</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0">
+                    <field name="product_id" string="Product"/>
+                    <field name="location_id" string="Location"/>
+                    <field name="available_quantity" string="Available Quantity"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

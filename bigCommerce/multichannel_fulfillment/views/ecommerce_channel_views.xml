@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_ecommerce_channel_form_settings_inherit" model="ir.ui.view">
+            <field name="name">ecommerce.channel.form.inherit</field>
+            <field name="model">ecommerce.channel</field>
+            <field name="inherit_id" ref="omni_manage_channel.view_ecommerce_channel_form_settings"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page name="inventory_sync_page" string="Inventory Configuration"
+                          attrs="{'invisible': ['|',('is_mapping_managed', '=', False),('write_date', '=', False)]}">
+                        <group name="inventory_sync">
+                            <group>
+                                <label for="is_enable_inventory_sync" string="Enable Inventory Sync (*)"/>
+                                <div>
+                                    <field name="is_enable_inventory_sync"/>
+                                    <p class="text-muted">
+                                        <field name="inventory_help_text" nolabel="1"/>
+                                    </p>
+                                </div>
+                                <field name="is_running_bulk_inventory_sync" invisible="1"/>
+                                <label for="is_allow_manual_bulk_inventory_sync" string="Allow Bulk Sync Manually"/>
+                                <div>
+                                    <div class="o_row">
+                                        <field name="is_allow_manual_bulk_inventory_sync"/>
+                                        <button name="bulk_inventory_sync" type="object"
+                                                class="btn btn-link mt-1"
+                                                attrs="{'invisible': ['|', ('is_allow_manual_bulk_inventory_sync', '=', False), ('is_running_bulk_inventory_sync', '=', True)]}">
+                                            <i class="fa fa-arrow-right"/> Update to <field name="platform" readonly="1" force_save="1"/>
+                                        </button>
+                                        <p attrs="{'invisible': [('is_running_bulk_inventory_sync', '=', False)]}">Running...</p>
+                                    </div>
+                                    <div attrs="{'invisible': ['|', ('last_all_inventory_sync', '=', False), ('is_running_bulk_inventory_sync', '=', True)]}">
+                                        Last all inventory updated: <field name="last_all_inventory_sync" readonly="1"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group>
+                                <label for="percentage_inventory_sync" string="Quantity Sync (**)"/>
+                                <div>
+                                    <div class="o_row">
+                                        <field name="percentage_inventory_sync"/>
+                                        (%)
+                                    </div>
+                                    <p class="text-muted">
+                                        Percentage of available inventory from active warehouses
+                                    </p>
+                                </div>
+                                <label for="maximum_inventory_sync" string="Maximum Quantity"/>
+                                <div>
+                                    <div class="o_row">
+                                        <field name="is_enable_maximum_inventory_sync"/>
+                                        <field name="maximum_inventory_sync"
+                                               attrs="{'invisible': [('is_enable_maximum_inventory_sync', '=', False)]}"/>
+                                    </div>
+                                    <p class="text-muted">
+                                        This is the maximum quantity to sync to <span><field name="platform"
+                                                                                             readonly="1" force_save="1"
+                                                                                             nolabel="1"/></span>
+                                    </p>
+                                </div>
+                                <label for="minimum_inventory_sync" string="Minimum Quantity"/>
+                                <div>
+                                    <div class="o_row">
+                                        <field name="is_enable_minimum_inventory_sync"/>
+                                        <field name="minimum_inventory_sync"
+                                               attrs="{'invisible': [('is_enable_minimum_inventory_sync', '=', False)]}"/>
+                                    </div>
+                                    <p class="text-muted">
+                                        This is the minimum quantity to sync to <span><field name="platform"
+                                                                                             readonly="1" force_save="1"
+                                                                                             nolabel="1"/></span>
+                                    </p>
+                                </div>
+                                <label for="active_warehouse_ids"/>
+                                <div>
+                                    <field name="active_warehouse_ids"
+                                        attrs="{'required':[('is_enable_inventory_sync','=',True)]}"
+                                        domain="[('company_id', '=', company_id)]"
+                                        widget="many2many_checkboxes"/>
+                                </div>
+                            </group>
+                        </group>
+                        <group string="Exclude Products to Sync Inventory">
+                            <field name="exclude_inventory_sync_ids" nolabel="1">
+                                <tree>
+                                    <field name="name" string="Applicable On"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <!-- <group name="ftp_settings">
+                            <group>
+                                <label for="is_sync_by_ftp" string="Enable FTP Settings"/>
+                                <div>
+                                    <div class="o_row">
+                                        <field name="is_sync_by_ftp"/>
+                                        <span class="text-muted">
+                                            FTP credentials for syncing inventory
+                                        </span>
+                                    </div>
+                                </div>
+                                <field name="inventory_ftp_host" string="Host"
+                                       attrs="{'invisible': [('is_sync_by_ftp', '=', False)],
+                                       'required': [('is_sync_by_ftp', '=', True)]}" />
+                                <field name="inventory_ftp_username" string="Username"
+                                       attrs="{'invisible': [('is_sync_by_ftp', '=', False)],
+                                       'required': [('is_sync_by_ftp', '=', True)]}" />
+                                <field name="inventory_ftp_password" string="Password" password="True"
+                                       attrs="{'invisible': [('is_sync_by_ftp', '=', False)],
+                                       'required': [('is_sync_by_ftp', '=', True)]}" />
+                                <field name="inventory_ftp_dir" string="Folder"
+                                       attrs="{'invisible': [('is_sync_by_ftp', '=', False)],
+                                       'required': [('is_sync_by_ftp', '=', True)]}" />
+                            </group>
+                        </group> -->
+                        <div name="note_section" attrs="{'invisible': ['|', ('write_date', '=', False), ('platform', 'in', ['none', 'gunbroker'])]}">
+                            <div><b><i>(*) Inventory sync includes real-time updates and nightly all inventory sync</i></b></div>
+                            <div><b><i>(**) Syncing unit of measures isn't supported</i></b></div>
+                        </div>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

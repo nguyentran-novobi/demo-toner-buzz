@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="multichannel_product_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">multichannel.product.res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='sell_purchase_uom']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="manage_product_channel_price"
+                     groups="product.group_product_variant" title="Manage product channel price">
+                    <div class="o_setting_left_pane">
+                        <field name="module_multichannel_manage_price" widget="upgrade_boolean"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="module_multichannel_manage_price"/>
+                        <div class="text-muted">
+                            Set price on product variant
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

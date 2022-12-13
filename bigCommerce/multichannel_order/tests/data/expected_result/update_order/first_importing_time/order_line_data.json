@@ -1,0 +1,9 @@
+[
+    {
+        "name": "LISTING01-VARIANT-1",
+        "display_type": false,
+        "price_unit": 10.0,
+        "product_uom_qty": 1.0,
+        "sku": "prod-1"
+    }
+]

@@ -1,0 +1,18 @@
+{
+  "data": {
+    "id": 49,
+    "name": "Apple",
+    "page_title": "",
+    "meta_keywords": [
+      ""
+    ],
+    "meta_description": null,
+    "image_url": "",
+    "search_keywords": "",
+    "custom_url": {
+      "url": "\/apple\/",
+      "is_customized": false
+    }
+  },
+  "meta": {}
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!--Master Template Fields-->
+    <record id="imported_master_template_field_name" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">name</field>
+        <field name="odoo_field_id" ref='product.field_product_template__name'/>
+        <field name="mapping_field_name">name</field>
+        <field name="store_field_name">Name</field>
+        <field name="is_fixed" eval="True"/>
+    </record>
+    <record id="imported_master_template_field_price" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">price</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__lst_price'/>
+        <field name="mapping_field_name">lst_price</field>
+        <field name="store_field_name">Default Price</field>
+    </record>
+    <record id="imported_master_template_field_retail_price" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">retail_price</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__retail_price'/>
+        <field name="mapping_field_name">retail_price</field>
+        <field name="store_field_name">MSRP</field>
+    </record>
+    <record id="imported_master_template_field_weight" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">weight</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__weight_in_oz'/>
+        <field name="mapping_field_name">weight_in_oz</field>
+        <field name="store_field_name">Weight</field>
+    </record>
+    <record id="imported_master_template_field_dimensions" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">dimensions</field>
+        <field name="mapping_field_name">dimensions</field>
+        <field name="store_field_name">Dimensions</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__dimensions'/>
+    </record>
+    <record id="imported_master_template_field_mpn" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">mpn</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__mpn'/>
+        <field name="mapping_field_name">mpn</field>
+        <field name="store_field_name">MPN</field>
+    </record>
+    <record id="imported_master_template_field_upc" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">upc</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__upc'/>
+        <field name="mapping_field_name">upc</field>
+        <field name="store_field_name">Product UPC/EAN</field>
+    </record>
+    <record id="imported_master_template_field_gtin" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">gtin</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__gtin'/>
+        <field name="mapping_field_name">gtin</field>
+        <field name="store_field_name">GTIN</field>
+    </record>
+    <record id="imported_master_template_field_brand" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">brand_id</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__brand_id'/>
+        <field name="mapping_field_name">brand_id</field>
+        <field name="store_field_name">Brand</field>
+    </record>
+    <record id="imported_master_template_field_images" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">images</field>
+        <field name="odoo_field_id" ref='multichannel_product.field_product_template__product_channel_image_ids'/>
+        <field name="store_field_name">Images</field>
+    </record>
+    <record id="imported_master_template_field_description_sale" model="product.imported.field">
+        <field name="platform">bigcommerce</field>
+        <field name="api_ref">description</field>
+        <field name="odoo_field_id" ref='product.field_product_template__description_sale'/>
+        <field name="mapping_field_name">description_sale</field>
+        <field name="store_field_name">Description</field>
+    </record>
+</odoo>

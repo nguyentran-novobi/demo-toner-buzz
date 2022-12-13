@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ecommerce_channel_kanban" model="ir.ui.view">
+        <field name="name">ecommerce.channel.kanban</field>
+        <field name="model">ecommerce.channel</field>
+        <field name="inherit_id" ref="omni_manage_channel.ecommerce_channel_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_kanban_card_content')]" position="inside">
+                <t t-name="RecordBodyGraph">
+                    <field name="kanban_dashboard_graph"
+                           graph_type="line"
+                           display_label_xy="True"
+                           display_currency="True"
+                           widget="kanban_dashboard_graph"/>
+                </t>
+            </xpath>
+            <xpath expr="//div[hasclass('o_kanban_manage_action')]" position="inside">
+                <div>
+                    <a role="menuitem" type="object" name="action_import_order_manually">Import Orders</a>
+                </div>
+            </xpath>
+            <xpath expr="//div[@name='import_logs']" position="inside">
+                <a role="menuitem" type="object" 
+                     name="open_log_import_order">Order Import</a>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ecommerce_channel_kanban_inherit_product" model="ir.ui.view">
+        <field name="name">ecommerce.channel.kanban</field>
+        <field name="model">ecommerce.channel</field>
+        <field name="inherit_id" ref="multichannel_product.ecommerce_channel_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='import_logs']" position="inside">
+                <a role="menuitem" type="object" 
+                    name="open_log_import_shipment">Shipment Import</a>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_ecommerce_channel_form_settings" model="ir.ui.view">
+        <field name="name">ecommerce.channel.form.settings</field>
+        <field name="model">ecommerce.channel</field>
+        <field name="priority" eval="1000"/>
+        <field name="inherit_id" ref="omni_manage_channel.view_ecommerce_channel_form_settings"/>
+        <field name="arch" type="xml">
+            <group name="common_information" position="inside">
+                <field name="allow_update_order" invisible="1"/>
+                <field name="min_order_date_created" invisible="1"/>
+            </group>
+            <notebook position="inside">
+                <page name="order_configuration_page" string="Order Configuration">
+                    <group name="order_fulfillment_settings">
+                        <group name="left">
+                        </group>
+                        <group name="right">
+                            <label for="min_order_date_to_import" string="Order Date to Import"/>
+                            <div>
+                                <field name="min_order_date_to_import"/>
+                                <p class="text-muted">
+                                    Orders prior to this date will not be imported automatically
+                                </p>
+                            </div>
+                        </group>
+                    </group>
+                    <group name="top">
+                        <group name="top_left">
+                            <field name="order_prefix"/>
+                            <field name="sales_team_id" attrs="{'required':[('write_date','!=',False)]}"/>
+                            <field name="default_guest_customer"/>
+                        </group>
+                        <group name="top_right">
+                            <field name="default_shipping_policy" attrs="{'required':[('write_date','!=',False)]}"/>
+                            <field name="default_warehouse_id" string="Warehouse" />
+                        </group>
+                    </group>
+                    <group name="bottom">
+                        <group name="bottom_left">
+                            <field name="default_tax_product_id" attrs="{'required':[('write_date','!=',False)]}"/>
+                            <field name="default_discount_product_id" attrs="{'required':[('write_date','!=',False)]}"/>
+                        </group>
+                        <group name="bottom_right">
+                            <field name="default_shipping_cost_product_id" attrs="{'required':[('write_date','!=',False)]}"/>
+                        </group>
+                    </group>
+                    <group string="Import &amp; Automation Settings">
+                        <field name="order_process_rule_ids" nolabel="1" context="{'default_channel_id': id}"/>
+                    </group>
+
+                    <div class="o_horizontal_separator" string="Payment Settings" name="payment_settings"> Payment Settings </div>
+                        <group colspan="12">
+                            <p class="text-muted">Default values to create new payments if there is no setting for payment gateways</p>
+                        </group>
+                    <group>
+                        <group>
+                            <field name="available_payment_method_ids" invisible="1"/>
+                            <field name="default_payment_journal_id" attrs="{'required':[('write_date','!=',False)]}" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="default_payment_method_id" attrs="{'required':[('write_date','!=',False)]}" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="default_deposit_account_id" attrs="{'required':[('write_date','!=',False)]}" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+                    <field name="payment_method_mapping_ids" nolabel="1" context="{'default_channel_id': id}">
+                        <tree>
+                            <field name="sequence" widget="handle"/>
+                            <field name="payment_gateway_id" domain="[('channel_id', '=', parent.id)]" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="payment_journal_id" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="payment_method_id" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="deposit_account_id" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

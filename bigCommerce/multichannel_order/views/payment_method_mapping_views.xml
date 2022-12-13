@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="payment_method_mapping_tree_view" model="ir.ui.view">
+        <field name="name">payment.method.mapping.tree</field>
+        <field name="model">payment.method.mapping</field>
+        <field name="arch" type="xml">
+            <form string="Add Payment Gateway">
+                <header></header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="available_payment_method_ids" invisible="1"/>
+                            <field name="payment_gateway_id" domain="[('channel_id', '=', parent.id)]" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="payment_journal_id" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                            <field name="available_payment_method_ids" invisible="1"/>
+                            <field name="payment_method_id" attrs="{'invisible': [('payment_journal_id', '=', False)]}" widget="radio" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}" />
+                            <field name="deposit_account_id" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_payment_method_mapping" model="ir.actions.act_window">
+        <field name="name">Add Payment Gateway</field>
+        <field name="res_model">payment.method.mapping</field>
+        <field name="view_mode">form</field>
+    </record>
+
+</odoo>

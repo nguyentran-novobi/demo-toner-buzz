@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "id": 92476,
+      "product_id": 30931,
+      "is_thumbnail": true,
+      "sort_order": 0,
+      "description": "",
+      "image_file": "y\/466\/40680.75725__19010.jpg",
+      "url_zoom": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/products\/30931\/images\/92476\/40680.75725__19010.1570419888.1280.1280.jpg?c=2",
+      "url_standard": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/products\/30931\/images\/92476\/40680.75725__19010.1570419888.386.513.jpg?c=2",
+      "url_thumbnail": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/products\/30931\/images\/92476\/40680.75725__19010.1570419888.220.290.jpg?c=2",
+      "url_tiny": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/products\/30931\/images\/92476\/40680.75725__19010.1570419888.44.58.jpg?c=2",
+      "date_modified": "2019-10-07T03:44:48+00:00"
+    },
+    {
+      "id": 92477,
+      "product_id": 30931,
+      "is_thumbnail": false,
+      "sort_order": 1,
+      "description": "",
+      "image_file": "j\/508\/homepod_white_shelf_inline.jpg.large__99684.jpg",
+      "url_zoom": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/products\/30931\/images\/92477\/homepod_white_shelf_inline.jpg.large__99684.1570419900.1280.1280.jpg?c=2",
+      "url_standard": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/products\/30931\/images\/92477\/homepod_white_shelf_inline.jpg.large__99684.1570419900.386.513.jpg?c=2",
+      "url_thumbnail": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/products\/30931\/images\/92477\/homepod_white_shelf_inline.jpg.large__99684.1570419900.220.290.jpg?c=2",
+      "url_tiny": "https:\/\/cdn11.bigcommerce.com\/s-iar3k45i85\/products\/30931\/images\/92477\/homepod_white_shelf_inline.jpg.large__99684.1570419900.44.58.jpg?c=2",
+      "date_modified": "2019-10-07T03:45:00+00:00"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 2,
+      "count": 2,
+      "per_page": 50,
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {
+        "current": "?page=1&limit=50"
+      }
+    }
+  }
+}

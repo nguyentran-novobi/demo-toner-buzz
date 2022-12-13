@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_service_picking_user,stock.service.picking.user,model_stock_service_picking,base.group_user,1,0,0,0
+access_stock_service_picking_stock_user,stock.service.picking.stock.user,model_stock_service_picking,stock.group_stock_user,1,1,1,0
+access_stock_service_picking_stock_manager,stock.service.picking.stock.manager,model_stock_service_picking,stock.group_stock_manager,1,1,1,1
+
+access_stock_service_move_user,stock.service.move.user,model_stock_service_move,base.group_user,1,0,0,0
+access_stock_service_move_stock_user,stock.service.move.stock.user,model_stock_service_move,stock.group_stock_user,1,1,1,0
+access_stock_service_move_stock_manager,stock.service.move.stock.manager,model_stock_service_move,stock.group_stock_manager,1,1,1,1
+access_stock_service_immediate_transfer_user,stock.service.immediate.transfer.user,model_stock_service_immediate_transfer,base.group_user,1,1,1,1
+
+access_exclude_inventory_sync_user,exclude.inventory.sync.user,model_exclude_inventory_sync,base.group_user,1,1,1,1
+
+access_shipping_method_channel_user,shipping.method.channel.user,model_shipping_method_channel,base.group_user,1,0,0,0
+access_shipping_method_channel_stock_user,shipping.method.channel.stock.user,model_shipping_method_channel,stock.group_stock_user,1,0,0,0
+access_shipping_method_channel_admin,shipping.method.channel.admin,model_shipping_method_channel,base.group_system,1,1,1,1

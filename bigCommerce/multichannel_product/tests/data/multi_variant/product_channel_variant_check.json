@@ -1,0 +1,20 @@
+[
+    {
+        "default_code": "AIR-POD-RED",
+        "lst_price": 200.0,
+        "name": "Apple AirPods with Wireless Charging Case",
+        "description": "",
+        "description_sale": "",
+        "inventory_quantity": 100.0,
+        "weight_in_oz": 1.0
+    },
+    {
+        "default_code": "AIR-POD-PUR",
+        "lst_price": 250.0,
+        "name": "Apple AirPods with Wireless Charging Case",
+        "description": "",
+        "description_sale": "",
+        "inventory_quantity": 200.0,
+        "weight_in_oz": 2.0
+    }
+]

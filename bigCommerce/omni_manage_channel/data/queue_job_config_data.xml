@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="channel_enforce" model="queue.job.channel">
+        <field name="name">enforce</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+        <field name="removal_interval" eval="1"/>
+    </record>
+    <record id="channel_synching" model="queue.job.channel">
+        <field name="name">synching</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+        <field name="removal_interval" eval="1"/>
+    </record>
+
+    <record id="job_function_sync_in_queue" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_customer_channel"/>
+        <field name="method">_sync_in_queue_job</field>
+        <field name="channel_id" ref="channel_synching" />
+        <field name="related_action" eval='{"func_name": "_sync_in_queue_job"}' />
+    </record>
+
+    <record id="job_function_import_order" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_ecommerce_channel"/>
+        <field name="method">_run_import_product</field>
+        <field name="channel_id" ref="channel_synching" />
+        <field name="related_action" eval='{"func_name": "_run_import_product"}' />
+    </record>
+
+    <record id="job_function_done_sync" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_ecommerce_channel"/>
+        <field name="method">_done_synching</field>
+        <field name="channel_id" ref="channel_synching" />
+        <field name="related_action" eval='{"func_name": "_done_synching"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 180, 100: 600}" />
+    </record>
+
+    <record id="job_function_run_sync_data" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_ecommerce_channel"/>
+        <field name="method">run_sync_data</field>
+        <field name="channel_id" ref="channel_synching" />
+        <field name="related_action" eval='{"func_name": "run_sync_data"}' />
+    </record>
+
+    <record id="job_function_check_dependence" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_ecommerce_channel"/>
+        <field name="method">_check_dependence</field>
+        <field name="channel_id" ref="channel_synching" />
+        <field name="related_action" eval='{"func_name": "_check_dependence"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 180, 10: 300, 100: 600}" />
+    </record>
+
+    <record id="job_function_check_done_jobs" model="queue.job.function">
+        <field name="model_id" ref="omni_manage_channel.model_ecommerce_channel"/>
+        <field name="method">done_synching</field>
+        <field name="channel_id" ref="channel_synching" />
+        <field name="related_action" eval='{"func_name": "done_synching"}' />
+        <field name="retry_pattern" eval="{1: 60, 5: 180, 10: 300, 100: 600}" />
+    </record>
+
+</odoo>

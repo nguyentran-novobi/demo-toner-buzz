@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright © 2021 Novobi, LLC. See LICENSE file for full copyright and licensing details. -->
+<odoo noupdate="0">
+    <record id="mail_template_order_cancellation" model="mail.template">
+        <field name="name">Order has been canceled</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="email_from">{{ object.company_id.partner_id.email_formatted }}</field>
+        <field name="subject">Your order has been canceled</field>
+        <field name="email_to">{{ object.partner_id.email_formatted }}</field>
+        <field name="body_html" type="html">
+            <p>
+                Hi
+                <t t-out="object.partner_id.name or ''">Brandon Freeman</t>,
+            </p>
+            <br/>
+            <p>
+                Your order
+                <t t-out="object.channel_order_ref or ''">32865</t>
+                amounting in
+                <t t-out="format_amount(object.amount_total, object.currency_id) or ''">$ 143,750.00</t>
+                has been canceled.
+            </p>
+            <br/>
+            <p>Do not hesitate to contact us if you have any questions.</p>
+            <br/>
+            <p>Thanks,</p>
+        </field>
+    </record>
+</odoo>

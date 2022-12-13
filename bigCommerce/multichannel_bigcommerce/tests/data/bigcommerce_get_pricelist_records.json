@@ -1,0 +1,109 @@
+{
+  "data": [
+    {
+      "price_list_id": 1,
+      "variant_id": 100745,
+      "price": 105,
+      "sale_price": null,
+      "retail_price": null,
+      "map_price": null,
+      "calculated_price": 105,
+      "date_created": "2021-09-01T07:44:23Z",
+      "date_modified": "2021-09-24T15:54:07Z",
+      "currency": "usd",
+      "product_id": 30930,
+      "bulk_pricing_tiers": [
+        {
+          "quantity_min": 2,
+          "quantity_max": 2147483647,
+          "type": "percent",
+          "amount": 0
+        }
+      ]
+    },
+    {
+      "price_list_id": 1,
+      "variant_id": 100746,
+      "price": 105,
+      "sale_price": null,
+      "retail_price": null,
+      "map_price": null,
+      "calculated_price": 105,
+      "date_created": "2021-09-01T07:44:23Z",
+      "date_modified": "2021-09-24T15:54:07Z",
+      "currency": "usd",
+      "product_id": 30930,
+      "bulk_pricing_tiers": [
+        {
+          "quantity_min": 2,
+          "quantity_max": 2147483647,
+          "type": "fixed",
+          "amount": 99
+        }
+      ]
+    },
+    {
+      "price_list_id": 1,
+      "variant_id": 100864,
+      "price": 5,
+      "sale_price": null,
+      "retail_price": null,
+      "map_price": null,
+      "calculated_price": 5,
+      "date_created": "2021-09-01T07:35:45Z",
+      "date_modified": "2021-09-27T08:21:25Z",
+      "currency": "usd",
+      "product_id": 30950,
+      "bulk_pricing_tiers": [
+        {
+          "quantity_min": 2,
+          "quantity_max": 4,
+          "type": "percent",
+          "amount": 0
+        },
+        {
+          "quantity_min": 5,
+          "quantity_max": 2147483647,
+          "type": "percent",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "price_list_id": 1,
+      "variant_id": 100867,
+      "price": 6.99,
+      "sale_price": null,
+      "retail_price": null,
+      "map_price": null,
+      "calculated_price": 6.99,
+      "date_created": "2021-09-19T04:13:11Z",
+      "date_modified": "2021-09-24T15:54:07Z",
+      "currency": "usd",
+      "product_id": 30953,
+      "bulk_pricing_tiers": [
+        {
+          "quantity_min": 2,
+          "quantity_max": 2,
+          "type": "percent",
+          "amount": 10
+        },
+        {
+          "quantity_min": 3,
+          "quantity_max": 2147483647,
+          "type": "percent",
+          "amount": 5
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 4,
+      "count": 4,
+      "per_page": 50,
+      "current_page": 1,
+      "total_pages": 1
+    }
+  }
+}

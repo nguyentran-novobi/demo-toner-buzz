@@ -1,0 +1,90 @@
+[
+    {
+        "published_scope": "web", 
+        "is_visible": false,
+        "weight": 1.0,
+        "product_type": "", 
+        "description": "", 
+        "tags": "", 
+        "url": "/products/apple-airpods-with-wireless-charging-case", 
+        "type": "physical", 
+        "vendor_id": null, 
+        "requires_shipping": true, 
+        "options": [
+            {
+                "position": 1, 
+                "values": [
+                    "Red", 
+                    "Green"
+                ], 
+                "product_id": 7199269421294, 
+                "name": "Color", 
+                "id": 9249527070958
+            }
+        ], 
+        "channel_id": null, 
+        "published_at": null, 
+        "product_tmpl_type": "product", 
+        "images": [], 
+        "handle": "apple-airpods-with-wireless-charging-case", 
+        "variants": [
+            {
+                "sku": "AIR-POD-RED", 
+                "variant_title": "Red", 
+                "product_id": "7199269421294", 
+                "weight": 1,
+                "price": 200.0, 
+                "barcode": "", 
+                "requires_shipping": true, 
+                "inventory_quantity": 100.0, 
+                "option3": null, 
+                "image_id": null, 
+                "inventory_tracking": true, 
+                "option_values": [
+                    {
+                        "option_display_name": "Color", 
+                        "label": "Red"
+                    }
+                ], 
+                "compare_at_price": 0.0, 
+                "purchasing_disabled": false, 
+                "inventory_item_id": "44151739252974", 
+                "position": 1, 
+                "option1": "Red", 
+                "option2": null, 
+                "id": "42057791537390",
+                "name": "Apple AirPods with Wireless Charging Case"
+            }, 
+            {
+                "sku": "AIR-POD-GREEN",
+                "variant_title": "Green",
+                "product_id": "7199269421294",
+                "weight": 2,
+                "price": 250.0, 
+                "barcode": "", 
+                "requires_shipping": true, 
+                "inventory_quantity": 200.0,
+                "option3": null, 
+                "image_id": null, 
+                "inventory_tracking": true, 
+                "option_values": [
+                    {
+                        "option_display_name": "Color", 
+                        "label": "Green"
+                    }
+                ], 
+                "compare_at_price": 0.0, 
+                "purchasing_disabled": false, 
+                "inventory_item_id": "441517392857425",
+                "position": 2, 
+                "option1": "Green",
+                "option2": null, 
+                "id": "420577915701581",
+                "name": "Apple AirPods with Wireless Charging Case"
+            }
+        ], 
+        "description_sale": "", 
+        "id": "7199269421294", 
+        "name": "Apple AirPods with Wireless Charging Case"
+    }
+]

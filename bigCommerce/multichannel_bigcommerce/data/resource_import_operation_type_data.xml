@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record id="resource_import_operation_bigcommerce_product_from_last_sync" model="resource.import.operation.type">
+        <field name="name">Import products added/edited since last sync</field>
+        <field name="platform">bigcommerce</field>
+        <field name="resource">product</field>
+        <field name="sequence">10</field>
+        <field name="code">from_last_sync</field>
+        <field name="type">from_last_sync</field>
+        <field name="is_update_last_sync" eval="True"/>
+    </record>
+    <record id="resource_import_operation_bigcommerce_product_visible_or_active" model="resource.import.operation.type">
+        <field name="name">Import products that are visible on storefront</field>
+        <field name="platform">bigcommerce</field>
+        <field name="resource">product</field>
+        <field name="sequence">15</field>
+        <field name="code">visible_or_active</field>
+        <field name="type">visible_or_active</field>
+        <field name="is_update_last_sync" eval="True"/>
+    </record>
+    <record id="resource_import_operation_bigcommerce_product_all" model="resource.import.operation.type">
+        <field name="name">Import all products</field>
+        <field name="platform">bigcommerce</field>
+        <field name="resource">product</field>
+        <field name="sequence">20</field>
+        <field name="code">all</field>
+        <field name="type">all</field>
+        <field name="is_update_last_sync" eval="True"/>
+    </record>
+    <record id="resource_import_operation_bigcommerce_product_time_range" model="resource.import.operation.type">
+        <field name="name">Import products by time range</field>
+        <field name="platform">bigcommerce</field>
+        <field name="resource">product</field>
+        <field name="sequence">25</field>
+        <field name="code">time_range</field>
+        <field name="type">time_range</field>
+        <field name="is_update_last_sync" eval="False"/>
+    </record>
+    <record id="resource_import_operation_bigcommerce_product_ids" model="resource.import.operation.type">
+        <field name="name">Import products by IDs</field>
+        <field name="platform">bigcommerce</field>
+        <field name="resource">product</field>
+        <field name="sequence">30</field>
+        <field name="code">ids</field>
+        <field name="type">ids</field>
+        <field name="is_update_last_sync" eval="False"/>
+    </record>
+</odoo>

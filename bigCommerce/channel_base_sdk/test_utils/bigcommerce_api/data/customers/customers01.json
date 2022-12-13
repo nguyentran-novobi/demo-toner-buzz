@@ -1,0 +1,317 @@
+{
+  "data": [
+    {
+      "id": 516,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "unconformableness2059@gmail.com",
+      "first_name": "Antwan",
+      "last_name": "Stephens",
+      "notes": "",
+      "phone": "110-310-9016",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:46Z",
+      "date_modified": "2019-10-07T04:28:46Z",
+      "accepts_product_review_abandoned_cart_emails": true,
+      "channel_ids": null
+    },
+    {
+      "id": 517,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "cornflake1960@yahoo.com",
+      "first_name": "Gil",
+      "last_name": "Cunningham",
+      "notes": "",
+      "phone": "002-517-2122",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:46Z",
+      "date_modified": "2019-10-07T04:28:46Z",
+      "accepts_product_review_abandoned_cart_emails": true,
+      "channel_ids": null
+    },
+    {
+      "id": 518,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "girlies1917@outlook.com",
+      "first_name": "Dirk",
+      "last_name": "Lewis",
+      "notes": "",
+      "phone": "494-469-6906",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:46Z",
+      "date_modified": "2019-10-07T04:28:47Z",
+      "accepts_product_review_abandoned_cart_emails": true,
+      "channel_ids": null
+    },
+    {
+      "id": 519,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "seawan2050@gmail.com",
+      "first_name": "Lecia",
+      "last_name": "Roman",
+      "notes": "",
+      "phone": "124-272-8745",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:47Z",
+      "date_modified": "2019-10-07T04:28:47Z",
+      "accepts_product_review_abandoned_cart_emails": true,
+      "channel_ids": null
+    },
+    {
+      "id": 520,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "arney1809@live.com",
+      "first_name": "Efren",
+      "last_name": "Duncan",
+      "notes": "",
+      "phone": "670-486-8840",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:47Z",
+      "date_modified": "2019-10-07T04:28:47Z",
+      "accepts_product_review_abandoned_cart_emails": true,
+      "channel_ids": null
+    },
+    {
+      "id": 521,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "bugler1942@yahoo.com",
+      "first_name": "Luetta",
+      "last_name": "Klein",
+      "notes": "",
+      "phone": "193-433-2837",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:47Z",
+      "date_modified": "2019-10-07T04:28:48Z",
+      "accepts_product_review_abandoned_cart_emails": true,
+      "channel_ids": null
+    },
+    {
+      "id": 522,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "bellwood1856@outlook.com",
+      "first_name": "Bud",
+      "last_name": "Rodgers",
+      "notes": "",
+      "phone": "885-992-3352",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:48Z",
+      "date_modified": "2019-10-07T04:28:48Z",
+      "accepts_product_review_abandoned_cart_emails": true,
+      "channel_ids": null
+    },
+    {
+      "id": 523,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "ceratins1922@yahoo.com",
+      "first_name": "Chasidy",
+      "last_name": "Le",
+      "notes": "",
+      "phone": "315-250-6427",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:48Z",
+      "date_modified": "2019-10-07T04:28:48Z",
+      "accepts_product_review_abandoned_cart_emails": false,
+      "channel_ids": null
+    },
+    {
+      "id": 524,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "colon2017@gmail.com",
+      "first_name": "Sylvester",
+      "last_name": "Woodard",
+      "notes": "",
+      "phone": "805-433-2399",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:48Z",
+      "date_modified": "2019-10-07T04:28:49Z",
+      "accepts_product_review_abandoned_cart_emails": false,
+      "channel_ids": null
+    },
+    {
+      "id": 525,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "cocobolos1931@live.com",
+      "first_name": "Vanetta",
+      "last_name": "Morse",
+      "notes": "",
+      "phone": "896-984-6990",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:49Z",
+      "date_modified": "2019-10-07T04:28:49Z",
+      "accepts_product_review_abandoned_cart_emails": false,
+      "channel_ids": null
+    },
+    {
+      "id": 526,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "deprive2049@yahoo.com",
+      "first_name": "Rosana",
+      "last_name": "Kim",
+      "notes": "",
+      "phone": "140-538-4928",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:49Z",
+      "date_modified": "2019-10-07T04:28:49Z",
+      "accepts_product_review_abandoned_cart_emails": false,
+      "channel_ids": null
+    },
+    {
+      "id": 527,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "chanson1989@outlook.com",
+      "first_name": "Erlene",
+      "last_name": "Winters",
+      "notes": "",
+      "phone": "194-805-1785",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:50Z",
+      "date_modified": "2019-10-07T04:28:50Z",
+      "accepts_product_review_abandoned_cart_emails": false,
+      "channel_ids": null
+    },
+    {
+      "id": 528,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "towers1955@gmail.com",
+      "first_name": "Nohemi",
+      "last_name": "Rocha",
+      "notes": "",
+      "phone": "369-543-3994",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:50Z",
+      "date_modified": "2019-10-07T04:28:50Z",
+      "accepts_product_review_abandoned_cart_emails": false,
+      "channel_ids": null
+    },
+    {
+      "id": 529,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "sparkplugging1843@live.com",
+      "first_name": "Hanh",
+      "last_name": "Ayala",
+      "notes": "",
+      "phone": "567-856-8979",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:50Z",
+      "date_modified": "2019-10-07T04:28:51Z",
+      "accepts_product_review_abandoned_cart_emails": false,
+      "channel_ids": null
+    },
+    {
+      "id": 530,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "chappy1826@gmail.com",
+      "first_name": "Hyo",
+      "last_name": "Hall",
+      "notes": "",
+      "phone": "975-834-3178",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-07T04:28:51Z",
+      "date_modified": "2019-10-07T04:28:51Z",
+      "accepts_product_review_abandoned_cart_emails": false,
+      "channel_ids": null
+    },
+    {
+      "id": 531,
+      "authentication": {
+        "force_password_reset": false
+      },
+      "company": "",
+      "customer_group_id": 0,
+      "email": "hoa.tran@novobi.com",
+      "first_name": "Hoa",
+      "last_name": "Tran",
+      "notes": "",
+      "phone": "",
+      "registration_ip_address": "",
+      "tax_exempt_category": "",
+      "date_created": "2019-10-16T11:23:21Z",
+      "date_modified": "2019-10-16T11:23:21Z",
+      "accepts_product_review_abandoned_cart_emails": true,
+      "channel_ids": null
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 16,
+      "count": 16,
+      "per_page": 50,
+      "current_page": 1,
+      "total_pages": 1
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="order_status_channel_tree_view" model="ir.ui.view">
+        <field name="name">order.status.channel.tree</field>
+        <field name="model">order.status.channel</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="order_status_channel_form_view" model="ir.ui.view">
+        <field name="name">order.status.channel.form</field>
+        <field name="model">order.status.channel</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

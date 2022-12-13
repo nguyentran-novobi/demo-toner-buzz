@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "id": 23,
+      "parent_id": 0,
+      "name": "Shop All",
+      "is_visible": true,
+      "url": "/shop-all/",
+      "children": []
+    },
+    {
+      "id": 19,
+      "parent_id": 0,
+      "name": "Garden",
+      "is_visible": true,
+      "url": "/garden/",
+      "children": [
+        {
+          "id": 39,
+          "parent_id": 19,
+          "name": "Bath",
+          "is_visible": true,
+          "url": "/garden/bath/",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "parent_id": 0,
+      "name": "Kitchen",
+      "is_visible": true,
+      "url": "/kitchen/",
+      "children": []
+    },
+    {
+      "id": 20,
+      "parent_id": 0,
+      "name": "Publications",
+      "is_visible": true,
+      "url": "/publications/",
+      "children": []
+    },
+    {
+      "id": 22,
+      "parent_id": 0,
+      "name": "Utility",
+      "is_visible": true,
+      "url": "/utility/",
+      "children": []
+    }
+  ],
+  "meta": {}
+}

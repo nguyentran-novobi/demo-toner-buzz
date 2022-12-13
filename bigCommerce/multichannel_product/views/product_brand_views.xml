@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_brand_tree_view" model="ir.ui.view">
+        <field name="name">product.brand.tree</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <tree string="Brand Names" editable="bottom">
+                <field name="name" string="Brand Name" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_brand_form" model="ir.ui.view">
+        <field name="name">product.brand.form</field>
+        <field name="model">product.brand</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="CREATE BRAND NAME">
+                <group>
+                    <group>
+                        <field name="name" string="Brand Name" required="1"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_channel_brand_name" model="ir.actions.act_window">
+        <field name="name">Brand Names</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--<menuitem id="menu_omniborder_brand_name_subconfig" name="Brand Name" action="action_channel_brand_name"-->
+                <!--parent="omni_manage_channel.menu_omniborder_config" sequence="1"/>-->
+</odoo>

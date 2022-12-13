@@ -1,0 +1,551 @@
+header{
+    z-index: 999999;
+}
+.main-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.header {
+    height: 80px;
+    padding: 20px 25px;
+    box-shadow: 0 0 10px 0 rgba(32, 73, 146, 0.2);
+    background-color: #ffffff;
+    top: 0;
+    left: auto;
+    right: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header img.logo {
+    height: 100%;
+}
+
+.l-sidebar {
+    overflow-x: hidden;
+    transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+    width: 335px;
+    flex: 0 0 auto;
+    box-shadow: 1px 0 0 0 #dae2ed;
+    background-color: #ffffff;
+    height: 100vh;
+}
+
+.l-sidebar .wrapper {
+    top: 0;
+    padding-top: 45px;
+    flex: 1 0 auto;
+    height: 100%;
+    display: flex;
+    outline: none;
+    z-index: 1000;
+    position: fixed;
+    overflow-y: auto;
+    flex-direction: column;
+}
+
+.l-sidebar .v-steps {
+    padding: 25px 40px;
+}
+
+.l-sidebar .v-steps h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.l-sidebar .v-steps hr {
+    margin-top: 2rem;
+}
+
+.list {
+    flex: 1 1 50%;
+    min-width: 258px;
+    display: flex;
+}
+
+@media (min-height: 900px) {
+    body {
+        display: flex;
+    }
+}
+
+@media (max-width: 500px) {
+    .recipe-flex {
+        flex-wrap: wrap;
+    }
+
+    .plan {
+        border-left: 0;
+    }
+
+    .stages {
+        margin-left: 24px;
+    }
+}
+
+/* the outer list */
+.steps {
+    margin: 1em 0px 0 30px;
+    padding: 0 1em 0 0;
+    display: block;
+    flex-wrap: wrap;
+    list-style-type: none;
+    counter-reset: steps;
+    /* alternative to built-in list style that we can style */
+}
+
+/* the steps (li) */
+.steps>li {
+    padding: 55px 7px 10px 15px;
+    flex: 1 1 100%;
+    position: relative;
+    border-left: 2px solid;
+    counter-increment: steps;
+}
+
+.steps>li:last-child {
+    padding: 30px 7px 10px 15px;
+}
+
+.steps>li.pending,
+.steps>li.pending::after {
+    border-color: #999;
+}
+
+.steps>li.pending::after {
+    background-color: #fff;
+}
+
+.steps>li.pending li::before,
+.steps>li.pending a::before {
+    background-color: #999;
+}
+
+.steps>li.done {
+    border-color: #00A09D;
+    color: #444;
+}
+
+.steps>li.done::after {
+    border-color: #00A09D;
+    background-color: #00A09D;
+    color: white;
+}
+
+.steps>li.done li::before,
+.steps>li.done a::before {
+    background-color: #00A09D;
+}
+
+.steps>li.not-done {
+    border-color: #a8a8a8;
+    color: #444;
+}
+
+.steps>li.not-done::after {
+    border-color: #a8a8a8;
+    background-color: #a8a8a8;
+    color: white;
+}
+
+.steps>li.not-done li::before,
+.steps>li.not-done a::before {
+    background-color: #a8a8a8;
+}
+
+.steps .step-info {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    font-weight: bold;
+    width: 200px;
+}
+
+.steps .step-info span {
+    font-size: 12px;
+    position: absolute;
+    top: 23px;
+    left: 0px;
+    color: #7d7d7d;
+    font-weight: 400;
+}
+
+/* the smallish description label next to the bubble */
+/* .steps>li::before {
+    content: attr(data-description);
+    position: absolute;
+    top: 13px;
+    left: 45px;
+    font-style: italic;
+    font-weight: bold;
+    color: #777;
+    font-size: 14px;
+} */
+
+/* the bubble with the number in it */
+.steps>li::after {
+    position: absolute;
+    top: 0;
+    left: -22px;
+    border-radius: 38px;
+    width: 40px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    font-weight: 400;
+    line-height: 35px;
+    content: counter(steps);
+    border: 2px solid;
+    font-size: 20px;
+}
+
+/* the inner list within a step */
+.steps ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-left: 0px;
+    padding-top: 3px;
+}
+
+.steps ul li,
+.steps .options a {
+    position: relative;
+}
+
+.steps ul li::before,
+.steps .options a::before {
+    content: "";
+    width: 15px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: -15px;
+}
+
+.steps>li .section {
+    padding: 30px 0 0 0;
+    margin-top: 5px;
+    flex: 1 1 100%;
+    position: relative;
+}
+
+.steps .section::after {
+    position: absolute;
+    top: 0;
+    left: -22px;
+    border-radius: 20px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    content: " ";
+}
+
+.steps>li .section::before {
+    content: attr(data-description);
+    position: absolute;
+    top: 0;
+    left: 10px;
+    color: #777;
+    font-size: 12px;
+    background-color: transparent !important;
+}
+
+.steps>li .section ul {
+    padding-top: 25px;
+    margin-left: 0;
+}
+
+.steps>li.not-done .section,
+.steps>li.not-done .section::after {
+    border-color: #5bc0de;
+}
+
+.steps>li.not-done .section::after {
+    background-color: #5bc0de;
+}
+
+.steps>li.done .section,
+.steps>li.done .section::after {
+    border-color: #B5D034;
+}
+
+.steps>li.done .section::after {
+    background-color: #B5D034;
+}
+
+.steps>li.pending .section,
+.steps>li.pending .section::after {
+    border-color: #999;
+}
+
+.steps>li.pending .section::after {
+    background-color: #999;
+}
+
+
+.content {
+    flex-grow: 1;
+    background-color: #f2f6fa;
+    padding: 20px 50px;
+}
+
+.content .setup-wrapper .title {
+    font-size: 24px;
+    letter-spacing: 0.27px;
+    color: #3a3e3f;
+}
+
+.content .setup-wrapper .title {
+    font-size: 24px;
+    letter-spacing: 0.27px;
+    color: #3a3e3f;
+}
+
+.content .setup-wrapper .section-wrapper {
+    margin: 15px 0px;
+}
+
+.content .setup-wrapper .section-wrapper .section-content {
+    margin: 20px 0px;
+}
+
+.content .setup-wrapper .section-wrapper .section-content .btn-wrapper {
+    margin: 20px 0px;
+}
+
+.content .setup-wrapper .section-wrapper .section-title {
+    font-size: 14px;
+    color: #3a3e3f;
+}
+
+.content input.o_input {
+    width: 100%;
+    outline: none;
+    background: transparent;
+}
+
+.content input.o_input.required {
+    border-bottom: 2px solid rgb(102, 102, 102);
+}
+
+.material-switch {
+    float: left;
+    line-height: 35px;
+}
+
+.custom-switch-wrapper {
+    height: 35px;
+}
+
+.custom-switch-wrapper label.material-label {
+    margin-left: 20px;
+    line-height: 33px;
+}
+
+.material-switch>input[type="checkbox"] {
+    display: none;
+}
+
+.material-switch>label {
+    cursor: pointer;
+    height: 0px;
+    position: relative;
+    width: 40px;
+}
+
+.material-switch>label::before {
+    background: #515151;
+    /* box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5); */
+    border-radius: 8px;
+    content: '';
+    height: 14px;
+    margin-top: -6px;
+    position: absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 32px;
+}
+
+.material-switch>label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 20px;
+    left: -4px;
+    margin-top: -5px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 20px;
+}
+
+.material-switch>input[type="checkbox"]:checked+label::before {
+    background: #c2a3ba;
+    opacity: 1;
+}
+
+.material-switch>input[type="checkbox"]:checked+label::after {
+    background: #875A7B;
+    left: 15px;
+}
+
+.content .setup-wrapper .section-wrapper .section-description {
+    font-size: 14px;
+    margin-bottom: 35px;
+}
+
+.content .setup-wrapper .section-wrapper .section-description a {
+    color: #4b71fc;
+    text-decoration: underline;
+}
+
+.content .setup-wrapper .section-wrapper .url-content {
+    font-size: 18px;
+}
+
+.content .setup-wrapper .section-wrapper .url-content input {
+    margin: 0px 5px;
+}
+
+.content .setup-wrapper .section-wrapper .custom-btn {
+    border-radius: 20px;
+    padding: 7px 68px;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #ffffff;
+}
+
+#setupModal .modal-content {
+    box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    border: none;
+    border-radius: 0;
+    padding: 30px 10px;
+    text-align: center;
+}
+
+#setupModal .modal-dialog {
+    max-width: 800px;
+}
+
+#setupModal .modal-dialog {
+    max-width: 800px;
+}
+
+#setupModal .modal-content .logo {
+    height: 45px;
+}
+
+#setupModal .modal-content .s-content {
+    margin: 25px 0px;
+}
+
+#setupModal .modal-content .s-p {
+    line-height: 28px;
+    margin: 0;
+}
+
+#setupModal .modal-content .s-text {
+    font-size: 18px;
+}
+
+#setupModal .modal-content .s-description {
+    font-size: 16px;
+}
+
+#setupModal .modal-content .progress-wrapper {
+    margin: 10px 0px;
+}
+
+.progress {
+    width: 160px;
+    height: 160px;
+    background: none;
+    position: relative;
+}
+
+.progress::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 6px solid #ced9ff;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress>span {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.progress .progress-left {
+    left: 0;
+}
+
+.progress .progress-bar {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-width: 6px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+}
+
+.border-primary {
+    border-color: #4b71fc !important;
+}
+
+.progress .progress-left .progress-bar {
+    left: 100%;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-left: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-origin: left;
+    transform-origin: left;
+}
+
+.progress .progress-right {
+    right: 0;
+}
+
+.progress .progress-right .progress-bar {
+    left: -100%;
+    border-top-left-radius: 80px;
+    border-bottom-left-radius: 80px;
+    border-right: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-origin: right;
+    transform-origin: right;
+}
+
+.progress .progress-value {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress .pg-text {
+    font-size: 36px;
+    margin-bottom: 0;
+}
+
+.progress .pg-d {
+    font-size: 100%;
+    font-weight: 400;
+    top: 0;
+}

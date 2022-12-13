@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ChannelMany2one.Readonly">
+        <t t-if="widget.image_url">
+            <span class="oe_form_field oe_form_field_image">
+                <img t-att-src="widget.image_url"
+                    t-att-name="widget.name"
+                     style="margin:5px"
+                    width="20"/>
+            </span>
+        </t>
+        <span><t t-esc="widget.m2o_value"/></span>
+    </t>
+</templates>

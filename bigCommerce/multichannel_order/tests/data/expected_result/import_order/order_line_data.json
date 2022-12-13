@@ -1,0 +1,58 @@
+[
+    {
+        "name": "LISTING01-VARIANT-1",
+        "display_type": false,
+        "price_unit": 10.0,
+        "product_uom_qty": 1.0,
+        "sku": "prod-1"
+    },
+    {
+        "name": "LISTING02-VARIANT-1",
+        "display_type": false,
+        "price_unit": 15.0,
+        "product_uom_qty": 5.0,
+        "sku": "prod-2"
+    },
+    {
+        "name": "Discounts",
+        "display_type": "line_section",
+        "price_unit": 0.0,
+        "product_uom_qty": 0.0,
+        "sku": false
+    },
+    {
+        "name": "Discounts",
+        "display_type": false,
+        "price_unit": -20.0,
+        "product_uom_qty": 1.0,
+        "sku": false
+    },
+    {
+        "name": "Other Fees",
+        "display_type": "line_section",
+        "price_unit": 0.0,
+        "product_uom_qty": 0.0,
+        "sku": false
+    },
+    {
+        "name": "Shipping Cost",
+        "display_type": false,
+        "price_unit": 15.0,
+        "product_uom_qty": 1.0,
+        "sku": false
+    },
+    {
+        "name": "Taxes",
+        "display_type": "line_section",
+        "price_unit": 0.0,
+        "product_uom_qty": 0.0,
+        "sku": false
+    },
+    {
+        "name": "Tax",
+        "display_type": false,
+        "price_unit": 8.5,
+        "product_uom_qty": 1.0,
+        "sku": false
+    }
+]

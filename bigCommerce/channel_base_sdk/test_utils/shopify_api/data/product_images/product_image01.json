@@ -1,0 +1,17 @@
+{
+  "image": {
+    "id": 22548836745386,
+    "product_id": 6042999324842,
+    "position": 3,
+    "created_at": "2020-11-02T04:11:09-05:00",
+    "updated_at": "2020-11-02T04:11:09-05:00",
+    "alt": null,
+    "width": 278,
+    "height": 181,
+    "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0505\/7232\/9130\/products\/114.jpg?v=1604308269",
+    "variant_ids": [
+      37406139941034
+    ],
+    "admin_graphql_api_id": "gid:\/\/shopify\/ProductImage\/22548836745386"
+  }
+}

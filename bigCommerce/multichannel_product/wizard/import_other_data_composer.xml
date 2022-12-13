@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_import_other_data" model="ir.ui.view">
+        <field name="name">import.other.data</field>
+        <field name="model">import.other.data</field>
+        <field name="arch" type="xml">
+            <form string="Import Other Data">
+                <sheet>
+                    <header>
+                        <field name="channel_id" invisible="1"/>
+                        <field name="platform" invisible="1"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="data_type_id" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="operation_type" widget="radio"/>
+                    </group>
+                    <group name="by_ids" attrs="{'invisible': [('operation_type', '!=', 'by_ids')]}">
+                        <label for="ids_on_channel"/>
+                        <div>
+                            <field name="ids_on_channel" attrs="{'required': [('operation_type', '=', 'by_ids')]}"/>
+                            <p class="text-muted" attrs="{'invisible': [('data_type_id', '=', False)]}">
+                                <field name="help_text" nolabel="1"/>
+                            </p>
+                        </div>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Import" name="run" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+           </form>
+        </field>
+    </record>
+</odoo>

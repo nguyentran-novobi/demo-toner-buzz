@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo noupdate="1">
+    <record id="bigcommerce_order_status_incomplete" model="order.status.channel">
+        <field name="name">Incomplete</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">0</field>
+    </record>
+    <record id="bigcommerce_order_status_pending" model="order.status.channel">
+        <field name="name">Pending</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">1</field>
+    </record>
+    <record id="bigcommerce_order_status_awaiting_payment" model="order.status.channel">
+        <field name="name">Awaiting Payment</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">7</field>
+    </record>
+    <record id="bigcommerce_order_status_awaiting_fulfillment" model="order.status.channel">
+        <field name="name">Awaiting Fulfillment</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">11</field>
+    </record>
+    <record id="bigcommerce_order_status_awaiting_pickup" model="order.status.channel">
+        <field name="name">Awaiting Pickup</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">8</field>
+    </record>
+    <record id="bigcommerce_order_status_awaiting_shipment" model="order.status.channel">
+        <field name="name">Awaiting Shipment</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">9</field>
+    </record>
+    <record id="bigcommerce_order_status_partially_shipped" model="order.status.channel">
+        <field name="name">Partially Shipped</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">3</field>
+    </record>
+    <record id="bigcommerce_order_status_shipped" model="order.status.channel">
+        <field name="name">Shipped</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">2</field>
+    </record>
+    <record id="bigcommerce_order_status_completed" model="order.status.channel">
+        <field name="name">Completed</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">10</field>
+    </record>
+    <!-- <record id="bigcommerce_order_status_4" model="order.status.channel">
+        <field name="name">Refunded</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">4</field>
+    </record> -->
+    <!-- <record id="bigcommerce_order_status_5" model="order.status.channel">
+        <field name="name">Canceled</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">5</field>
+    </record> -->
+    <!-- <record id="bigcommerce_order_status_6" model="order.status.channel">
+        <field name="name">Declined</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">6</field>
+    </record> -->
+    
+    
+    <!-- <record id="bigcommerce_order_status_12" model="order.status.channel">
+        <field name="name">Manual Verification Required</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">12</field>
+    </record>
+    <record id="bigcommerce_order_status_13" model="order.status.channel">
+        <field name="name">Disputed</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">13</field>
+    </record>
+    <record id="bigcommerce_order_status_14" model="order.status.channel">
+        <field name="name">Partially Refunded</field>
+        <field name="platform">bigcommerce</field>
+        <field name="id_on_channel">14</field>
+    </record> -->
+</odoo>

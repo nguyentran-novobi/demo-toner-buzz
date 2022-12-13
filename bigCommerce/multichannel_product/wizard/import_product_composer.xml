@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_import_resource_composer_form" model="ir.ui.view">
+        <field name="name">import.resource.operation.form</field>
+        <field name="model">import.resource.operation</field>
+        <field name="arch" type="xml">
+            <form string="Import Resource Composer">
+                <sheet>
+                    <p>Please select an operation</p>
+                    <group>
+                        <field name="channel_id" invisible="1"/>
+                        <field name="platform" invisible="1"/>
+                        <field name="operation_type_id" widget="radio"/>
+                        <field name="operation_type" invisible="1"/>
+                    </group>
+                    <group attrs="{'invisible': [('operation_type', '!=', 'time_range')]}">
+                        <group>
+                            <field name="from_date" attrs="{'required': [('operation_type', '=', 'time_range')]}" string="From Date"/>
+                            <field name="to_date" attrs="{'required': [('operation_type', '=', 'time_range')]}" string="To Date"/>
+                        </group>
+                    </group>
+                    <group name="by_ids" attrs="{'invisible': [('operation_type', '!=', 'ids')]}">
+                        <field name="resource_ids_text" attrs="{'required': [('operation_type', '=', 'ids')]}" string="Product IDs"/>
+                    </group>
+                    <group name="by_skus" attrs="{'invisible': [('operation_type', '!=', 'sku')]}">
+                        <field name="resource_sku_text" attrs="{'required': [('operation_type', '=', 'sku')]}" string="Product SKUs"/>
+                    </group>
+                    <group name="auto_create_master">
+                        <field name="is_auto_create_master" string="Auto Create Product If not found?"/>
+                    </group>
+                    <div class="text-muted" attrs="{'invisible': [('last_sync_product', '=', False)]}">
+                        Last sync: <field name="last_sync_product"/>
+                    </div>
+                </sheet>
+                <footer>
+                    <button string="Import" name="run" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+           </form>
+        </field>
+    </record>
+</odoo>

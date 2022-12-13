@@ -1,0 +1,82 @@
+[
+    {
+        "name": "#1042",
+        "id": "4540854665454",
+        "channel_date_created": "2021-11-02T01:48:09",
+        "channel_order_ref": "1042",
+        "payment_gateway_code": "manual",
+        "staff_notes": "",
+        "payment_status_id": "paid",
+        "status_id": "unfulfilled",
+        "customer_id": 5792136003822,
+        "customer_data": {
+            "id": 5792136003822,
+            "name": "Hong Nguyen",
+            "street": "Waldowstr. 10",
+            "street2": "",
+            "city": "Ellwangen",
+            "state_code": null,
+            "country_code": "DE",
+            "email": "hong.nguyen@example.com",
+            "phone": "23456786543456",
+            "zip": "73479",
+            "company": null
+        },
+        "requested_shipping_method": "None",
+        "currency_code": "USD",
+        "customer_message": "Thanksgiving present for mom.",
+        "lines": [
+            {
+                "product_id": "LISTING01",
+                "default_code": "prod-1",
+                "variant_id": "LISTING01-VARIANT-1",
+                "id_on_channel": "LINE1",
+                "quantity": 1,
+                "name": "LISTING01-VARIANT-1",
+                "price": 10.0
+            },
+            {
+                "product_id": "LISTING02",
+                "default_code": "prod-2",
+                "variant_id": "LISTING02-VARIANT-1",
+                "id_on_channel": "LINE2",
+                "quantity": 5,
+                "name": "LISTING02-VARIANT-1",
+                "price": 15.0
+            }
+        ],
+        "billing_address": {
+            "name": "Hung Nguyen",
+            "street": "Waldowstr. 90",
+            "street2": "",
+            "city": "Ellwangen",
+            "state_code": null,
+            "country_code": "DE",
+            "email": "hung.nguyen@example.com",
+            "phone": "0999999999",
+            "zip": "73479",
+            "company": null
+        },
+        "shipping_address": {
+            "name": "Hong Noa",
+            "street": "Waldowstr. 70",
+            "street2": "",
+            "city": "Ellwangen",
+            "state_code": null,
+            "country_code": "DE",
+            "email": "",
+            "phone": null,
+            "zip": "73479",
+            "company": null
+        },
+        "taxes": [
+            {
+                "name": "Tax",
+                "amount": 8.5
+            }
+        ],
+        "shipping_cost": 15,
+        "discount_amount": 20.0,
+        "coupons": {}
+    }
+]
