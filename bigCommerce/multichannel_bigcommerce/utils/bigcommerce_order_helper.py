@@ -132,10 +132,10 @@ class SingularOrderDataInTrans(common_formatter.DataTrans):
                 'sku': line['sku'],
                 'price': float(line['price_ex_tax']),
                 'quantity': float(line['quantity']),
-                'tax_amount': float(line['total_tax'])/float(line['quantity'])
+                'tax_amount': float(line['total_tax'])/(float(line['quantity']) or 1.0)
             })
         return {'lines': lines}
-    
+
     @classmethod
     def process_addresses(cls, order):
         address = {}
